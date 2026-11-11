@@ -97,21 +97,6 @@ export const exhibitions: Exhibition[] = [
     ],
   },
   {
-    year: 2023,
-    date: { fr: "Mars 2023", en: "March 2023" },
-    title: { fr: "Une toile à la mairie de Cugand", en: "A painting at Cugand town hall" },
-    place: { fr: "Cugand, Vendée (85)", en: "Cugand, Vendée, France" },
-    details: { fr: "Une de mes toiles accrochée à la mairie.", en: "One of my paintings hung in the town hall." },
-    images: [
-      {
-        src: "/expos/cugand-2023.jpg",
-        w: 528,
-        h: 935,
-        alt: { fr: "Laurine Girard, de dos, devant sa toile accrochée à la mairie de Cugand", en: "Laurine Girard, seen from behind, in front of her painting hung in Cugand town hall" },
-      },
-    ],
-  },
-  {
     year: 2022,
     date: { fr: "11 au 13 juin 2022", en: "11–13 June 2022" },
     title: { fr: "« Réalise »", en: "“Réalise”" },

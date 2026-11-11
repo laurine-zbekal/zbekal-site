@@ -113,7 +113,7 @@ const fr = {
   },
   exhibitions: {
     title: "Expos et actualités",
-    lead: "Paris, Jallais, Cugand, et chaque Noël sur Instagram : là où mes toiles sont sorties de l’atelier.",
+    lead: "Paris, Jallais, et chaque Noël sur Instagram : là où mes toiles sont sorties de l’atelier.",
     upcoming: "À venir",
     past: "Ce qui s’est passé",
     award: "Prix",
@@ -281,7 +281,7 @@ const en: UIStrings = {
   },
   exhibitions: {
     title: "Shows and news",
-    lead: "Paris, Jallais, Cugand, and every Christmas on Instagram: where my paintings have left the studio.",
+    lead: "Paris, Jallais, and every Christmas on Instagram: where my paintings have left the studio.",
     upcoming: "Coming up",
     past: "What’s happened so far",
     award: "Award",
