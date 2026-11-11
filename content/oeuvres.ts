@@ -108,7 +108,7 @@ export const artworks: Artwork[] = [
     width: 100,
     height: 100,
     status: "disponible",
-    images: imgs("maitre-silencieux", 4),
+    images: imgs("maitre-silencieux", 5),
     alt: {
       fr: "Maître silencieux : un jaguar aux yeux bleus entre des branches, des feuilles en relief et des oiseaux de paradis en perles",
       en: "Silent Master: a blue-eyed jaguar among branches, textured leaves and beaded birds of paradise",
@@ -129,7 +129,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    images: imgs("le-regard", 1),
+    images: imgs("le-regard", 4),
     frame: "7 / 10",
     alt: {
       fr: "Le Regard : un visage de femme à moitié caché par des feuilles vertes bordées de perles, un œil vert grand ouvert, une mèche noire et des branches rehaussées de feuille d’or",
@@ -219,7 +219,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    images: imgs("bouquet-d-ete", 2),
+    images: imgs("bouquet-d-ete", 5),
     alt: {
       fr: "Bouquet d’été : un bouquet rond multicolore noué d’un ruban bordeaux, tenu par une main, sur fond rose poudré",
       en: "Summer Bouquet: a round multicoloured bouquet tied with a burgundy ribbon, held by a hand, on a powder-pink background",
@@ -239,7 +239,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    images: imgs("douceur", 2),
+    images: imgs("douceur", 7),
     alt: {
       fr: "Douceur : un bouquet champêtre rose, jaune et orange noué d’un ruban blanc, tenu par une main, sur fond vert sauge",
       en: "Softness: a pink, yellow and orange wildflower bouquet tied with a white ribbon, held by a hand, on a sage-green background",
@@ -259,7 +259,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    images: imgs("eternel", 2),
+    images: imgs("eternel", 7),
     alt: {
       fr: "Éternel : un bouquet de roses blanches, roses et corail tenu par une main, sur fond bordeaux",
       en: "Eternal: a bouquet of white, pink and coral roses held by a hand, on a burgundy background",
@@ -279,7 +279,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    images: imgs("fleur-du-soleil", 2),
+    images: imgs("fleur-du-soleil", 6),
     alt: {
       fr: "Fleur du soleil : un bouquet de tournesols tenu à bout de bras sur fond bleu ciel",
       en: "Sunflower: a bouquet of sunflowers held at arm’s length on a sky-blue background",
@@ -298,7 +298,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    images: imgs("hanami", 3),
+    images: imgs("hanami", 5),
     alt: {
       fr: "Hanami : une main rehaussée de feuille d’or parmi des fleurs roses, sur fond bleu canard",
       en: "Hanami: a hand highlighted with gold leaf among pink blossoms, on a teal background",
@@ -316,7 +316,7 @@ export const artworks: Artwork[] = [
     year: 2025,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("delicatesse"),
+    images: imgs("delicatesse", 4),
     alt: {
       fr: "Délicatesse : un grand bouquet rouge, blanc et violet tenu par une main, sur fond vieux rose",
       en: "Delicacy: a large red, white and purple bouquet held by a hand, on a dusty-pink background",
@@ -333,7 +333,7 @@ export const artworks: Artwork[] = [
     year: 2026,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("union", 1),
+    images: imgs("union", 5),
     alt: {
       fr: "Union : un bouquet bohème aux tons beige et bordeaux noué d’un ruban, tenu par une main portant une alliance",
       en: "Union: a bohemian bouquet in beige and burgundy tones tied with a ribbon, held by a hand wearing a wedding ring",
@@ -352,7 +352,7 @@ export const artworks: Artwork[] = [
     technique: acrylique,
     size: { fr: "Format mini", en: "Mini format" },
     status: "sur-commande",
-    images: imgs("rose-et-soleil"),
+    images: imgs("rose-et-soleil", 2),
     alt: {
       fr: "Rose & Soleil : un bouquet de gerberas roses et orange sur fond rose pâle",
       en: "Pink & Sun: a bouquet of pink and orange gerberas on a pale pink background",
@@ -371,7 +371,7 @@ export const artworks: Artwork[] = [
     technique: acrylique,
     size: { fr: "Format mini", en: "Mini format" },
     status: "sur-commande",
-    images: imgs("eclat-de-printemps"),
+    images: imgs("eclat-de-printemps", 4),
     alt: {
       fr: "Éclat de printemps : un bouquet de tulipes roses tenu par une main, sur fond jaune vif",
       en: "Burst of Spring: a bouquet of pink tulips held by a hand, on a bright yellow background",
@@ -447,7 +447,7 @@ export const artworks: Artwork[] = [
     year: 2026,
     technique: dorure,
     status: "sur-commande",
-    images: imgs("retiens-moi", 2),
+    images: imgs("retiens-moi", 4),
     alt: {
       fr: "Retiens-moi : une main argentée descend vers une main rehaussée de feuille d’or, fond kaki, cadre en bois foncé",
       en: "Hold Me Back: a silver hand reaching down to a hand highlighted with gold leaf, khaki background, dark wooden frame",
@@ -465,7 +465,7 @@ export const artworks: Artwork[] = [
     year: 2025,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("a-travers-nos-mains"),
+    images: imgs("a-travers-nos-mains", 3),
     alt: {
       fr: "À travers nos mains : deux mains qui se tendent l’une vers l’autre sur fond bleu, la toile est tenue par Laurine devant une baie vitrée",
       en: "Through Our Hands: two hands reaching for each other on a blue background, the canvas held by Laurine in front of a window",
@@ -517,7 +517,7 @@ export const artworks: Artwork[] = [
     year: 2023,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("fusion"),
+    images: imgs("fusion", 3),
     alt: {
       fr: "Fusion : deux mains qui se frôlent, l’une cuivrée, l’autre bleu pâle, sur fond bleu nuit",
       en: "Fusion: two hands brushing against each other, one copper, one pale blue, on a midnight-blue background",
@@ -536,7 +536,7 @@ export const artworks: Artwork[] = [
     year: 2024,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("petit-havre-de-paix"),
+    images: imgs("petit-havre-de-paix", 1),
     frame: "1 / 1",
     alt: {
       fr: "Petit havre de paix : deux mains nouées, grise et cuivrée, sur un fond noir étoilé",
@@ -595,7 +595,7 @@ export const artworks: Artwork[] = [
     year: 2025,
     technique: dorure,
     status: "sur-commande",
-    images: imgs("nous"),
+    images: imgs("nous", 3),
     frame: "1 / 1",
     alt: {
       fr: "Nous : deux corps enlacés, blanc et bleu pâle, sur fond bleu nuit étoilé",
@@ -614,7 +614,7 @@ export const artworks: Artwork[] = [
     year: 2025,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("tendrement"),
+    images: imgs("tendrement", 4),
     alt: {
       fr: "Tendrement : gros plan sur des mains posées sur un corps, tons beige, gris et cuivre sur fond bleu",
       en: "Tenderly: close-up of hands resting on a body, in beige, grey and copper tones on a blue background",
@@ -632,7 +632,7 @@ export const artworks: Artwork[] = [
     year: 2024,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("au-fil-des-branches", 1),
+    images: imgs("au-fil-des-branches", 2),
     alt: {
       fr: "Au fil des branches : un corps féminin en gris et blanc traversé de branches d’oranger, fond rose",
       en: "Along the Branches: a female body in grey and white crossed by orange-tree branches, pink background",
@@ -650,7 +650,7 @@ export const artworks: Artwork[] = [
     year: 2024,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("ames-reunies", 1),
+    images: imgs("ames-reunies", 5),
     alt: {
       fr: "Âmes réunies : une femme enceinte de profil, cheveux ornés de feuilles rouges, sur fond vert profond étoilé",
       en: "Souls Together: a pregnant woman in profile, her hair adorned with red leaves, on a deep green starry background",
@@ -669,7 +669,7 @@ export const artworks: Artwork[] = [
     technique: acrylique,
     size: { fr: "Format miniature", en: "Miniature format" },
     status: "sur-commande",
-    images: imgs("aime-moi", 1),
+    images: imgs("aime-moi", 3),
     alt: {
       fr: "Aime-moi : un buste féminin en rose et prune avec des paillettes, toile miniature tenue à la main",
       en: "Love Me: a female torso in pink and plum with glitter, a miniature canvas held in one hand",
@@ -686,7 +686,7 @@ export const artworks: Artwork[] = [
     year: 2023,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("fission"),
+    images: imgs("fission", 1),
     alt: {
       fr: "Fission : un buste féminin zébré de noir et de gris sur fond bleu pailleté",
       en: "Fission: a female torso striped in black and grey on a glittering blue background",
@@ -703,7 +703,7 @@ export const artworks: Artwork[] = [
     year: 2024,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("constellation"),
+    images: imgs("constellation", 1),
     alt: {
       fr: "Constellation : un corps de dos en cuivre, gris et blanc sur un ciel noir étoilé",
       en: "Constellation: a figure seen from behind in copper, grey and white on a starry black sky",
@@ -724,7 +724,7 @@ export const artworks: Artwork[] = [
     technique: acrylique,
     size: cm("90 × 80"),
     status: "sur-commande",
-    images: imgs("regard-profond"),
+    images: imgs("regard-profond", 3),
     alt: { fr: "Regard profond : un œil en très gros plan, iris bleu sombre et touches rouges", en: "Deep Gaze: an eye in extreme close-up, dark blue iris and red touches" },
     description: {
       fr: "Mon premier œil sur toile. Avant de dessiner des corps, c’étaient les yeux qui remplissaient mes carnets du lycée.",
@@ -739,7 +739,7 @@ export const artworks: Artwork[] = [
     year: 2023,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("eclats-d-azur"),
+    images: imgs("eclats-d-azur", 1),
     alt: { fr: "Éclats d’azur : un buste gris pailleté, touches jaunes et bleues, sur fond bleu nuit", en: "Glints of Azure: a glittering grey torso with yellow and blue touches on a midnight-blue background" },
     description: {
       fr: "« Sous le soleil d’or, l’océan danse en mille éclats d’azur. » Un buste pailleté, des touches de jaune et de bleu sur fond nuit.",
@@ -799,7 +799,7 @@ export const artworks: Artwork[] = [
     technique: acrylique,
     size: cm("70 × 80"),
     status: "sur-commande",
-    images: imgs("sevda"),
+    images: imgs("sevda", 1),
     alt: { fr: "Sevda : un couple enlacé, blanc et bleu, sur fond noir étoilé", en: "Sevda: an embracing couple in white and blue on a starry black background" },
   },
   {
@@ -893,7 +893,7 @@ export const artworks: Artwork[] = [
     technique: acrylique,
     size: cm("70 × 60"),
     status: "sur-commande",
-    images: imgs("lena"),
+    images: imgs("lena", 2),
     alt: { fr: "Léna : un buste féminin zébré de noir et de gris, des grappes de raisin vert, fond bleu gris", en: "Léna: a female torso striped in black and grey, bunches of green grapes, blue-grey background" },
   },
   {
@@ -915,7 +915,7 @@ export const artworks: Artwork[] = [
     technique: acrylique,
     size: cm("60 × 80"),
     status: "sur-commande",
-    images: imgs("peaches"),
+    images: imgs("peaches", 1),
     alt: { fr: "Peaches : un buste féminin zébré de noir et de gris, des pêches en relief, fond lilas", en: "Peaches: a female torso striped in black and grey, peaches in relief, lilac background" },
   },
   {
@@ -926,7 +926,7 @@ export const artworks: Artwork[] = [
     technique: acrylique,
     size: cm("60 × 70"),
     status: "sur-commande",
-    images: imgs("leonie-2021"),
+    images: imgs("leonie-2021", 1),
     frame: "1 / 1",
     alt: { fr: "Léonie (2021) : un corps féminin en noir, gris et rose sur fond framboise", en: "Léonie (2021): a female body in black, grey and pink on a raspberry background" },
   },
@@ -951,7 +951,7 @@ export const artworks: Artwork[] = [
     year: 2020,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("gouvernante-de-la-bourgeonniere"),
+    images: imgs("gouvernante-de-la-bourgeonniere", 1),
     alt: { fr: "Gouvernante de la Bourgeonnière : Laurine, de dos, peint un portrait de femme aux cheveux bouclés sur fond rose", en: "The Governess of La Bourgeonnière: Laurine, from behind, painting a portrait of a woman with curly hair on a pink background" },
     description: { fr: "L’une de mes toutes premières toiles, en 2020 : un portrait, au couteau et en couleurs.", en: "One of my very first paintings, in 2020: a portrait, in palette knife and colour." },
   },

@@ -66,7 +66,7 @@ export function PricesPage({ locale }: { locale: Locale }) {
                 <span className="price-card__canvas" style={{ width: `${(f.w / max) * 90}%`, aspectRatio: `${f.w} / ${f.h}`, background: f.color }} />
               </span>
               <span className="price-card__body">
-                {f.tag ? <span className={`badge ${f.star ? "badge--pink" : "badge--grey"}`}>{f.star ? `${tarifs.starLabel[locale]} ${f.tag}` : f.tag}</span> : <span className="price-card__spacer" />}
+                {f.tag ? <span className={`badge ${f.star ? "badge--pink" : "badge--grey"}`}>{`${tarifs.starLabel[locale]} ${f.tag}`}</span> : <span className="price-card__spacer" />}
                 <span className="price-card__size">
                   {f.w} × {f.h} cm
                 </span>
