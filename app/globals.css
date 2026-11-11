@@ -649,7 +649,7 @@ body[data-menu-open="true"] {
   grid-template-columns: 1fr;
   gap: clamp(28px, 5vw, 56px);
   align-items: center;
-  padding-block: clamp(32px, 5vw, 64px) clamp(32px, 4vw, 48px);
+  padding-block: clamp(32px, 5vw, 64px) clamp(48px, 7vw, 88px);
 }
 @media (min-width: 900px) {
   .hero {

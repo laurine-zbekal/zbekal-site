@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { site, locationLabel } from "@/content/site";
 import { ui, type Locale } from "@/content/ui";
-import { home, palette, studioPhotos } from "@/content/textes";
+import { home, studioPhotos } from "@/content/textes";
 import { exhibitions } from "@/content/expositions";
 import { getCollection } from "@/content/collections";
 import { href } from "@/lib/routes";
@@ -58,20 +58,6 @@ export function HomePage({ locale }: { locale: Locale }) {
             </Link>
           ) : null}
         </div>
-      </section>
-
-      {/* Palette */}
-      <section className="container palette" aria-label={t.home.paletteLabel}>
-        <span className="kicker" style={{ color: "var(--ink)" }}>
-          {t.home.paletteLabel}
-        </span>
-        <ul className="palette__dots">
-          {palette.map((c) => (
-            <li key={c.hex} className="palette__dot" style={{ background: c.hex }} tabIndex={0} aria-label={c.name[locale]}>
-              <span aria-hidden="true">{c.name[locale]}</span>
-            </li>
-          ))}
-        </ul>
       </section>
 
       {/* Dispo maintenant */}

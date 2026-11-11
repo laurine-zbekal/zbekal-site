@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+
+export const dynamic = "force-static";
 import { site } from "@/content/site";
 import { alternates, type RouteKey } from "@/lib/routes";
 import { allArtworks, collectionsWithWorks } from "@/lib/content";
