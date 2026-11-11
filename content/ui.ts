@@ -168,7 +168,7 @@ const fr = {
     cta: "Voir les toiles",
   },
   breadcrumb: { home: "Accueil", gallery: "Toiles" },
-  ticker: { upcoming: "À venir", available: (n: number) => `${n} toiles disponibles`, inspired: "Une toile déjà partie t’inspire ? Je crée la tienne, dans le même esprit" },
+  ticker: { upcoming: "À venir" },
 };
 
 export type UIStrings = typeof fr;
@@ -336,7 +336,7 @@ const en: UIStrings = {
     cta: "See the paintings",
   },
   breadcrumb: { home: "Home", gallery: "Paintings" },
-  ticker: { upcoming: "Coming up", available: (n: number) => `${n} paintings available`, inspired: "Inspired by a painting that’s already gone? I’ll create yours in the same spirit" },
+  ticker: { upcoming: "Coming up" },
 };
 
 export const ui: Record<Locale, UIStrings> = { fr, en };
