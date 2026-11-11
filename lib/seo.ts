@@ -3,7 +3,8 @@ import { site, locationLabel } from "@/content/site";
 import type { Artwork } from "@/content/oeuvres";
 import type { Locale } from "@/content/ui";
 import { alternates, href, type RouteKey } from "./routes";
-import { dimensionsLabel, titleOf } from "./content";
+import { getCollection } from "@/content/collections";
+import { dimensionsLabel, hasDimensions, titleOf } from "./content";
 
 const ogLocale: Record<Locale, string> = { fr: "fr_FR", en: "en_GB" };
 
@@ -83,9 +84,12 @@ export function artworkJsonLd(a: Artwork, locale: Locale) {
   const url = absolute(href(locale, "artwork", a.slug));
   const availability: Record<Artwork["status"], string> = {
     disponible: "https://schema.org/InStock",
+    "sur-commande": "https://schema.org/MadeToOrder",
     vendue: "https://schema.org/SoldOut",
     reservee: "https://schema.org/LimitedAvailability",
   };
+  const dims = dimensionsLabel(a, locale);
+  const sized = hasDimensions(a) ? a : undefined;
   return {
     "@context": "https://schema.org",
     "@type": "VisualArtwork",
@@ -101,10 +105,10 @@ export function artworkJsonLd(a: Artwork, locale: Locale) {
     artMedium: a.technique[locale],
     artworkSurface: locale === "fr" ? "Toile" : "Canvas",
     dateCreated: a.year ? String(a.year) : undefined,
-    width: { "@type": "QuantitativeValue", value: a.width, unitCode: "CMT" },
-    height: { "@type": "QuantitativeValue", value: a.height, unitCode: "CMT" },
-    artEdition: 1,
-    isPartOf: { "@type": "CreativeWorkSeries", name: a.collection === "amazoni" ? "Amazoni" : undefined },
+    width: sized ? { "@type": "QuantitativeValue", value: sized.width, unitCode: "CMT" } : undefined,
+    height: sized ? { "@type": "QuantitativeValue", value: sized.height, unitCode: "CMT" } : undefined,
+    award: a.award?.[locale],
+    isPartOf: { "@type": "CreativeWorkSeries", name: getCollection(a.collection)?.title[locale] },
     offers:
       a.price != null
         ? {
@@ -116,7 +120,7 @@ export function artworkJsonLd(a: Artwork, locale: Locale) {
             seller: { "@id": `${site.url}/#person` },
           }
         : { "@type": "Offer", availability: availability[a.status], url: absolute(href(locale, "contact")), priceCurrency: "EUR" },
-    additionalProperty: [{ "@type": "PropertyValue", name: "dimensions", value: dimensionsLabel(a, locale) }],
+    additionalProperty: dims ? [{ "@type": "PropertyValue", name: "dimensions", value: dims }] : undefined,
   };
 }
 

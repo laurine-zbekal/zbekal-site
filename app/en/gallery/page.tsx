@@ -5,7 +5,7 @@ import { GalleryPage } from "@/components/pages/GalleryPage";
           locale: "en",
           key: "gallery",
           title: "The paintings",
-          description: "All of Zbekal’s paintings: the Amazoni collection and the originals available to buy. Acrylic on canvas, textured painting.",
+          description: "All of Zbekal’s paintings: the Amazoni collection, bouquets, hands, bodies. Originals available, and paintings that can be repainted to order.",
           image: "/og/galerie.jpg",
 });
 

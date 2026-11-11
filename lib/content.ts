@@ -20,6 +20,12 @@ export function availableArtworks(): Artwork[] {
   return artworks.filter((a) => a.status === "disponible");
 }
 
+/** Toiles parties chez leurs propriétaires, que Laurine peut repeindre. */
+export function onOrderArtworks(): Artwork[] {
+  return artworks.filter((a) => a.status === "sur-commande");
+}
+
+/** Toiles disponibles, celles marquées `featured` en premier. */
 export function featuredArtworks(max = 6): Artwork[] {
   const featured = artworks.filter((a) => a.featured && a.status === "disponible");
   const rest = artworks.filter((a) => !featured.includes(a) && a.status === "disponible");
@@ -35,19 +41,25 @@ export function upcomingExhibition() {
   return exhibitions.find((e) => e.upcoming);
 }
 
+/** Vrai quand largeur et hauteur de la toile sont connues. */
+export function hasDimensions(a: Artwork): a is Artwork & { width: number; height: number } {
+  return typeof a.width === "number" && typeof a.height === "number";
+}
+
 /** Titre affiché : titre original, et sa traduction en sous-titre pour l'anglais. */
 export function titleOf(a: Artwork, locale: Locale): { title: string; subtitle?: string } {
   if (locale === "en" && a.titleEn) return { title: a.title, subtitle: a.titleEn };
   return { title: a.title };
 }
 
-export function dimensionsLabel(a: Artwork, locale: Locale): string {
+/** Format affiché : le texte `size` s’il existe, sinon largeur × hauteur. Vide si rien n’est connu. */
+export function dimensionsLabel(a: Artwork, locale: Locale): string | undefined {
   const t = ui[locale].work;
+  if (a.size) return a.size[locale];
+  const panels = a.panels === 3 ? t.triptych : a.panels === 4 ? t.quadriptych : a.panels && a.panels > 1 ? t.panels(a.panels) : undefined;
+  if (!hasDimensions(a)) return panels;
   const base = `${a.width} × ${a.height} cm`;
-  if (a.panels === 3) return `${t.triptych} · ${base}`;
-  if (a.panels === 4) return `${t.quadriptych} · ${base}`;
-  if (a.panels && a.panels > 1) return `${t.panels(a.panels)} · ${base}`;
-  return base;
+  return panels ? `${panels} · ${base}` : base;
 }
 
 export function priceLabel(a: Artwork, locale: Locale): string {
@@ -61,16 +73,17 @@ export function priceLabel(a: Artwork, locale: Locale): string {
 
 /** Ligne technique : « Acrylique sur toile · 80 × 80 cm · 2026 » */
 export function specLine(a: Artwork, locale: Locale): string {
-  const parts = [a.technique[locale], dimensionsLabel(a, locale)];
-  if (a.year) parts.push(String(a.year));
-  return parts.join(" · ");
+  const parts = [a.technique[locale], dimensionsLabel(a, locale), a.year ? String(a.year) : undefined];
+  return parts.filter(Boolean).join(" · ");
 }
 
 export function mainImage(a: Artwork): string | undefined {
   return a.images[0];
 }
 
-/** Ratio largeur/hauteur de la toile, pour réserver l'espace des images. */
+/** Proportions de la vignette : `frame` si renseigné, sinon celles de la toile, sinon 4 / 5. */
 export function aspectRatio(a: Artwork): string {
-  return `${a.width} / ${a.height}`;
+  if (a.frame) return a.frame;
+  if (hasDimensions(a)) return `${a.width} / ${a.height}`;
+  return "4 / 5";
 }

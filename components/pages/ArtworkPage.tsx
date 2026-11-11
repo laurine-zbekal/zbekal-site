@@ -3,7 +3,7 @@ import type { Artwork } from "@/content/oeuvres";
 import { getCollection } from "@/content/collections";
 import { ui, type Locale } from "@/content/ui";
 import { href } from "@/lib/routes";
-import { artworksOf, dimensionsLabel, priceLabel, titleOf } from "@/lib/content";
+import { artworksOf, aspectRatio, dimensionsLabel, hasDimensions, priceLabel, titleOf } from "@/lib/content";
 import { imageSizes } from "@/lib/images";
 import { artworkJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { ArtworkCard, ArtworkPlaceholder, StatusBadge } from "@/components/ArtworkCard";
@@ -17,11 +17,15 @@ export async function ArtworkPage({ locale, artwork }: { locale: Locale; artwork
   const { title, subtitle } = titleOf(artwork, locale);
   const collection = getCollection(artwork.collection);
   const images = await imageSizes(artwork.images);
-  const others = artworksOf(artwork.collection)
-    .filter((a) => a.slug !== artwork.slug)
-    .slice(0, 3);
+  // Autres toiles de la collection : celles qui suivent dans la liste, en boucle.
+  const siblings = artworksOf(artwork.collection);
+  const at = siblings.findIndex((a) => a.slug === artwork.slug);
+  const others = [...siblings.slice(at + 1), ...siblings.slice(0, Math.max(at, 0))].slice(0, 3);
   const sold = artwork.status === "vendue";
-  const contactHref = `${href(locale, "contact")}?sujet=acquisition&oeuvre=${encodeURIComponent(artwork.slug)}`;
+  const onOrder = artwork.status === "sur-commande";
+  const dims = dimensionsLabel(artwork, locale);
+  const slugParam = encodeURIComponent(artwork.slug);
+  const contactHref = `${href(locale, "contact")}?sujet=${onOrder ? "commission" : "acquisition"}&oeuvre=${slugParam}`;
 
   return (
     <>
@@ -56,7 +60,7 @@ export async function ArtworkPage({ locale, artwork }: { locale: Locale; artwork
             {images.length ? (
               <ArtworkViewer images={images} title={title} alt={artwork.alt[locale]} locale={locale} />
             ) : (
-              <div className="viewer__main" style={{ aspectRatio: `${artwork.width} / ${artwork.height}`, minHeight: 240 }}>
+              <div className="viewer__main" style={{ aspectRatio: aspectRatio(artwork), minHeight: 240 }}>
                 <ArtworkPlaceholder artwork={artwork} locale={locale} />
               </div>
             )}
@@ -81,26 +85,49 @@ export async function ArtworkPage({ locale, artwork }: { locale: Locale; artwork
             <dl className="specs">
               <dt>{t.work.technique}</dt>
               <dd>{artwork.technique[locale]}</dd>
-              <dt>{t.work.dimensions}</dt>
-              <dd>{dimensionsLabel(artwork, locale)}</dd>
+              {dims ? (
+                <>
+                  <dt>{t.work.dimensions}</dt>
+                  <dd>{dims}</dd>
+                </>
+              ) : null}
               {artwork.year ? (
                 <>
                   <dt>{t.work.year}</dt>
                   <dd>{artwork.year}</dd>
                 </>
               ) : null}
+              {artwork.award ? (
+                <>
+                  <dt>{t.work.award}</dt>
+                  <dd>★ {artwork.award[locale]}</dd>
+                </>
+              ) : null}
               <dt>{t.work.availability}</dt>
-              <dd>{t.status[artwork.status]}</dd>
+              <dd>{onOrder ? `${t.status[artwork.status]} · ${t.work.repaint.toLowerCase()}` : t.status[artwork.status]}</dd>
             </dl>
 
-            {!sold ? (
+            {onOrder ? (
+              <div className="order-box stack" style={{ "--stack": "14px" } as React.CSSProperties}>
+                <p className="order-box__title">{t.work.onOrderTitle}</p>
+                <p>{t.work.onOrderText}</p>
+                <div className="cluster" style={{ "--cluster": "10px" } as React.CSSProperties}>
+                  <Link href={contactHref} className="btn btn--pink btn--lg">
+                    {t.cta.wantMine}
+                  </Link>
+                  <Link href={`${href(locale, "contact")}?sujet=other&oeuvre=${slugParam}`} className="btn btn--lg">
+                    {t.cta.ask}
+                  </Link>
+                </div>
+              </div>
+            ) : !sold ? (
               <div className="stack" style={{ "--stack": "16px" } as React.CSSProperties}>
                 <p className="price">{priceLabel(artwork, locale)}</p>
                 <div className="cluster" style={{ "--cluster": "10px" } as React.CSSProperties}>
                   <Link href={contactHref} className="btn btn--pink btn--lg">
                     {t.cta.wantIt}
                   </Link>
-                  <Link href={`${href(locale, "contact")}?sujet=other&oeuvre=${encodeURIComponent(artwork.slug)}`} className="btn btn--lg">
+                  <Link href={`${href(locale, "contact")}?sujet=other&oeuvre=${slugParam}`} className="btn btn--lg">
                     {t.cta.ask}
                   </Link>
                 </div>
@@ -117,14 +144,16 @@ export async function ArtworkPage({ locale, artwork }: { locale: Locale; artwork
               ))}
             </ul>
 
-            <details>
-              <summary className="link" style={{ cursor: "pointer", listStyle: "none" }}>
-                {t.work.scaleTitle} →
-              </summary>
-              <div style={{ marginTop: 16 }}>
-                <ScaleHint artwork={artwork} locale={locale} />
-              </div>
-            </details>
+            {hasDimensions(artwork) ? (
+              <details>
+                <summary className="link" style={{ cursor: "pointer", listStyle: "none" }}>
+                  {t.work.scaleTitle} →
+                </summary>
+                <div style={{ marginTop: 16 }}>
+                  <ScaleHint artwork={artwork} locale={locale} />
+                </div>
+              </details>
+            ) : null}
           </div>
         </div>
 

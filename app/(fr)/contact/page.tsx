@@ -5,7 +5,7 @@ import { ContactPage } from "@/components/pages/ContactPage";
           locale: "fr",
           key: "contact",
           title: "Contact et commande sur mesure",
-          description: "Acquérir une toile de Zbekal, commander une œuvre sur mesure ou poser une question : réponse sous 48 h.",
+          description: "Acquérir une toile de Zbekal, en faire repeindre une ou commander une création sur mesure : écris à Laurine, réponse sous 48 h.",
           image: "/og/default.jpg",
 });
 

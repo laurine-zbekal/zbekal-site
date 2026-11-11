@@ -35,7 +35,7 @@ export function PrivacyPage({ locale }: { locale: Locale }) {
         <h2 className="display h4">Who receives it</h2>
         <p>Your data is not sold or shared for advertising. It is processed by the following service providers, acting on instructions:</p>
         <ul>
-          <li>Vercel Inc. (hosting of the site and of the forms).</li>
+          <li>{site.host.name} (hosting of the site and of the forms).</li>
           <li>Resend (delivery of the emails sent by the forms).</li>
           <li>Brevo (newsletter tool, servers in the European Union), once the newsletter is launched.</li>
         </ul>
@@ -84,7 +84,7 @@ export function PrivacyPage({ locale }: { locale: Locale }) {
       <h2 className="display h4">Qui y a accès</h2>
       <p>Tes données ne sont ni vendues ni partagées à des fins publicitaires. Elles sont traitées par les prestataires suivants, qui agissent sur instruction :</p>
       <ul>
-        <li>Vercel Inc. (hébergement du site et des formulaires).</li>
+        <li>{site.host.name} (hébergement du site et des formulaires).</li>
         <li>Resend (acheminement des e-mails envoyés par les formulaires).</li>
         <li>Brevo (outil de newsletter, serveurs dans l’Union européenne), une fois la newsletter lancée.</li>
       </ul>

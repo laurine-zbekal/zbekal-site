@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/content/site";
 import { ui, type Locale } from "@/content/ui";
-import { about, studioPhotos } from "@/content/textes";
-import { exhibitions } from "@/content/expositions";
+import { about } from "@/content/textes";
+import { highlightedExhibitions } from "@/content/expositions";
 import { href } from "@/lib/routes";
 import { breadcrumbJsonLd, personJsonLd } from "@/lib/seo";
 import { ExhibitionList } from "@/components/ExhibitionList";
@@ -27,7 +27,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
       <section className="container section" style={{ paddingTop: "clamp(32px, 5vw, 56px)" }}>
         <div className="grid-2" style={{ alignItems: "start" }}>
           <div className="stack" style={{ "--stack": "20px" } as React.CSSProperties}>
-            <span className="kicker">{t.about.kicker}</span>
+            <span className="kicker">{about.kicker[locale]}</span>
             <h1 className="display h1" style={{ fontSize: "clamp(44px, 7vw, 92px)" }}>
               {t.about.title}
             </h1>
@@ -44,35 +44,49 @@ export function AboutPage({ locale }: { locale: Locale }) {
             </div>
           </div>
           <div className="rounded-img" style={{ aspectRatio: "3 / 4" }}>
-            <Image src="/atelier/profil.jpg" alt={about.portraitAlt[locale]} width={1060} height={1600} sizes="(min-width: 900px) 44vw, 100vw" priority quality={75} />
+            <Image src={about.portrait.src} alt={about.portrait.alt[locale]} width={about.portrait.w} height={about.portrait.h} sizes="(min-width: 900px) 44vw, 100vw" priority quality={75} style={{ objectPosition: "50% 20%" }} />
           </div>
         </div>
       </section>
 
-      <section className="container section--tight" aria-labelledby="approach-title">
+      <section className="container" aria-labelledby="dates-title">
+        <h2 id="dates-title" className="visually-hidden">
+          {t.about.milestonesTitle}
+        </h2>
+        <ol className="milestones reveal">
+          {about.milestones[locale].map((m) => (
+            <li key={m.year}>
+              <span className="milestones__year">{m.year}</span>
+              <span>{m.text}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="container section" aria-labelledby="approach-title">
         <div className="grid-2" style={{ alignItems: "start" }}>
-          <div className="stack" style={{ "--stack": "18px" } as React.CSSProperties}>
+          <div className="stack" style={{ "--stack": "24px" } as React.CSSProperties}>
             <h2 id="approach-title" className="display h2">
               {t.about.approachTitle}
             </h2>
-            <div className="prose">
-              {about.approach[locale].map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+            {about.approach[locale].map((b) => (
+              <div key={b.title} className="stack" style={{ "--stack": "6px" } as React.CSSProperties}>
+                <h3 className="approach__title">{b.title}</h3>
+                <p className="prose">{b.text}</p>
+              </div>
+            ))}
           </div>
           <div className="stack" style={{ "--stack": "12px" } as React.CSSProperties}>
-            <div className="rounded-img reveal" style={{ aspectRatio: "3 / 2" }}>
-              <Image src="/atelier/matiere.jpg" alt={studioPhotos[1].alt[locale]} width={2000} height={1325} sizes="(min-width: 900px) 44vw, 100vw" quality={75} />
-            </div>
-            <div className="rounded-img reveal" style={{ aspectRatio: "3 / 2" }}>
-              <Image src="/atelier/oeil.jpg" alt={studioPhotos[5].alt[locale]} width={2000} height={1325} sizes="(min-width: 900px) 44vw, 100vw" quality={75} />
-            </div>
+            {about.closeUps.map((p) => (
+              <div key={p.src} className="rounded-img reveal" style={{ aspectRatio: "3 / 2" }}>
+                <Image src={p.src} alt={p.alt[locale]} width={p.w} height={p.h} sizes="(min-width: 900px) 44vw, 100vw" quality={75} />
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="container section--tight" aria-labelledby="insp-title">
+      <section className="container" aria-labelledby="insp-title">
         <div className="panel panel--pink-soft reveal" style={{ display: "flex", flexWrap: "wrap", gap: "20px 48px", alignItems: "flex-start" }}>
           <h2 id="insp-title" className="display h3" style={{ flex: "0 1 280px" }}>
             {t.about.inspirationsTitle}
@@ -87,29 +101,36 @@ export function AboutPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="container section--tight" aria-labelledby="journey-title">
+      <section className="container section" aria-labelledby="journey-title">
         <div className="stack" style={{ "--stack": "20px" } as React.CSSProperties}>
           <h2 id="journey-title" className="display h2">
             {t.about.journeyTitle}
           </h2>
-          <p className="prose">{about.journey[locale]}</p>
-          <ExhibitionList items={exhibitions} locale={locale} />
-          {cv ? (
-            <a href={cv} className="btn" style={{ alignSelf: "flex-start" }} download>
-              {about.cvLabel[locale]}
-            </a>
-          ) : null}
+          <p className="prose" style={{ fontSize: 19 }}>
+            {about.journey[locale]}
+          </p>
+          <ExhibitionList items={highlightedExhibitions()} locale={locale} />
+          <div className="cluster">
+            <Link href={href(locale, "exhibitions")} className="link">
+              {t.home.allExhibitions} →
+            </Link>
+            {cv ? (
+              <a href={cv} className="btn" download>
+                {about.cvLabel[locale]}
+              </a>
+            ) : null}
+          </div>
         </div>
       </section>
 
-      <section className="container section" aria-labelledby="studio-title">
+      <section className="container section" aria-labelledby="studio-title" style={{ paddingTop: 0 }}>
         <h2 id="studio-title" className="display h3" style={{ marginBottom: 20 }}>
           {t.about.studioTitle}
         </h2>
-        <div className="grid-cards reveal" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(220px, 100%), 1fr))" }}>
-          {studioPhotos.slice(2, 8).map((p) => (
+        <div className="studio-grid reveal">
+          {about.studio.map((p) => (
             <div key={p.src} className="rounded-img" style={{ aspectRatio: "3 / 4", borderRadius: "var(--radius-md)" }}>
-              <Image src={p.src} alt={p.alt[locale]} width={p.w} height={p.h} sizes="(min-width: 1240px) 300px, (min-width: 720px) 33vw, 50vw" quality={65} />
+              <Image src={p.src} alt={p.alt[locale]} width={p.w} height={p.h} sizes="(min-width: 960px) 380px, 50vw" quality={65} />
             </div>
           ))}
         </div>

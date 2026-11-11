@@ -1,18 +1,30 @@
 /**
- * Expositions, salons et prix — du plus récent au plus ancien.
+ * Expositions, salons, prix et actualités — du plus récent au plus ancien.
  * `upcoming: true` affiche l’événement dans le bandeau d’actualité.
+ * `images` : photos déposées dans public/expos/ (facultatif).
  */
+type L = { fr: string; en: string };
+
+export type ExhibitionImage = { src: string; w: number; h: number; alt: L };
+
 export type Exhibition = {
   year: number;
   /** Date ou période affichée */
-  date: { fr: string; en: string };
-  title: { fr: string; en: string };
-  place: { fr: string; en: string };
-  details?: { fr: string; en: string };
-  award?: { fr: string; en: string };
+  date: L;
+  title: L;
+  place: L;
+  /** Une ligne de contexte (listes courtes) */
+  details?: L;
+  /** Le récit, en deux ou trois phrases (page Expos) */
+  story?: L;
+  award?: L;
   upcoming?: boolean;
   /** Lien externe (optionnel) */
   url?: string;
+  urlLabel?: L;
+  images?: ExhibitionImage[];
+  /** false = n’apparaît pas dans les listes courtes (accueil, page Laurine) */
+  highlight?: boolean;
 };
 
 export const exhibitions: Exhibition[] = [
@@ -22,23 +34,108 @@ export const exhibitions: Exhibition[] = [
     title: { fr: "Salon des Arts de Jallais", en: "Salon des Arts, Jallais" },
     place: { fr: "Jallais, Maine-et-Loire (49)", en: "Jallais, Maine-et-Loire, France" },
     details: { fr: "Trois toiles présentées.", en: "Three paintings on show." },
+    story: {
+      fr: "Je reviens là où le public m’a remis son prix en 2023, avec trois nouvelles toiles.",
+      en: "I’m back where the public gave me its award in 2023, with three new paintings.",
+    },
     upcoming: true,
   },
   {
+    year: 2026,
+    date: { fr: "Octobre 2026", en: "October 2026" },
+    title: { fr: "Shop en Anjou parle de Zbekal", en: "Featured by Shop en Anjou" },
+    place: { fr: "Maine-et-Loire (49)", en: "Maine-et-Loire, France" },
+    details: { fr: "Une publication consacrée à mon travail.", en: "A post about my work." },
+    url: "https://www.instagram.com/p/DeXGRzAAMQk/",
+    urlLabel: { fr: "Voir la publication", en: "See the post" },
+    highlight: false,
+  },
+  {
+    year: 2025,
+    date: { fr: "Décembre 2025", en: "December 2025" },
+    title: { fr: "Concours de Noël, saison 5", en: "Christmas giveaway, season 5" },
+    place: { fr: "Sur Instagram, @zbekal", en: "On Instagram, @zbekal" },
+    details: { fr: "Une toile offerte par tirage au sort, comme chaque année depuis 2021.", en: "A painting given away in a prize draw, as every year since 2021." },
+    story: {
+      fr: "Chaque mois de décembre depuis 2021, j’offre une toile par tirage au sort. En 2025, ma communauté a voté pour la composer : ça a donné « Plaisir d’offrir ».",
+      en: "Every December since 2021, I give away a painting in a prize draw. In 2025, my community voted to design it: the result was “Plaisir d’offrir”.",
+    },
+    images: [
+      {
+        src: "/oeuvres/plaisir-d-offrir/main.jpg",
+        w: 795,
+        h: 1413,
+        alt: { fr: "La toile Plaisir d’offrir : deux mains qui se transmettent un bouquet", en: "The painting Plaisir d’offrir: two hands passing a bouquet" },
+      },
+    ],
+    highlight: false,
+  },
+  {
     year: 2023,
-    date: { fr: "2023", en: "2023" },
+    date: { fr: "Novembre 2023", en: "November 2023" },
     title: { fr: "Salon des Arts de Jallais", en: "Salon des Arts, Jallais" },
     place: { fr: "Jallais, Maine-et-Loire (49)", en: "Jallais, Maine-et-Loire, France" },
-    award: { fr: "Lauréate du prix du public", en: "Winner of the audience award" },
+    details: { fr: "Trois toiles sur l’amour : Fusion, Fission, Passion.", en: "Three paintings on love: Fusion, Fission, Passion." },
+    story: {
+      fr: "J’y ai présenté trois toiles sur l’amour : Fusion, Fission et Passion. Le public a voté pour Fusion, et je suis repartie avec son prix.",
+      en: "I showed three paintings on love: Fusion, Fission and Passion. The public voted for Fusion, and I went home with its award.",
+    },
+    award: { fr: "Prix du public pour « Fusion »", en: "Audience award for “Fusion”" },
+    images: [
+      {
+        src: "/expos/jallais-2023-prix.jpg",
+        w: 719,
+        h: 889,
+        alt: { fr: "Laurine Girard, le prix du public en main, devant ses trois toiles au Salon des Arts de Jallais", en: "Laurine Girard holding the audience award in front of her three paintings at the Salon des Arts in Jallais" },
+      },
+      {
+        src: "/expos/jallais-2023-toiles.jpg",
+        w: 719,
+        h: 889,
+        alt: { fr: "Fusion, Passion et Fission, les trois toiles présentées à Jallais en 2023", en: "Fusion, Passion and Fission, the three paintings shown in Jallais in 2023" },
+      },
+    ],
+  },
+  {
+    year: 2023,
+    date: { fr: "Mars 2023", en: "March 2023" },
+    title: { fr: "Une toile à la mairie de Cugand", en: "A painting at Cugand town hall" },
+    place: { fr: "Cugand, Vendée (85)", en: "Cugand, Vendée, France" },
+    details: { fr: "Une de mes toiles accrochée à la mairie.", en: "One of my paintings hung in the town hall." },
+    images: [
+      {
+        src: "/expos/cugand-2023.jpg",
+        w: 528,
+        h: 935,
+        alt: { fr: "Laurine Girard, de dos, devant sa toile accrochée à la mairie de Cugand", en: "Laurine Girard, seen from behind, in front of her painting hung in Cugand town hall" },
+      },
+    ],
   },
   {
     year: 2022,
-    date: { fr: "2022", en: "2022" },
-    title: { fr: "« Réalise »", en: "“Réalise”" },
+    date: { fr: "11 au 13 juin 2022", en: "11–13 June 2022" },
+    title: { fr: "« Réalise »", en: "“Réalise”" },
     place: { fr: "La Caserne, Paris 10e", en: "La Caserne, Paris (10th arrondissement)" },
     details: {
-      fr: "Exposition collective avec trois artistes, sur invitation de l’artiste Julia Sidiatman.",
-      en: "Group exhibition with three artists, at the invitation of artist Julia Sidiatman.",
+      fr: "Ma première exposition, collective, sur invitation de l’artiste Julia Sidiatman.",
+      en: "My first exhibition, a group show, at the invitation of artist Julia Sidiatman.",
     },
+    story: {
+      fr: "Ma toute première exposition : trois jours à Paris, une exposition collective sur invitation de l’artiste Julia Sidiatman, deux ans après ma première toile.",
+      en: "My very first exhibition: three days in Paris, a group show at the invitation of artist Julia Sidiatman, two years after my first painting.",
+    },
+    images: [
+      {
+        src: "/expos/paris-2022.jpg",
+        w: 719,
+        h: 898,
+        alt: { fr: "Laurine Girard, de dos, devant sa toile exposée à La Caserne, à Paris", en: "Laurine Girard, seen from behind, in front of her painting on show at La Caserne in Paris" },
+      },
+    ],
   },
 ];
+
+/** Les événements montrés dans les listes courtes (accueil, page Laurine). */
+export function highlightedExhibitions(): Exhibition[] {
+  return exhibitions.filter((e) => e.highlight !== false);
+}

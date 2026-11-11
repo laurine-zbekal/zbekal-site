@@ -8,20 +8,20 @@ export const site = {
   /** Métier affiché à côté du nom */
   job: { fr: "Artiste peintre", en: "Painter" },
   /** Phrase d’accroche (titre de la page d’accueil, partages) */
-  tagline: { fr: "Des jungles qui ont du relief", en: "Jungles with relief" },
+  tagline: { fr: "Des toiles qu’on a envie de toucher", en: "Paintings you’ll want to touch" },
 
-  /** Adresse publique du site (sans / final). Sur Vercel, définis NEXT_PUBLIC_SITE_URL. */
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://zbekal.fr").replace(/\/$/, ""),
+  /** Adresse publique du site (sans / final). zbekal.fr redirige vers zbekal.com. */
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://zbekal.com").replace(/\/$/, ""),
 
-  /** E-mail affiché sur le site. Passe à contact@zbekal.fr une fois la boîte créée. */
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "lauriine.grdd@gmail.com",
+  /** E-mail affiché partout sur le site. */
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "laurine@zbekal.com",
 
   instagram: { handle: "zbekal", url: "https://www.instagram.com/zbekal" },
 
   /** Localisation affichée. Renseigne `city` pour l’afficher (SEO local). */
   region: "Maine-et-Loire",
   department: "49",
-  city: "",
+  city: "Chalonnes-sur-Loire",
   country: { fr: "France", en: "France" },
 
   /** Mentions légales — à compléter avant la mise en ligne. */
@@ -38,6 +38,7 @@ export const site = {
     },
   },
 
+  /** Hébergeur : à mettre à jour au moment de la mise en ligne (Netlify envisagé). */
   host: {
     name: "Vercel Inc.",
     address: "440 N Barranca Ave #4133, Covina, CA 91723, USA",

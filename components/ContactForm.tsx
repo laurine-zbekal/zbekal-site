@@ -7,7 +7,8 @@ import { ui, type Locale } from "@/content/ui";
 import { href } from "@/lib/routes";
 
 type Kind = "acquisition" | "commission" | "other";
-export type ArtworkOption = { slug: string; label: string };
+/** `available` : toile en stock (acquisition) ; sinon toile déjà partie, à repeindre (commande) */
+export type ArtworkOption = { slug: string; label: string; available: boolean };
 
 type Errors = Partial<Record<"name" | "email" | "message" | "consent", string>>;
 
@@ -24,10 +25,18 @@ export function ContactForm({ locale, artworks }: { locale: Locale; artworks: Ar
     const params = new URLSearchParams(window.location.search);
     const k = params.get("sujet") ?? params.get("subject");
     const a = params.get("oeuvre") ?? params.get("artwork") ?? "";
+    const found = artworks.find((x) => x.slug === a);
     // eslint-disable-next-line react-hooks/set-state-in-effect
     if (k === "acquisition" || k === "commission" || k === "other") setKind(k);
-    if (a && artworks.some((x) => x.slug === a)) setArtwork(a);
+    else if (found) setKind(found.available ? "acquisition" : "commission");
+    if (found) setArtwork(a);
   }, [artworks]);
+
+  // Acquisition : les toiles en stock. Commande : les toiles déjà parties, à repeindre.
+  const inStock = artworks.filter((a) => a.available);
+  const toRepaint = artworks.filter((a) => !a.available);
+  const choices = kind === "acquisition" ? inStock : kind === "commission" ? toRepaint : [];
+  const chosen = choices.some((a) => a.slug === artwork) ? artwork : "";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -60,8 +69,8 @@ export function ContactForm({ locale, artworks }: { locale: Locale; artworks: Ar
         body: JSON.stringify({
           type: "contact",
           kind,
-          artwork: artwork || undefined,
-          artworkLabel: artworks.find((a) => a.slug === artwork)?.label,
+          artwork: chosen || undefined,
+          artworkLabel: artworks.find((a) => a.slug === chosen)?.label,
           name: name.trim(),
           email: email.trim(),
           message: message.trim(),
@@ -90,19 +99,33 @@ export function ContactForm({ locale, artworks }: { locale: Locale; artworks: Ar
     <form className="form" onSubmit={onSubmit} noValidate>
       <div className="field">
         <label htmlFor={`${id}-kind`}>{t.kind}</label>
-        <select id={`${id}-kind`} className="select" value={kind} onChange={(e) => setKind(e.target.value as Kind)}>
+        <select id={`${id}-kind`} className="select" value={kind} onChange={(e) => setKind(e.target.value as Kind)} data-contact-kind>
           <option value="acquisition">{t.kinds.acquisition}</option>
           <option value="commission">{t.kinds.commission}</option>
           <option value="other">{t.kinds.other}</option>
         </select>
       </div>
 
-      {kind === "acquisition" && artworks.length > 0 ? (
-        <div className="field">
+      {inStock.length > 0 ? (
+        <div className="field" hidden={kind !== "acquisition"} data-contact-field="acquisition">
           <label htmlFor={`${id}-artwork`}>{t.artwork}</label>
-          <select id={`${id}-artwork`} className="select" value={artwork} onChange={(e) => setArtwork(e.target.value)}>
+          <select id={`${id}-artwork`} className="select" value={kind === "acquisition" ? chosen : ""} onChange={(e) => setArtwork(e.target.value)}>
             <option value="">{t.artworkNone}</option>
-            {artworks.map((a) => (
+            {inStock.map((a) => (
+              <option key={a.slug} value={a.slug}>
+                {a.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : null}
+
+      {toRepaint.length > 0 ? (
+        <div className="field" hidden={kind !== "commission"} data-contact-field="commission">
+          <label htmlFor={`${id}-inspiration`}>{t.inspiration}</label>
+          <select id={`${id}-inspiration`} className="select" value={kind === "commission" ? chosen : ""} onChange={(e) => setArtwork(e.target.value)}>
+            <option value="">{t.inspirationNone}</option>
+            {toRepaint.map((a) => (
               <option key={a.slug} value={a.slug}>
                 {a.label}
               </option>

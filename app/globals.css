@@ -440,7 +440,7 @@ ol {
   width: max-content;
   padding: 11px 0;
   white-space: nowrap;
-  animation: ticker 34s linear infinite;
+  animation: ticker 48s linear infinite;
 }
 .ticker__track span {
   display: inline-flex;
@@ -462,13 +462,21 @@ ol {
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  /* sans défilement : les deux premières infos, à la ligne si besoin */
   .ticker__track {
     animation: none;
     width: auto;
     white-space: normal;
     padding-inline: var(--gutter);
+    flex-wrap: wrap;
+    gap: 2px 32px;
   }
-  .ticker__track span:last-child {
+  .ticker__track > span {
+    display: contents;
+  }
+  .ticker__track > span[aria-hidden],
+  .ticker__track > span > span:nth-child(n + 3),
+  .ticker__track > span > span > span {
     display: none;
   }
 }
@@ -655,6 +663,9 @@ body[data-menu-open="true"] {
   .hero {
     grid-template-columns: 1.15fr 1fr;
   }
+}
+.hero__title {
+  font-size: clamp(52px, 7.2vw, 96px);
 }
 .hero__title .accent {
   color: var(--pink);
@@ -1464,4 +1475,242 @@ hr.sep {
   border: 0;
   border-top: 1.5px solid var(--ink);
   margin: 0;
+}
+
+/* ==========================================================================
+   Ajouts : toiles « sur commande », vignettes, expos illustrées, page Laurine
+   ========================================================================== */
+
+/* Champ masqué (le sélecteur de toile du formulaire selon l’objet du message) */
+.field[hidden] {
+  display: none;
+}
+
+/* ---------- Statut « Sur commande » ---------- */
+.badge--order {
+  background: var(--pink-soft);
+  color: #9c1f4e;
+}
+.order-box {
+  background: var(--pink-soft);
+  border-radius: var(--radius-md);
+  padding: clamp(18px, 2.4vw, 26px);
+  font-size: 17px;
+  line-height: 1.5;
+}
+.order-box__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 36px);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--pink);
+}
+
+/* ---------- Vignettes (petites cartes) ---------- */
+.grid-cards--top {
+  align-items: start;
+}
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 24px);
+  align-items: start;
+}
+@media (min-width: 720px) {
+  .tiles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .tiles--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1000px) {
+  .tiles--5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+@media (max-width: 719px) {
+  /* nombre impair : la dernière vignette prend toute la largeur */
+  .tiles--5 > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .tiles--5 > :last-child:nth-child(odd) .card__img {
+    aspect-ratio: 16 / 10 !important;
+  }
+}
+.card--mini {
+  padding: 10px;
+  gap: 10px;
+}
+.card--mini .card__title {
+  font-size: 18px;
+}
+.card--mini .card__foot {
+  font-size: 15px;
+  margin-top: 0;
+}
+.card--mini .badge {
+  font-size: 11px;
+  padding: 4px 10px;
+}
+
+/* ---------- Formats de commande ---------- */
+.formats__label {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.formats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.formats li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 9px 16px;
+  border-radius: var(--pill);
+  background: rgba(20, 20, 19, 0.18);
+  font-size: 15px;
+  font-weight: 600;
+}
+.formats li strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ---------- Expos illustrées ---------- */
+/* Grand écran : photo | récit | seconde photo éventuelle. Mobile : photos côte à côte, puis le récit. */
+.stories {
+  display: grid;
+  --story-img: clamp(200px, 22vw, 270px);
+}
+.story {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: center;
+  padding: clamp(22px, 3vw, 36px) 0;
+  border-top: 1.5px solid var(--ink);
+}
+.story:last-child {
+  border-bottom: 1.5px solid var(--ink);
+}
+.story__media {
+  display: flex;
+  gap: 12px;
+}
+.story__img {
+  flex: 1 1 0;
+  max-width: 300px;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+.story__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (min-width: 820px) {
+  .story {
+    grid-template-columns: var(--story-img) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 56px);
+  }
+  .story--two {
+    grid-template-columns: var(--story-img) minmax(0, 1fr) var(--story-img);
+  }
+  .story__media {
+    display: contents;
+  }
+  .story__img {
+    order: 1;
+    max-width: none;
+  }
+  .story__body {
+    order: 2;
+  }
+  .story__img + .story__img {
+    order: 3;
+  }
+  .story--text .story__body {
+    grid-column: 2;
+  }
+}
+.story__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.story__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 44px);
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  margin-top: 6px;
+  text-wrap: balance;
+}
+.story__text {
+  font-size: clamp(17px, 1.6vw, 19px);
+  line-height: 1.55;
+  max-width: 52ch;
+  margin-top: 4px;
+}
+.story .link {
+  margin-top: 4px;
+}
+
+/* ---------- Page Laurine ---------- */
+.milestones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: 12px;
+}
+.milestones li {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 22px 22px;
+  border-radius: var(--radius-md);
+  background: var(--bg-soft);
+  font-size: 16px;
+  line-height: 1.4;
+}
+.milestones li:nth-child(4n + 1) {
+  background: var(--yellow);
+}
+.milestones li:nth-child(4n + 4) {
+  background: var(--pink);
+  color: #fff;
+}
+.milestones__year {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 4.4vw, 56px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+.approach__title {
+  font-weight: 700;
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.2;
+}
+.studio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1.6vw, 20px);
+}
+@media (min-width: 720px) {
+  .studio-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     slug: c.slug,
     title: `${c.title.en} — collection`,
     description: c.lead.en,
-    image: c.cover ? "/og/galerie.jpg" : "/og/default.jpg",
+    image: "/og/galerie.jpg",
   });
 }
 

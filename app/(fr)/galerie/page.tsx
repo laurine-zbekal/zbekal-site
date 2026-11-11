@@ -5,7 +5,7 @@ import { GalleryPage } from "@/components/pages/GalleryPage";
           locale: "fr",
           key: "gallery",
           title: "Les toiles",
-          description: "Toutes les toiles de Zbekal : la collection Amazoni et les originaux disponibles à l’achat. Acrylique sur toile, peinture en relief.",
+          description: "Toutes les toiles de Zbekal : la collection Amazoni, les bouquets, les mains, les corps. Originaux disponibles et toiles à repeindre sur commande.",
           image: "/og/galerie.jpg",
 });
 

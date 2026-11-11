@@ -5,7 +5,7 @@ import { LegalPage } from "@/components/pages/LegalPage";
           locale: "en",
           key: "legal",
           title: "Legal notice",
-          description: "Legal notice for zbekal.fr.",
+          description: "Legal notice for zbekal.com.",
           noIndex: true,
 });
 

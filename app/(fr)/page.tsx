@@ -4,8 +4,8 @@ import { HomePage } from "@/components/pages/HomePage";
         export const metadata = pageMetadata({
           locale: "fr",
           key: "home",
-          title: { absolute: "Zbekal — Laurine Girard, artiste peintre en Maine-et-Loire" },
-          description: "Laurine Girard, alias Zbekal, peint à l’acrylique des toiles en relief : la collection Amazoni, femmes, animaux sauvages et feuillages. Originaux disponibles et commandes sur mesure.",
+          title: { absolute: "Zbekal — Laurine Girard, artiste peintre à Chalonnes-sur-Loire" },
+          description: "Laurine Girard, alias Zbekal, peint à l’acrylique des toiles en relief, à la feuille d’or et aux perles. Originaux disponibles, toiles sur commande, en Maine-et-Loire.",
           image: "/og/default.jpg",
 });
 

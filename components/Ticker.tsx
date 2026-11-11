@@ -15,7 +15,8 @@ export function Ticker({ locale }: { locale: Locale }) {
       to: href(locale, "exhibitions"),
     });
   }
-  parts.push({ text: `Amazoni · ${t.ticker.available(available)}`, to: href(locale, "gallery") });
+  parts.push({ text: t.ticker.available(available), to: href(locale, "gallery") });
+  parts.push({ text: t.ticker.repaint, to: href(locale, "gallery") });
   if (parts.length === 0) return null;
 
   const group = (hidden: boolean) => (

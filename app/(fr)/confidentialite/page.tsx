@@ -5,7 +5,7 @@ import { PrivacyPage } from "@/components/pages/PrivacyPage";
           locale: "fr",
           key: "privacy",
           title: "Politique de confidentialité",
-          description: "Données personnelles collectées sur zbekal.fr et droits des visiteurs.",
+          description: "Données personnelles collectées sur zbekal.com et droits des visiteurs.",
           noIndex: true,
 });
 

@@ -11,7 +11,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
   const t = ui[locale];
   const options = allArtworks()
     .filter((a) => a.status !== "vendue")
-    .map((a) => ({ slug: a.slug, label: titleOf(a, locale).title }));
+    .map((a) => ({ slug: a.slug, label: a.year ? `${titleOf(a, locale).title} (${a.year})` : titleOf(a, locale).title, available: a.status === "disponible" }));
 
   return (
     <>

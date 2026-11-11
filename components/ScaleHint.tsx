@@ -5,7 +5,7 @@ import { ui, type Locale } from "@/content/ui";
  * Schéma à l’échelle : la toile à côté d’une silhouette de 1,70 m.
  * 1 unité SVG = 1 cm.
  */
-export function ScaleHint({ artwork, locale }: { artwork: Artwork; locale: Locale }) {
+export function ScaleHint({ artwork, locale }: { artwork: Artwork & { width: number; height: number }; locale: Locale }) {
   const t = ui[locale];
   const figureH = 170;
   const figureW = 56;

@@ -5,7 +5,7 @@ import { ExhibitionsPage } from "@/components/pages/ExhibitionsPage";
           locale: "en",
           key: "exhibitions",
           title: "Shows and news",
-          description: "Zbekal’s art fairs, exhibitions and awards, and upcoming dates: Salon des Arts in Jallais, November 2026.",
+          description: "Zbekal’s exhibitions, art fairs and awards, in pictures: Paris, Jallais, Cugand. Coming up: Salon des Arts in Jallais, November 2026.",
           image: "/og/default.jpg",
 });
 

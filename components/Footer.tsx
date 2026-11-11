@@ -2,6 +2,7 @@ import Link from "next/link";
 import { site, locationLabel } from "@/content/site";
 import { ui, type Locale } from "@/content/ui";
 import { href } from "@/lib/routes";
+import { collectionsWithWorks } from "@/lib/content";
 
 export function Footer({ locale }: { locale: Locale }) {
   const t = ui[locale];
@@ -20,7 +21,11 @@ export function Footer({ locale }: { locale: Locale }) {
           <div className="footer__col">
             <h2>{t.nav.gallery}</h2>
             <Link href={href(locale, "gallery")}>{t.cta.allWorks}</Link>
-            <Link href={href(locale, "collection", "amazoni")}>Amazoni</Link>
+            {collectionsWithWorks().map((c) => (
+              <Link key={c.slug} href={href(locale, "collection", c.slug)}>
+                {c.title[locale]}
+              </Link>
+            ))}
             <Link href={`${href(locale, "contact")}?sujet=commission`}>{t.cta.commission}</Link>
           </div>
           <div className="footer__col">

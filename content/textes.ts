@@ -1,5 +1,5 @@
 /**
- * Textes longs du site, en français et en anglais : accueil, démarche, bio.
+ * Textes longs du site, en français et en anglais : accueil, page « Laurine », commandes.
  * Modifie librement : chaque bloc existe dans les deux langues.
  */
 import type { Locale } from "./ui";
@@ -7,45 +7,60 @@ import type { Locale } from "./ui";
 type L<T> = Record<Locale, T>;
 
 export const home = {
-  kicker: { fr: "Artiste peintre · Maine-et-Loire", en: "Painter · Maine-et-Loire, France" } as L<string>,
-  title: { fr: ["Bienvenue dans", "ma jungle."], en: ["Welcome to", "my jungle."] } as L<[string, string]>,
+  /** Titre de l’accueil : la seconde partie est en rose */
+  title: { fr: ["Des toiles qu’on a", "envie de toucher."], en: ["Paintings you’ll", "want to touch."] } as L<[string, string]>,
+  /** n = nombre de toiles disponibles (calculé tout seul) */
   intro: {
-    fr: "Ici, tu découvres mes toiles à l’acrylique, peintes en relief et en couleur : la collection Amazoni, ses perroquets, son jaguar aux yeux bleus. Choisis celle qui te parle, ou imaginons ensemble la tienne.",
-    en: "Here you’ll find my acrylic paintings, built up in relief and full of colour: the Amazoni collection, its parrots, its blue-eyed jaguar. Pick the one that speaks to you, or let’s imagine yours together.",
-  } as L<string>,
+    fr: (n: number) =>
+      `De l’acrylique posée en épaisseur, de la feuille d’or, des perles : mes toiles se regardent de loin pour la couleur, de près pour la matière. En ce moment, ${n} sont disponibles. Les autres, je peux les repeindre pour toi.`,
+    en: (n: number) =>
+      `Thick acrylic, gold leaf, beads: my paintings are made to be seen from afar for the colour and up close for the texture. Right now, ${n} are available. The others, I can repaint for you.`,
+  } as L<(n: number) => string>,
   heroAlt: {
     fr: "Laurine Girard en train de peindre Duo coloré en extérieur, palette à la main",
     en: "Laurine Girard painting Colourful Duo outdoors, palette in hand",
   } as L<string>,
   about: {
     fr: [
-      "Je peins à l’acrylique, avec des médiums et des superpositions, pour que la toile ait du relief et accroche la lumière. La couleur est au centre de mon travail.",
-      "Depuis plusieurs années, le corps féminin et les fleurs m’inspirent. Aujourd’hui, la nature prend toute la place : Amazoni, c’est une série de dix toiles dans une végétation luxuriante.",
+      "J’ai peint ma première toile le 10 avril 2020, en plein confinement. Je n’ai plus lâché les pinceaux.",
+      "Depuis, il y a eu des corps, des mains, des bouquets, et maintenant une jungle entière. Toujours à l’acrylique, toujours en épaisseur : j’aime quand la peinture sort de la toile et accroche la lumière.",
     ],
     en: [
-      "I paint in acrylic, with mediums and layered strokes, so the canvas has relief and catches the light. Colour is at the heart of my work.",
-      "For several years, the female body and flowers have inspired me. Today, nature takes over: Amazoni is a series of ten paintings set in lush vegetation.",
+      "I painted my first canvas on 10 April 2020, in the middle of lockdown. I haven’t put the brushes down since.",
+      "Since then there have been bodies, hands, bouquets, and now a whole jungle. Always in acrylic, always laid on thick: I love it when the paint rises off the canvas and catches the light.",
     ],
   } as L<string[]>,
   portraitAlt: {
     fr: "Laurine Girard souriante, appuyée sur une toile, pinceau et palette à la main",
     en: "Laurine Girard smiling, leaning on a canvas, brush and palette in hand",
   } as L<string>,
+  /** Toiles « sur commande » mises en avant sur l’accueil (slugs de oeuvres.ts) */
+  repaintPicks: ["retiens-moi", "regarde-moi", "delicatesse", "fusion"],
+};
+
+/** Photo du bloc « Une toile rien que pour toi » (commande sur mesure). Remplace le fichier, garde le nom. */
+export const commissionPhoto = {
+  src: "/atelier/esquisse.jpg",
+  w: 719,
+  h: 1277,
+  alt: { fr: "Laurine en train de peindre, pinceau à la main, sur une toile aux tons terracotta", en: "Laurine painting, brush in hand, on a canvas in terracotta tones" } as L<string>,
 };
 
 /**
- * Photo du bloc « Une toile rien que pour toi » (commande sur mesure).
- * PROVISOIRE : en attendant une photo de Laurine en train de dessiner au crayon de bois,
- * le fichier esquisse.jpg est une copie de la photo au pinceau. Remplace le fichier, garde le nom.
+ * Formats et tarifs des commandes sur mesure (publication Instagram de novembre 2025).
+ * À TENIR À JOUR : mets `show: false` pour masquer le bloc, ou modifie les lignes.
  */
-export const commissionPhoto = {
-  src: "/atelier/esquisse.jpg",
-  w: 1060,
-  h: 1600,
-  alt: { fr: "Laurine en train de dessiner l’esquisse d’une commande au crayon de bois", en: "Laurine sketching a commission in pencil" } as L<string>,
+export const commissionFormats = {
+  show: true,
+  items: [
+    { name: "S", size: "60 × 70 cm", price: { fr: "220 €", en: "€220" } },
+    { name: "M", size: "80 × 90 cm", price: { fr: "250 €", en: "€250" } },
+    { name: "L", size: "100 cm", price: { fr: "300 €", en: "€300" } },
+    { name: { fr: "Sur mesure", en: "Custom" }, size: { fr: "Ton format", en: "Your size" }, price: { fr: "Sur devis", en: "On quote" } },
+  ] as { name: string | L<string>; size: string | L<string>; price: L<string> }[],
 };
 
-/** Palette de la collection Amazoni, affichée sur l’accueil */
+/** Palette de la collection Amazoni */
 export const palette = [
   { hex: "#1B4D3E", name: { fr: "Vert forêt", en: "Forest green" } },
   { hex: "#2E8B57", name: { fr: "Vert feuille", en: "Leaf green" } },
@@ -56,35 +71,94 @@ export const palette = [
   { hex: "#F26B21", name: { fr: "Orange", en: "Orange" } },
 ];
 
-/** Photos d’atelier utilisées sur l’accueil (bloc Instagram) et la page démarche */
-export const studioPhotos: { src: string; alt: L<string>; w: number; h: number }[] = [
-  { src: "/atelier/main-pinceau.jpg", w: 1060, h: 1600, alt: { fr: "Main de l’artiste posant une touche de peinture sur le perroquet rouge", en: "The artist’s hand adding a touch of paint to the red parrot" } },
-  { src: "/atelier/matiere.jpg", w: 2000, h: 1325, alt: { fr: "Détail de matière : feuilles en relief, perles vertes et moustaches dorées", en: "Texture detail: leaves in relief, green beads and golden whiskers" } },
-  { src: "/atelier/devant-jaguar.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard devant la toile Maître silencieux", en: "Laurine Girard in front of the painting Silent Master" } },
-  { src: "/atelier/chaise.jpg", w: 1060, h: 1600, alt: { fr: "Pinceaux et palette posés sur une chaise en bois, au bord de l’eau", en: "Brushes and palette on a wooden chair by the water" } },
-  { src: "/atelier/laurine-dos.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard de dos, ajustant une toile sur son chevalet en plein air", en: "Laurine Girard from behind, adjusting a canvas on her easel outdoors" } },
-  { src: "/atelier/oeil.jpg", w: 2000, h: 1325, alt: { fr: "Détail de Maître silencieux : l’œil bleu du jaguar et des éclats dorés", en: "Detail of Silent Master: the jaguar’s blue eye and golden glints" } },
-  { src: "/atelier/palette-riviere.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard, palette à la main, devant la rivière", en: "Laurine Girard, palette in hand, by the river" } },
-  { src: "/atelier/riviere.jpg", w: 2000, h: 1427, alt: { fr: "La toile Maître silencieux posée sur les rochers au bord de l’eau", en: "The painting Silent Master resting on rocks by the water" } },
-];
+type Photo = { src: string; alt: L<string>; w: number; h: number };
+
+const photos = {
+  mainPinceau: { src: "/atelier/main-pinceau.jpg", w: 1060, h: 1600, alt: { fr: "Main de l’artiste posant une touche de peinture sur le perroquet rouge", en: "The artist’s hand adding a touch of paint to the red parrot" } },
+  matiere: { src: "/atelier/matiere.jpg", w: 2000, h: 1325, alt: { fr: "Détail de matière : feuilles en relief, perles vertes et moustaches dorées", en: "Texture detail: leaves in relief, green beads and golden whiskers" } },
+  devantJaguar: { src: "/atelier/devant-jaguar.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard devant la toile Maître silencieux", en: "Laurine Girard in front of the painting Silent Master" } },
+  chaise: { src: "/atelier/chaise.jpg", w: 1060, h: 1600, alt: { fr: "Pinceaux et palette posés sur une chaise en bois, au bord de l’eau", en: "Brushes and palette on a wooden chair by the water" } },
+  laurineDos: { src: "/atelier/laurine-dos.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard de dos, ajustant une toile sur son chevalet en plein air", en: "Laurine Girard from behind, adjusting a canvas on her easel outdoors" } },
+  oeil: { src: "/atelier/oeil.jpg", w: 2000, h: 1325, alt: { fr: "Détail de Maître silencieux : l’œil bleu du jaguar et des éclats dorés", en: "Detail of Silent Master: the jaguar’s blue eye and golden glints" } },
+  paletteRiviere: { src: "/atelier/palette-riviere.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard, palette à la main, devant la rivière", en: "Laurine Girard, palette in hand, by the river" } },
+  riviere: { src: "/atelier/riviere.jpg", w: 2000, h: 1427, alt: { fr: "La toile Maître silencieux posée sur les rochers au bord de l’eau", en: "The painting Silent Master resting on rocks by the water" } },
+  auSol: { src: "/atelier/au-sol.jpg", w: 719, h: 942, alt: { fr: "Laurine Girard assise par terre, en train de rire, au milieu de ses toiles", en: "Laurine Girard sitting on the floor, laughing, surrounded by her canvases" } },
+  portraitRose: { src: "/atelier/portrait-rose.jpg", w: 1014, h: 1531, alt: { fr: "Laurine Girard en train de rire, une toile dans les mains, sous un ciel bleu", en: "Laurine Girard laughing, a canvas in her hands, under a blue sky" } },
+} satisfies Record<string, Photo>;
+
+/** Photos du bloc Instagram de l’accueil */
+export const studioPhotos: Photo[] = [photos.mainPinceau, photos.auSol, photos.devantJaguar, photos.matiere];
 
 export const about = {
+  kicker: { fr: "Artiste peintre · Chalonnes-sur-Loire", en: "Painter · Chalonnes-sur-Loire, France" } as L<string>,
   intro: {
-    fr: "Je suis Laurine Girard, artiste peintre sous le nom Zbekal, en Maine-et-Loire. Je peins à l’acrylique sur toile, et je peins en relief.",
-    en: "I’m Laurine Girard, a painter working under the name Zbekal, based in Maine-et-Loire, France. I paint in acrylic on canvas, and I paint in relief.",
+    fr: "Je peins des toiles qui ont du relief : de l’acrylique en épaisseur, de la feuille d’or, des perles. Tout a commencé le 10 avril 2020, en plein confinement, avec une première toile. Je ne me suis plus arrêtée.",
+    en: "I paint canvases with relief: thick acrylic, gold leaf, beads. It all began on 10 April 2020, in the middle of lockdown, with a first painting. I haven’t stopped since.",
   } as L<string>,
-  approach: {
+  portrait: {
+    src: "/atelier/portrait-palette.jpg",
+    w: 1014,
+    h: 1531,
+    alt: {
+      fr: "Laurine Girard souriante, accoudée à une toile sur son chevalet, palette à la main, au bord de l’eau",
+      en: "Laurine Girard smiling, leaning on a canvas on her easel, palette in hand, by the water",
+    } as L<string>,
+  },
+  /** Les repères, en quatre dates */
+  milestones: {
     fr: [
-      "Sur mes toiles, la peinture a de l’épaisseur. Je travaille la matière avec des médiums et des superpositions : les couches se chevauchent, les reliefs accrochent la lumière, et le tableau change selon l’heure et l’endroit où tu le regardes. C’est une expérience visuelle, et presque tactile.",
-      "La couleur est au centre de mon travail. Des verts profonds, des roses, des rouges, des bleus francs : je ne cherche pas la demi-teinte, je cherche l’énergie.",
-      "Depuis plusieurs années, le corps féminin et les fleurs m’inspirent. Mon travail évolue aujourd’hui vers un univers où la nature est au cœur des toiles. Amazoni, ma série en cours, est une immersion dans une végétation luxuriante où se mêlent femmes, animaux sauvages et feuillages : dix toiles qui ont chacune leur identité, reliées entre elles par des éléments visuels communs. La suite explore d’autres formats, triptyques et quadriptyques, avec un caméléon, un regard caché et des fleurs exotiques.",
+      { year: "2020", text: "Première toile, le 10 avril, en plein confinement." },
+      { year: "2022", text: "Première exposition, à Paris." },
+      { year: "2023", text: "Cinquantième toile, et prix du public au Salon des Arts de Jallais." },
+      { year: "2026", text: "Amazoni : dix toiles, une jungle." },
     ],
     en: [
-      "On my canvases, the paint has thickness. I work the texture with mediums and layered strokes: the layers overlap, the relief catches the light, and the painting changes with the time of day and the place you look at it from. It’s a visual experience, and almost a tactile one.",
-      "Colour is at the heart of my work. Deep greens, pinks, reds, bold blues: I’m not after half-tones, I’m after energy.",
-      "For several years, the female body and flowers have been my inspiration. My work is now moving towards a world where nature is at the heart of the canvas. Amazoni, my current series, is an immersion in lush vegetation where women, wild animals and foliage intertwine: ten paintings, each with its own identity, connected by shared visual elements. The next ones explore other formats, triptychs and quadriptychs, with a chameleon, a hidden gaze and exotic flowers.",
+      { year: "2020", text: "First painting, on 10 April, in the middle of lockdown." },
+      { year: "2022", text: "First exhibition, in Paris." },
+      { year: "2023", text: "Fiftieth painting, and the audience award at the Salon des Arts in Jallais." },
+      { year: "2026", text: "Amazoni: ten paintings, one jungle." },
     ],
-  } as L<string[]>,
+  } as L<{ year: string; text: string }[]>,
+  approach: {
+    fr: [
+      {
+        title: "La matière d’abord",
+        text: "Sur mes toiles, la peinture a de l’épaisseur. Je la pose couche après couche, j’y glisse de la feuille d’or et des perles. Les reliefs accrochent la lumière : le tableau n’est pas le même le matin et le soir, de face et de côté.",
+      },
+      {
+        title: "De la couleur, franchement",
+        text: "Des verts profonds, des roses, des rouges, des bleus de nuit. Je ne cherche pas la demi-teinte, je cherche l’énergie : une toile doit réveiller un mur.",
+      },
+      {
+        title: "Du corps à la jungle",
+        text: "J’ai commencé par le corps féminin, sans visage, tout en courbes. Puis sont venues les mains, les bouquets, et aujourd’hui Amazoni : dix toiles dans une végétation luxuriante, où se croisent femmes, animaux sauvages et feuillages.",
+      },
+      {
+        title: "Des toiles qui racontent quelqu’un",
+        text: "Beaucoup de mes toiles sont nées d’une commande : un mariage, un bébé qui arrive, un premier chez-soi, un bouquet reçu. On me confie une histoire, des couleurs, parfois une photo. J’en fais une toile qui ne ressemble qu’à ses propriétaires.",
+      },
+    ],
+    en: [
+      {
+        title: "Texture first",
+        text: "On my canvases, the paint has thickness. I lay it down layer after layer and slip in gold leaf and beads. The relief catches the light: the painting isn’t the same in the morning and in the evening, from the front and from the side.",
+      },
+      {
+        title: "Colour, and plenty of it",
+        text: "Deep greens, pinks, reds, midnight blues. I’m not after half-tones, I’m after energy: a painting should wake up a wall.",
+      },
+      {
+        title: "From the body to the jungle",
+        text: "I started with the female body, faceless, all curves. Then came hands, bouquets, and today Amazoni: ten paintings set in lush vegetation, where women, wild animals and foliage cross paths.",
+      },
+      {
+        title: "Paintings that tell someone’s story",
+        text: "Many of my paintings began as a commission: a wedding, a baby on the way, a first home, a bouquet received. People trust me with a story, some colours, sometimes a photo. I turn it into a painting that looks like no one but its owners.",
+      },
+    ],
+  } as L<{ title: string; text: string }[]>,
+  /** Les deux gros plans à côté de « Ma façon de peindre » */
+  closeUps: [photos.matiere, photos.oeil] as Photo[],
   inspirations: {
     fr: [
       { name: "Frida Kahlo", why: "pour la nature et la figure féminine." },
@@ -96,12 +170,10 @@ export const about = {
     ],
   } as L<{ name: string; why: string }[]>,
   journey: {
-    fr: "Mes toiles ont été montrées à Paris et en Maine-et-Loire. En 2023, le public du Salon des Arts de Jallais m’a décerné son prix. En novembre 2026, j’y reviens avec trois nouvelles toiles.",
-    en: "My paintings have been shown in Paris and in Maine-et-Loire. In 2023, the public of the Salon des Arts in Jallais gave me its award. In November 2026, I’m back there with three new paintings.",
+    fr: "Paris en 2022. Une mairie vendéenne et un prix du public en 2023. Et chaque Noël, une toile offerte à ma communauté sur Instagram. En novembre 2026, je retourne au Salon des Arts de Jallais avec trois nouvelles toiles.",
+    en: "Paris in 2022. A town hall in Vendée and an audience award in 2023. And every Christmas, a painting given away to my Instagram community. In November 2026, I’m back at the Salon des Arts in Jallais with three new paintings.",
   } as L<string>,
-  portraitAlt: {
-    fr: "Laurine Girard de profil, pinceau et palette à la main, appuyée sur une toile vierge",
-    en: "Laurine Girard in profile, brush and palette in hand, leaning on a blank canvas",
-  } as L<string>,
+  /** Photos du bloc « À l’atelier » */
+  studio: [photos.devantJaguar, photos.auSol, photos.laurineDos, photos.paletteRiviere, photos.chaise, photos.portraitRose] as Photo[],
   cvLabel: { fr: "Télécharger mon CV (PDF)", en: "Download my CV (PDF)" } as L<string>,
 };

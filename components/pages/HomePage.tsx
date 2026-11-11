@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { site, locationLabel } from "@/content/site";
 import { ui, type Locale } from "@/content/ui";
-import { commissionPhoto, home, studioPhotos } from "@/content/textes";
-import { exhibitions } from "@/content/expositions";
+import { commissionFormats, commissionPhoto, home, studioPhotos } from "@/content/textes";
+import { highlightedExhibitions } from "@/content/expositions";
 import { getCollection } from "@/content/collections";
 import { href } from "@/lib/routes";
-import { artworksOf, availableArtworks, dimensionsLabel, featuredArtworks, titleOf } from "@/lib/content";
+import { artworksOf, availableArtworks, getArtwork, hasDimensions, onOrderArtworks } from "@/lib/content";
 import { personJsonLd, websiteJsonLd } from "@/lib/seo";
 import { ArtworkCard } from "@/components/ArtworkCard";
 import { JsonLd } from "@/components/JsonLd";
@@ -14,16 +14,23 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 import { ExhibitionList } from "@/components/ExhibitionList";
 import { InstagramIcon } from "@/components/Icons";
 
+const text = (v: string | Record<Locale, string>, locale: Locale) => (typeof v === "string" ? v : v[locale]);
+
 export function HomePage({ locale }: { locale: Locale }) {
   const t = ui[locale];
-  const available = availableArtworks().length;
-  const featured = featuredArtworks(6);
-  const withPhoto = featured.filter((a) => a.images.length > 0).slice(0, 5);
-  const withoutPhoto = featured.filter((a) => a.images.length === 0);
+  const availableWorks = availableArtworks();
+  const available = availableWorks.length;
+  // Vitrine : les toiles Amazoni disponibles (3 en grand, les suivantes en ligne), puis les autres en vignettes.
+  const jungle = availableWorks.filter((a) => a.collection === "amazoni");
+  // à droite de la grande carte : deux toiles carrées, pour que les deux colonnes tombent à la même hauteur
+  const showcase = [jungle[0], ...jungle.filter((a) => a !== jungle[0] && hasDimensions(a) && a.width === a.height).slice(0, 2)].filter(Boolean);
+  const jungleRest = jungle.filter((a) => !showcase.includes(a));
+  const others = availableWorks.filter((a) => a.collection !== "amazoni");
+  const repaintCount = onOrderArtworks().length;
+  const repaintPicks = home.repaintPicks.map((slug) => getArtwork(slug)).filter((a) => a != null && a.status === "sur-commande");
   const amazoni = getCollection("amazoni");
   const amazoniShown = artworksOf("amazoni").length;
   const amazoniPlanned = amazoni?.planned ?? amazoniShown;
-  const latestExhibitions = exhibitions.slice(0, 3);
 
   return (
     <>
@@ -32,14 +39,14 @@ export function HomePage({ locale }: { locale: Locale }) {
       {/* Hero */}
       <section className="container hero" aria-labelledby="hero-title">
         <div className="stack" style={{ "--stack": "24px" } as React.CSSProperties}>
-          <span className="badge badge--yellow" style={{ alignSelf: "flex-start" }}>
+          <span className="badge badge--yellow" style={{ alignSelf: "flex-start", whiteSpace: "normal" }}>
             {site.job[locale]} · {locationLabel(locale)}
           </span>
           <h1 id="hero-title" className="display h1 hero__title">
             {home.title[locale][0]} <span className="accent">{home.title[locale][1]}</span>
           </h1>
           <p className="lead" style={{ fontSize: "clamp(19px, 2vw, 22px)", color: "var(--ink)" }}>
-            {home.intro[locale]}
+            {home.intro[locale](available)}
           </p>
           <div className="cluster" style={{ "--cluster": "12px 14px" } as React.CSSProperties}>
             <Link href={href(locale, "gallery")} className="btn btn--pink btn--lg">
@@ -77,9 +84,9 @@ export function HomePage({ locale }: { locale: Locale }) {
             </p>
           </div>
 
-          {withPhoto.length ? (
+          {showcase.length ? (
             <div className="showcase">
-              {withPhoto.map((a, i) => (
+              {showcase.map((a, i) => (
                 <ArtworkCard
                   key={a.slug}
                   artwork={a}
@@ -93,35 +100,34 @@ export function HomePage({ locale }: { locale: Locale }) {
             </div>
           ) : null}
 
-          {amazoniPlanned > amazoniShown || withoutPhoto.length ? (
+          {jungleRest.length ? (
+            <div className="grid-cards grid-cards--top" style={{ marginTop: "clamp(16px, 2.4vw, 28px)" }}>
+              {jungleRest.map((a) => (
+                <ArtworkCard key={a.slug} artwork={a} locale={locale} className="reveal" />
+              ))}
+            </div>
+          ) : null}
+
+          {others.length ? (
+            <div className="stack" style={{ "--stack": "16px", marginTop: "clamp(32px, 5vw, 56px)" } as React.CSSProperties}>
+              <h3 className="display h3">{t.home.moreAvailable}</h3>
+              <div className={`tiles tiles--${Math.min(others.length, 5)}`}>
+                {others.map((a) => (
+                  <ArtworkCard key={a.slug} artwork={a} locale={locale} mini className="reveal" sizes="(min-width: 1000px) 230px, (min-width: 720px) 31vw, 46vw" />
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          {amazoniPlanned > amazoniShown ? (
             <div className="soon reveal">
-              {amazoniPlanned > amazoniShown ? (
-                <span className="soon__num">
-                  {String(amazoniShown).padStart(2, "0")}
-                  <small>/{amazoniPlanned}</small>
-                </span>
-              ) : null}
+              <span className="soon__num">
+                {String(amazoniShown).padStart(2, "0")}
+                <small>/{amazoniPlanned}</small>
+              </span>
               <div className="soon__body">
-                {amazoniPlanned > amazoniShown ? (
-                  <>
-                    <p className="soon__title">{t.home.upcomingTitle}</p>
-                    <p>{amazoni?.upcoming?.[locale]}</p>
-                  </>
-                ) : null}
-                {withoutPhoto.length ? (
-                  <p className="soon__list">
-                    <strong>{t.home.soonLabel} :</strong>{" "}
-                    {withoutPhoto.map((a, i) => (
-                      <span key={a.slug}>
-                        {i > 0 ? " · " : ""}
-                        <Link href={href(locale, "artwork", a.slug)}>
-                          {titleOf(a, locale).title}
-                        </Link>{" "}
-                        <span className="muted">({dimensionsLabel(a, locale)})</span>
-                      </span>
-                    ))}
-                  </p>
-                ) : null}
+                <p className="soon__title">{t.home.upcomingTitle}</p>
+                <p>{amazoni?.upcoming?.[locale]}</p>
               </div>
               <Link href="#newsletter" className="btn btn--dark">
                 {t.cta.notify}
@@ -138,6 +144,63 @@ export function HomePage({ locale }: { locale: Locale }) {
                 {t.cta.seeCollection} Amazoni →
               </Link>
             ) : null}
+          </div>
+        </div>
+      </section>
+
+      {/* Déjà partie ? Je te la repeins */}
+      {repaintPicks.length ? (
+        <section className="container section" aria-labelledby="repaint-title">
+          <div className="section-head">
+            <h2 id="repaint-title" className="display h2">
+              {t.home.repaintTitle}
+            </h2>
+            <p className="lead" style={{ maxWidth: "46ch" }}>
+              {t.home.repaintLead(repaintCount)}
+            </p>
+          </div>
+          <div className="tiles tiles--4">
+            {repaintPicks.map((a) => (a ? <ArtworkCard key={a.slug} artwork={a} locale={locale} mini className="reveal" sizes="(min-width: 1240px) 280px, (min-width: 720px) 24vw, 46vw" /> : null))}
+          </div>
+          <div className="cluster" style={{ marginTop: 28 }}>
+            <Link href={href(locale, "gallery")} className="btn">
+              {t.cta.seeRepaint}
+            </Link>
+            <Link href={`${href(locale, "contact")}?sujet=commission`} className="link">
+              {t.cta.commission} →
+            </Link>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Commande sur mesure */}
+      <section className="container" aria-labelledby="commission-title">
+        <div className="panel panel--pink commission reveal">
+          <div className="commission__img rounded-img">
+            <Image src={commissionPhoto.src} alt={commissionPhoto.alt[locale]} width={commissionPhoto.w} height={commissionPhoto.h} sizes="(min-width: 900px) 34vw, 100vw" quality={75} style={{ objectPosition: "50% 30%" }} />
+          </div>
+          <div className="commission__body stack" style={{ "--stack": "16px" } as React.CSSProperties}>
+            <h2 id="commission-title" className="display h2" style={{ color: "#fff" }}>
+              {t.home.commissionTitle}
+            </h2>
+            <p style={{ fontSize: 19, lineHeight: 1.5, maxWidth: "50ch" }}>{t.home.commissionText}</p>
+            {commissionFormats.show ? (
+              <div className="stack" style={{ "--stack": "10px" } as React.CSSProperties}>
+                <span className="formats__label">{t.home.formatsLabel}</span>
+                <ul className="formats">
+                  {commissionFormats.items.map((f) => (
+                    <li key={text(f.name, "fr")}>
+                      <strong>{text(f.name, locale)}</strong>
+                      <span>{text(f.size, locale)}</span>
+                      <span>{f.price[locale]}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            <Link href={`${href(locale, "contact")}?sujet=commission`} className="btn btn--white btn--lg" style={{ alignSelf: "flex-start" }}>
+              {t.home.commissionCta}
+            </Link>
           </div>
         </div>
       </section>
@@ -164,26 +227,8 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* Commande sur mesure */}
-      <section className="container" aria-labelledby="commission-title">
-        <div className="panel panel--pink commission reveal">
-          <div className="commission__img rounded-img">
-            <Image src={commissionPhoto.src} alt={commissionPhoto.alt[locale]} width={commissionPhoto.w} height={commissionPhoto.h} sizes="(min-width: 900px) 34vw, 100vw" quality={75} />
-          </div>
-          <div className="commission__body stack" style={{ "--stack": "16px" } as React.CSSProperties}>
-            <h2 id="commission-title" className="display h2" style={{ color: "#fff" }}>
-              {t.home.commissionTitle}
-            </h2>
-            <p style={{ fontSize: 19, lineHeight: 1.5, maxWidth: "50ch" }}>{t.home.commissionText}</p>
-            <Link href={`${href(locale, "contact")}?sujet=commission`} className="btn btn--white btn--lg" style={{ alignSelf: "flex-start" }}>
-              {t.home.commissionCta}
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* L’atelier, en direct */}
-      <section className="container section" aria-labelledby="studio-title">
+      <section className="container section" aria-labelledby="studio-title" style={{ paddingTop: 0 }}>
         <div className="section-head" style={{ marginBottom: 24 }}>
           <h2 id="studio-title" className="display h3">
             {t.home.studioTitle}
@@ -211,7 +256,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             {t.home.allExhibitions} →
           </Link>
         </div>
-        <ExhibitionList items={latestExhibitions} locale={locale} compact />
+        <ExhibitionList items={highlightedExhibitions()} locale={locale} compact />
       </section>
 
       {/* Newsletter */}

@@ -5,7 +5,7 @@ import { LegalPage } from "@/components/pages/LegalPage";
           locale: "fr",
           key: "legal",
           title: "Mentions légales",
-          description: "Mentions légales du site zbekal.fr.",
+          description: "Mentions légales du site zbekal.com.",
           noIndex: true,
 });
 
