@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Artwork } from "@/content/oeuvres";
+import { site } from "@/content/site";
 import { ui, type Locale } from "@/content/ui";
 import { href } from "@/lib/routes";
 import { aspectRatio, priceLabel, specLine, titleOf } from "@/lib/content";
@@ -76,7 +77,7 @@ export function ArtworkCard({
           <span className="card__foot">{sold ? <span>{t.status.vendue}</span> : <span className="accent">{onOrder ? t.work.crush : t.cta.wantIt} →</span>}</span>
         ) : (
           <span className="card__foot">
-            <span>{sold ? t.status.vendue : onOrder ? t.work.adopted : priceLabel(artwork, locale)}</span>
+            {sold ? <span>{t.status.vendue}</span> : onOrder ? <span>{t.work.adopted}</span> : site.showPrices ? <span>{priceLabel(artwork, locale)}</span> : null}
             {sold ? null : onOrder ? (
               <span className="accent">{t.work.crush} →</span>
             ) : lead ? (

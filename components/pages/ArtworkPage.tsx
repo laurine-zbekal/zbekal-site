@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Artwork } from "@/content/oeuvres";
 import { getCollection } from "@/content/collections";
+import { site } from "@/content/site";
 import { ui, type Locale } from "@/content/ui";
 import { href } from "@/lib/routes";
 import { artworksOf, aspectRatio, dimensionsLabel, hasDimensions, priceLabel, titleOf } from "@/lib/content";
@@ -122,7 +123,7 @@ export async function ArtworkPage({ locale, artwork }: { locale: Locale; artwork
               </div>
             ) : !sold ? (
               <div className="stack" style={{ "--stack": "16px" } as React.CSSProperties}>
-                <p className="price">{priceLabel(artwork, locale)}</p>
+                {site.showPrices ? <p className="price">{priceLabel(artwork, locale)}</p> : null}
                 <div className="cluster" style={{ "--cluster": "10px" } as React.CSSProperties}>
                   <Link href={contactHref} className="btn btn--pink btn--lg">
                     {t.cta.wantIt}

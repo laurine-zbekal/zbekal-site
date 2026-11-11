@@ -45,6 +45,12 @@ export const site = {
     url: "https://vercel.com",
   },
 
+  /**
+   * Afficher les prix sur le site ? false = aucun prix nulle part : ni sur les cartes, ni sur les fiches
+   * (même « Prix sur demande » disparaît), ni dans le bloc des commandes (les formats restent, sans tarif).
+   */
+  showPrices: false,
+
   /** Année de création du site, pour le copyright */
   since: 2026,
 } as const;

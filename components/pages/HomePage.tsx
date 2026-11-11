@@ -186,13 +186,13 @@ export function HomePage({ locale }: { locale: Locale }) {
             <p style={{ fontSize: 19, lineHeight: 1.5, maxWidth: "50ch" }}>{t.home.commissionText}</p>
             {commissionFormats.show ? (
               <div className="stack" style={{ "--stack": "10px" } as React.CSSProperties}>
-                <span className="formats__label">{t.home.formatsLabel}</span>
+                <span className="formats__label">{site.showPrices ? t.home.formatsLabel : t.home.formatsOnlyLabel}</span>
                 <ul className="formats">
                   {commissionFormats.items.map((f) => (
                     <li key={text(f.name, "fr")}>
                       <strong>{text(f.name, locale)}</strong>
                       <span>{text(f.size, locale)}</span>
-                      <span>{f.price[locale]}</span>
+                      {site.showPrices ? <span>{f.price[locale]}</span> : null}
                     </li>
                   ))}
                 </ul>
@@ -208,9 +208,6 @@ export function HomePage({ locale }: { locale: Locale }) {
       {/* Salut, moi c’est Laurine */}
       <section className="container section" aria-labelledby="about-title">
         <div className="panel panel--pink-soft grid-2 reveal">
-          <div className="rounded-img" style={{ aspectRatio: "3 / 4", maxWidth: 460 }}>
-            <Image src="/atelier/laurine-sourire.jpg" alt={home.portraitAlt[locale]} width={1059} height={1600} sizes="(min-width: 900px) 40vw, 100vw" quality={75} />
-          </div>
           <div className="stack" style={{ "--stack": "18px" } as React.CSSProperties}>
             <h2 id="about-title" className="display h2">
               {t.home.aboutTitle}
@@ -223,6 +220,9 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Link href={href(locale, "about")} className="btn" style={{ alignSelf: "flex-start" }}>
               {t.cta.readMore}
             </Link>
+          </div>
+          <div className="rounded-img" style={{ aspectRatio: "3 / 4", maxWidth: 460, justifySelf: "end", width: "100%" }}>
+            <Image src="/atelier/laurine-sourire.jpg" alt={home.portraitAlt[locale]} width={1059} height={1600} sizes="(min-width: 900px) 40vw, 100vw" quality={75} />
           </div>
         </div>
       </section>
