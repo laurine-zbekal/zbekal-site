@@ -7,12 +7,14 @@ export const defaultLocale: Locale = "fr";
 
 const fr = {
   skip: "Aller au contenu",
-  nav: { home: "Accueil", gallery: "Toiles", about: "Laurine", exhibitions: "Expos", contact: "Contact" },
+  nav: { home: "Accueil", gallery: "Toiles", about: "Laurine", exhibitions: "Expos", prices: "Tarifs 2026", contact: "Contact" },
   menu: { open: "Menu", close: "Fermer", label: "Navigation principale" },
   lang: { switch: "English", code: "EN", hreflang: "en" },
   cta: {
     seeWorks: "Voir les toiles dispo",
-    commission: "Me commander une toile",
+    /** Bouton principal : il mène au formulaire (la page « Contact » n’est plus dans le menu) */
+    commission: "Écris-moi",
+    seePrices: "Voir les tarifs 2026",
     wantIt: "Je la veux",
     wantItMale: "Je le veux",
     ask: "Me poser une question",
@@ -45,7 +47,7 @@ const fr = {
     availability: "Disponibilité",
     triptych: "Triptyque",
     quadriptych: "Quadriptyque",
-    panels: (n: number) => `${n} panneaux`,
+    panels: (n: number) => `${n} toiles`,
     photoSoon: "Photo à venir",
     detailsTitle: "La matière, de près",
     zoom: "Zoomer sur la matière",
@@ -57,7 +59,7 @@ const fr = {
     scaleHint: (w: number, h: number) => `${w} × ${h} cm, à côté d’une silhouette de 1,70 m.`,
     reassurance: [
       "Certificat d’authenticité signé avec chaque toile",
-      "Livraison soignée, on l’organise ensemble",
+      "Remise en main propre ou envoi soigné, on s’organise ensemble",
       "Paiement par lien sécurisé, après échange",
     ],
     moreFromCollection: "Autres toiles de la collection",
@@ -188,12 +190,13 @@ export type UIStrings = typeof fr;
 
 const en: UIStrings = {
   skip: "Skip to content",
-  nav: { home: "Home", gallery: "Paintings", about: "Laurine", exhibitions: "Shows", contact: "Contact" },
+  nav: { home: "Home", gallery: "Paintings", about: "Laurine", exhibitions: "Shows", prices: "Prices 2026", contact: "Contact" },
   menu: { open: "Menu", close: "Close", label: "Main navigation" },
   lang: { switch: "Français", code: "FR", hreflang: "fr" },
   cta: {
     seeWorks: "See available paintings",
-    commission: "Commission a painting",
+    commission: "Write to me",
+    seePrices: "See the 2026 prices",
     wantIt: "I want it",
     wantItMale: "I want it",
     ask: "Ask me a question",
@@ -226,7 +229,7 @@ const en: UIStrings = {
     availability: "Availability",
     triptych: "Triptych",
     quadriptych: "Quadriptych",
-    panels: (n: number) => `${n} panels`,
+    panels: (n: number) => `${n} canvases`,
     photoSoon: "Photo coming soon",
     detailsTitle: "The texture, up close",
     zoom: "Zoom in on the texture",
@@ -238,7 +241,7 @@ const en: UIStrings = {
     scaleHint: (w: number, h: number) => `${w} × ${h} cm, next to a 1.70 m silhouette.`,
     reassurance: [
       "Signed certificate of authenticity with every painting",
-      "Careful delivery, arranged together",
+      "Hand delivery or careful shipping, arranged together",
       "Secure payment link, once we’ve talked",
     ],
     moreFromCollection: "More from the collection",

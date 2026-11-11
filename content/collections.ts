@@ -37,8 +37,8 @@ export const collections: Collection[] = [
     planned: 10,
     cover: "/atelier/hero.jpg",
     upcoming: {
-      fr: "Quatre toiles restent à dévoiler : un caméléon, des fleurs exotiques et d’autres formats en plusieurs panneaux.",
-      en: "Four paintings are still to be revealed: a chameleon, exotic flowers and more multi-panel formats.",
+      fr: "Quatre toiles restent à dévoiler : des corps, des fleurs, des visages.",
+      en: "Four paintings are still to be revealed: bodies, flowers, faces.",
     },
   },
   {

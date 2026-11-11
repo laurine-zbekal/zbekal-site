@@ -12,6 +12,7 @@ export type RouteKey =
   | "about"
   | "exhibitions"
   | "contact"
+  | "prices"
   | "legal"
   | "privacy"
   | "terms";
@@ -24,6 +25,7 @@ const table: Record<RouteKey, Record<Locale, string>> = {
   about: { fr: "/demarche", en: "/en/about" },
   exhibitions: { fr: "/expositions", en: "/en/exhibitions" },
   contact: { fr: "/contact", en: "/en/contact" },
+  prices: { fr: "/tarifs-2026", en: "/en/prices-2026" },
   legal: { fr: "/mentions-legales", en: "/en/legal-notice" },
   privacy: { fr: "/confidentialite", en: "/en/privacy" },
   terms: { fr: "/cgv", en: "/en/terms" },

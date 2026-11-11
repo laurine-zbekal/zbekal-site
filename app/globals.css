@@ -1844,3 +1844,189 @@ html[data-intro="seen"] .intro {
     display: none;
   }
 }
+
+/* ==========================================================================
+   Page « Tarifs » : en-tête jungle, grille des formats à l’échelle, étapes
+   ========================================================================== */
+.badge--pink {
+  background: var(--pink);
+  color: #fff;
+}
+.prices-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: #123d31;
+  color: #fff;
+  padding: clamp(28px, 5vw, 64px) clamp(22px, 5vw, 64px) clamp(96px, 12vw, 140px);
+}
+.prices-hero__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+.prices-hero__title {
+  font-size: clamp(64px, 12vw, 168px);
+  line-height: 0.88;
+}
+.prices-hero__title span {
+  color: var(--yellow);
+}
+.prices-hero__lead {
+  max-width: 46ch;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.92);
+}
+.prices-hero__leaves {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  width: 100%;
+  height: clamp(76px, 10vw, 118px);
+}
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1.6vw, 20px);
+}
+@media (min-width: 720px) {
+  .price-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1040px) {
+  .price-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+.price-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 12px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+.price-card--star {
+  border-color: var(--ink);
+  box-shadow: 6px 6px 0 var(--yellow);
+}
+/* le « mur » : un carré où chaque toile est posée à la même échelle */
+.price-card__wall {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  aspect-ratio: 1;
+  padding: 10px 10px 0;
+  border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+  border-bottom: 3px solid var(--ink);
+}
+.price-card__canvas {
+  display: block;
+  border: 1.5px solid var(--ink);
+  border-bottom: 0;
+  box-shadow: 4px -3px 0 rgba(20, 20, 19, 0.12);
+}
+.price-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 0 4px 4px;
+}
+.price-card__spacer {
+  height: 27px;
+}
+.price-card__size {
+  font-weight: 700;
+  font-size: 17px;
+}
+.price-card__price {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 4.2vw, 52px);
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+.price-card--star .price-card__price {
+  color: var(--pink);
+}
+.price-note {
+  margin-top: 28px;
+  font-size: 19px;
+}
+.price-legal {
+  margin-top: 8px;
+  max-width: 78ch;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.included {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: clamp(17px, 1.6vw, 19px);
+  line-height: 1.45;
+}
+.included li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.included svg {
+  flex: 0 0 auto;
+  margin-top: 4px;
+  color: var(--green);
+}
+.vary {
+  border-left: 4px solid var(--yellow);
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 17px;
+  line-height: 1.5;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 12px;
+  counter-reset: none;
+}
+.steps li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 22px 22px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--ink);
+  font-size: 16px;
+  line-height: 1.45;
+}
+.steps__num {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--yellow);
+  font-family: var(--font-display);
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+.steps li:nth-child(even) .steps__num {
+  background: var(--pink);
+  color: #fff;
+}
+.steps__title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+}

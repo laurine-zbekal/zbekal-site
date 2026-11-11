@@ -52,7 +52,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Link href={galleryHref(locale, "available")} className="btn btn--pink btn--lg">
               {t.cta.seeWorks}
             </Link>
-            <Link href={`${href(locale, "contact")}?sujet=commission`} className="btn btn--lg">
+            <Link href={href(locale, "contact")} className="btn btn--lg">
               {t.cta.commission}
             </Link>
           </div>
@@ -198,9 +198,14 @@ export function HomePage({ locale }: { locale: Locale }) {
                 </ul>
               </div>
             ) : null}
-            <Link href={`${href(locale, "contact")}?sujet=commission`} className="btn btn--white btn--lg" style={{ alignSelf: "flex-start" }}>
-              {t.home.commissionCta}
-            </Link>
+            <div className="cluster" style={{ "--cluster": "10px 18px" } as React.CSSProperties}>
+              <Link href={`${href(locale, "contact")}?sujet=commission`} className="btn btn--white btn--lg">
+                {t.home.commissionCta}
+              </Link>
+              <Link href={href(locale, "prices")} className="link" style={{ color: "#fff" }}>
+                {t.cta.seePrices} →
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -135,11 +135,11 @@ export function AboutPage({ locale }: { locale: Locale }) {
           ))}
         </div>
         <div className="cluster" style={{ marginTop: 32 }}>
-          <Link href={`${href(locale, "contact")}?sujet=commission`} className="btn btn--pink">
+          <Link href={href(locale, "contact")} className="btn btn--pink">
             {t.cta.commission}
           </Link>
-          <Link href={href(locale, "contact")} className="btn">
-            {t.cta.contactMe}
+          <Link href={href(locale, "prices")} className="btn">
+            {t.cta.seePrices}
           </Link>
         </div>
       </section>

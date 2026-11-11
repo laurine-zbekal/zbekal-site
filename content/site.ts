@@ -27,11 +27,11 @@ export const site = {
   /** Mentions légales — à compléter avant la mise en ligne. */
   legal: {
     status: {
-      fr: "Entrepreneure individuelle, artiste-auteur",
-      en: "Sole trader (artist-author status, France)",
+      fr: "Entrepreneure individuelle · Création artistique relevant des arts plastiques",
+      en: "Sole trader · Artistic creation in the visual arts (France)",
     },
-    siret: "", // ex. "123 456 789 00012"
-    address: "", // adresse postale complète (obligatoire pour une entreprise individuelle)
+    siret: "992 072 728 00015",
+    address: "49290 Chalonnes-sur-Loire", // ville seule pour l’instant : l’adresse complète est en principe obligatoire (à valider)
     vat: {
       fr: "TVA non applicable, art. 293 B du CGI",
       en: "VAT not applicable, art. 293 B of the French General Tax Code",
@@ -46,10 +46,12 @@ export const site = {
   },
 
   /**
-   * Afficher les prix sur le site ? false = aucun prix nulle part : ni sur les cartes, ni sur les fiches
-   * (même « Prix sur demande » disparaît), ni dans le bloc des commandes (les formats restent, sans tarif).
+   * Afficher les prix sur le site ?
+   * true  = les toiles de la galerie affichent « Prix sur demande » (ou leur prix, si `price` est rempli
+   *         dans oeuvres.ts), et les formats de commande affichent leur tarif.
+   * false = aucun prix nulle part.
    */
-  showPrices: false,
+  showPrices: true,
 
   /** Année de création du site, pour le copyright */
   since: 2026,

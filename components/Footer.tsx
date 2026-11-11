@@ -26,10 +26,11 @@ export function Footer({ locale }: { locale: Locale }) {
                 {c.title[locale]}
               </Link>
             ))}
-            <Link href={`${href(locale, "contact")}?sujet=commission`}>{t.cta.commission}</Link>
+            <Link href={href(locale, "prices")}>{t.nav.prices}</Link>
           </div>
           <div className="footer__col">
             <h2>{t.nav.contact}</h2>
+            <Link href={href(locale, "contact")}>{t.cta.commission}</Link>
             <a href={`mailto:${site.email}`}>{site.email}</a>
             <a href={site.instagram.url} rel="noopener">
               Instagram @{site.instagram.handle}

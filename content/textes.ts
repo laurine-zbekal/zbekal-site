@@ -158,7 +158,20 @@ export const about = {
     ],
   } as L<{ title: string; text: string }[]>,
   /** Les deux gros plans à côté de « Ma façon de peindre » */
-  closeUps: [photos.matiere, photos.oeil] as Photo[],
+  closeUps: [
+    {
+      src: "/oeuvres/duo-colore/detail-3.jpg",
+      w: 1085,
+      h: 719,
+      alt: { fr: "Gros plan sur Duo coloré : les deux aras, rouge et bleu, avec leurs perles et la feuille d’or en relief", en: "Close-up of Colourful Duo: the two macaws, red and blue, with their beads and gold leaf in relief" },
+    },
+    {
+      src: "/oeuvres/la-femme-aux-perroquets/detail-1.jpg",
+      w: 1085,
+      h: 719,
+      alt: { fr: "Gros plan sur La femme aux perroquets : un ara bleu et jaune bordé de perles, devant le profil de la femme", en: "Close-up of The Woman with Parrots: a blue and yellow macaw edged with beads, in front of the woman’s profile" },
+    },
+  ] as Photo[],
   inspirations: {
     fr: [
       { name: "Frida Kahlo", why: "pour la nature et la figure féminine." },
@@ -170,8 +183,8 @@ export const about = {
     ],
   } as L<{ name: string; why: string }[]>,
   journey: {
-    fr: "Une première exposition à Paris en 2022. Un prix du public au Salon des Arts de Jallais en 2023. Et chaque Noël, une toile offerte à ma communauté sur Instagram. En novembre 2026, je retourne à Jallais avec trois nouvelles toiles.",
-    en: "A first exhibition in Paris in 2022. An audience award at the Salon des Arts in Jallais in 2023. And every Christmas, a painting given away to my Instagram community. In November 2026, I’m back in Jallais with three new paintings.",
+    fr: "Une première exposition à Paris en 2022. Un prix du public au Salon des Arts de Jallais en 2023. Et chaque Noël, une toile offerte à ma communauté sur Instagram. Du 14 au 22 novembre 2026, je retourne à Jallais avec de nouvelles toiles.",
+    en: "A first exhibition in Paris in 2022. An audience award at the Salon des Arts in Jallais in 2023. And every Christmas, a painting given away to my Instagram community. From 14 to 22 November 2026, I’m back in Jallais with new paintings.",
   } as L<string>,
   /** Photos du bloc « À l’atelier » */
   studio: [photos.devantJaguar, photos.auSol, photos.laurineDos, photos.paletteRiviere, photos.chaise, photos.portraitRose] as Photo[],

@@ -13,7 +13,7 @@ const items: { key: RouteKey; label: keyof (typeof ui)["fr"]["nav"] }[] = [
   { key: "gallery", label: "gallery" },
   { key: "about", label: "about" },
   { key: "exhibitions", label: "exhibitions" },
-  { key: "contact", label: "contact" },
+  { key: "prices", label: "prices" },
 ];
 
 export function Header({ locale }: { locale: Locale }) {
@@ -63,7 +63,7 @@ export function Header({ locale }: { locale: Locale }) {
               {t.nav[it.label]}
             </Link>
           ))}
-          <Link href={`${href(locale, "contact")}?sujet=commission`} className="btn btn--pink btn--sm nav__cta">
+          <Link href={href(locale, "contact")} className="btn btn--pink btn--sm nav__cta" aria-current={isCurrent("contact") ? "page" : undefined}>
             {t.cta.commission}
           </Link>
           <Link href={switchHref} className="nav__lang" hrefLang={other} lang={other} aria-label={`${t.lang.code} · ${t.lang.switch}`}>
@@ -108,7 +108,7 @@ export function Header({ locale }: { locale: Locale }) {
             ))}
           </ul>
           <div className="menu__foot">
-            <Link href={`${href(locale, "contact")}?sujet=commission`} className="btn btn--pink">
+            <Link href={href(locale, "contact")} className="btn btn--pink">
               {t.cta.commission}
             </Link>
             <a href={site.instagram.url} className="btn" rel="noopener">

@@ -30,13 +30,13 @@ export type Exhibition = {
 export const exhibitions: Exhibition[] = [
   {
     year: 2026,
-    date: { fr: "Novembre 2026", en: "November 2026" },
+    date: { fr: "14 au 22 novembre 2026", en: "14–22 November 2026" },
     title: { fr: "Salon des Arts de Jallais", en: "Salon des Arts, Jallais" },
     place: { fr: "Jallais, Maine-et-Loire (49)", en: "Jallais, Maine-et-Loire, France" },
-    details: { fr: "Trois toiles présentées.", en: "Three paintings on show." },
+    details: { fr: "Entrée libre et gratuite.", en: "Free entry, open to all." },
     story: {
-      fr: "Je reviens là où le public m’a remis son prix en 2023, avec trois nouvelles toiles.",
-      en: "I’m back where the public gave me its award in 2023, with three new paintings.",
+      fr: "Je reviens là où le public m’a remis son prix en 2023, avec de nouvelles toiles. Le salon est ouvert à tous, et l’entrée est gratuite.",
+      en: "I’m back where the public gave me its award in 2023, with new paintings. The fair is open to all, and entry is free.",
     },
     upcoming: true,
   },
