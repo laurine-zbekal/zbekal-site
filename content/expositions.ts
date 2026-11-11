@@ -44,10 +44,23 @@ export const exhibitions: Exhibition[] = [
     year: 2026,
     date: { fr: "Octobre 2026", en: "October 2026" },
     title: { fr: "Shop en Anjou parle de Zbekal", en: "Featured by Shop en Anjou" },
-    place: { fr: "Maine-et-Loire (49)", en: "Maine-et-Loire, France" },
+    place: { fr: "Chalonnes-sur-Loire, Maine-et-Loire (49)", en: "Chalonnes-sur-Loire, Maine-et-Loire, France" },
     details: { fr: "Une publication consacrée à mon travail.", en: "A post about my work." },
+    story: {
+      fr: "Shop en Anjou est venu découvrir Amazoni et mon atelier, à Chalonnes-sur-Loire. Coup de cœur pour le jaguar aux yeux bleus.",
+      en: "Shop en Anjou came to discover Amazoni and my studio in Chalonnes-sur-Loire, and fell for the blue-eyed jaguar.",
+    },
     url: "https://www.instagram.com/p/DeXGRzAAMQk/",
     urlLabel: { fr: "Voir la publication", en: "See the post" },
+    // Photo de Laurine (et non une photo de la publication, qui appartient à Shop en Anjou)
+    images: [
+      {
+        src: "/atelier/devant-jaguar.jpg",
+        w: 1060,
+        h: 1600,
+        alt: { fr: "Laurine Girard devant sa toile Maître silencieux, le jaguar aux yeux bleus", en: "Laurine Girard in front of her painting Silent Master, the blue-eyed jaguar" },
+      },
+    ],
     highlight: false,
   },
   {
@@ -55,10 +68,9 @@ export const exhibitions: Exhibition[] = [
     date: { fr: "Décembre 2025", en: "December 2025" },
     title: { fr: "Concours de Noël, saison 5", en: "Christmas giveaway, season 5" },
     place: { fr: "Sur Instagram, @zbekal", en: "On Instagram, @zbekal" },
-    details: { fr: "Une toile offerte par tirage au sort, comme chaque année depuis 2021.", en: "A painting given away in a prize draw, as every year since 2021." },
     story: {
-      fr: "Chaque mois de décembre depuis 2021, j’offre une toile par tirage au sort. En 2025, ma communauté a voté pour la composer : ça a donné « Plaisir d’offrir ».",
-      en: "Every December since 2021, I give away a painting in a prize draw. In 2025, my community voted to design it: the result was “Plaisir d’offrir”.",
+      fr: "Cette année-là, la toile a été composée par ma communauté, vote après vote : « Plaisir d’offrir », offerte par tirage au sort.",
+      en: "That year, the painting was designed by my community, one vote at a time: “Plaisir d’offrir”, given away in a prize draw.",
     },
     images: [
       {
@@ -66,6 +78,25 @@ export const exhibitions: Exhibition[] = [
         w: 795,
         h: 1413,
         alt: { fr: "La toile Plaisir d’offrir : deux mains qui se transmettent un bouquet", en: "The painting Plaisir d’offrir: two hands passing a bouquet" },
+      },
+    ],
+    highlight: false,
+  },
+  {
+    year: 2024,
+    date: { fr: "Décembre 2024", en: "December 2024" },
+    title: { fr: "Concours de Noël, saison 4", en: "Christmas giveaway, season 4" },
+    place: { fr: "Sur Instagram, @zbekal", en: "On Instagram, @zbekal" },
+    story: {
+      fr: "À gagner cette année-là : « Pétales de vie », un quadriptyque aux tons terracotta. Tirage au sort le 25 décembre, à 11 h.",
+      en: "Up for grabs that year: “Pétales de vie”, a quadriptych in terracotta tones. The draw took place on 25 December at 11 am.",
+    },
+    images: [
+      {
+        src: "/oeuvres/petales-de-vie/main.jpg",
+        w: 719,
+        h: 1277,
+        alt: { fr: "Laurine en train de peindre Pétales de vie, la toile du concours de Noël 2024", en: "Laurine painting Pétales de vie, the 2024 Christmas giveaway painting" },
       },
     ],
     highlight: false,
@@ -98,6 +129,25 @@ export const exhibitions: Exhibition[] = [
   },
   {
     year: 2022,
+    date: { fr: "Décembre 2022", en: "December 2022" },
+    title: { fr: "Concours de Noël, saison 2", en: "Christmas giveaway, season 2" },
+    place: { fr: "Sur Instagram, @zbekal", en: "On Instagram, @zbekal" },
+    story: {
+      fr: "Saison 2 de « Noël avant l’heure » : « Nébuleuse », une silhouette blanche sur un ciel étoilé, offerte par tirage au sort.",
+      en: "Season 2 of “Christmas comes early”: “Nébuleuse”, a white silhouette on a starry sky, given away in a prize draw.",
+    },
+    images: [
+      {
+        src: "/oeuvres/nebuleuse/main.jpg",
+        w: 719,
+        h: 1277,
+        alt: { fr: "Nébuleuse, la toile du concours de Noël 2022", en: "Nébuleuse, the 2022 Christmas giveaway painting" },
+      },
+    ],
+    highlight: false,
+  },
+  {
+    year: 2022,
     date: { fr: "11 au 13 juin 2022", en: "11–13 June 2022" },
     title: { fr: "« Réalise »", en: "“Réalise”" },
     place: { fr: "La Caserne, Paris 10e", en: "La Caserne, Paris (10th arrondissement)" },
@@ -117,6 +167,25 @@ export const exhibitions: Exhibition[] = [
         alt: { fr: "Laurine Girard, de dos, devant sa toile exposée à La Caserne, à Paris", en: "Laurine Girard, seen from behind, in front of her painting on show at La Caserne in Paris" },
       },
     ],
+  },
+  {
+    year: 2021,
+    date: { fr: "Décembre 2021", en: "December 2021" },
+    title: { fr: "Concours de Noël, saison 1", en: "Christmas giveaway, season 1" },
+    place: { fr: "Sur Instagram, @zbekal", en: "On Instagram, @zbekal" },
+    story: {
+      fr: "Le tout premier « Noël avant l’heure » : « Illuminée », une toile de 54 × 73 cm, offerte par tirage au sort.",
+      en: "The very first “Christmas comes early”: “Illuminée”, a 54 × 73 cm canvas, given away in a prize draw.",
+    },
+    images: [
+      {
+        src: "/oeuvres/illuminee/main.jpg",
+        w: 719,
+        h: 1277,
+        alt: { fr: "Illuminée, la toile du concours de Noël 2021", en: "Illuminée, the 2021 Christmas giveaway painting" },
+      },
+    ],
+    highlight: false,
   },
 ];
 
