@@ -1735,3 +1735,112 @@ hr.sep {
   color: var(--pink);
   text-wrap: balance;
 }
+
+/* ==========================================================================
+   Écran d’ouverture : le logo apparaît sur fond sombre, puis le rideau se lève
+   Durée totale : 2,9 s. Une seule fois par visite (voir components/Intro.tsx).
+   ========================================================================== */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: #0f0f0e;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  animation: intro-out 0.85s cubic-bezier(0.76, 0, 0.24, 1) 2.05s forwards;
+}
+.intro__logo {
+  width: clamp(104px, 13vw, 148px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.88);
+  filter: blur(8px);
+  animation: intro-logo 1.05s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s forwards;
+}
+.intro__logo svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.intro__name {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.4vw, 46px);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.62em;
+  margin-right: -0.62em; /* compense l’espace après la dernière lettre : le mot reste centré */
+  opacity: 0;
+  animation: intro-name 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s forwards;
+}
+.intro__line {
+  width: 84px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.55);
+  transform: scaleX(0);
+  animation: intro-line 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.95s forwards;
+}
+.intro__sub {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 0;
+  animation: intro-fade 0.8s ease 1.15s forwards;
+}
+@keyframes intro-logo {
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes intro-name {
+  to {
+    opacity: 1;
+    letter-spacing: 0.34em;
+    margin-right: -0.34em;
+  }
+}
+@keyframes intro-line {
+  to {
+    transform: none;
+  }
+}
+@keyframes intro-fade {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes intro-out {
+  0% {
+    transform: none;
+    visibility: visible;
+  }
+  100% {
+    transform: translateY(-100%);
+    visibility: hidden;
+  }
+}
+/* déjà vu pendant cette visite, clic pour passer, animations réduites, impression */
+html[data-intro="seen"] .intro {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+}
+@media print {
+  .intro {
+    display: none;
+  }
+}

@@ -103,6 +103,25 @@ export const exhibitions: Exhibition[] = [
   },
   {
     year: 2023,
+    date: { fr: "Décembre 2023", en: "December 2023" },
+    title: { fr: "Concours de Noël, saison 3", en: "Christmas giveaway, season 3" },
+    place: { fr: "Sur Instagram, @zbekal", en: "On Instagram, @zbekal" },
+    story: {
+      fr: "Saison 3 de « Noël avant l’heure » : « Lueur scintillante », un corps aux reflets cuivrés sur fond nuit, offerte par tirage au sort le 13 décembre.",
+      en: "Season 3 of “Christmas comes early”: “Lueur scintillante”, a body with copper glints on a night-dark background, given away in a prize draw on 13 December.",
+    },
+    images: [
+      {
+        src: "/expos/noel-2023.jpg",
+        w: 720,
+        h: 1272,
+        alt: { fr: "Lueur scintillante, la toile du concours de Noël 2023, posée sur un meuble entre des bougies", en: "Lueur scintillante, the 2023 Christmas giveaway painting, standing on a sideboard among candles" },
+      },
+    ],
+    highlight: false,
+  },
+  {
+    year: 2023,
     date: { fr: "Novembre 2023", en: "November 2023" },
     title: { fr: "Salon des Arts de Jallais", en: "Salon des Arts, Jallais" },
     place: { fr: "Jallais, Maine-et-Loire (49)", en: "Jallais, Maine-et-Loire, France" },
