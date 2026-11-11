@@ -73,6 +73,8 @@ const fr = {
   home: {
     availableTitle: "Dispo maintenant",
     availableLead: "La collection Amazoni : dix toiles, une jungle où se croisent femmes, animaux sauvages et feuillages. Les premières sont dévoilées, toutes disponibles.",
+    availableCount: (n: number) => (n > 1 ? `${n} toiles disponibles` : `${n} toile disponible`),
+    soonLabel: "Aussi disponibles, photos à venir",
     badge: (n: number) => (n > 1 ? `${n} toiles dispo` : `${n} toile dispo`),
     paletteLabel: "Les couleurs d’Amazoni",
     aboutTitle: "Salut, moi c’est Laurine.",
@@ -223,6 +225,8 @@ const en: UIStrings = {
   home: {
     availableTitle: "Available now",
     availableLead: "The Amazoni collection: ten paintings, a jungle where women, wild animals and foliage cross paths. The first ones are revealed, all available.",
+    availableCount: (n: number) => (n > 1 ? `${n} paintings available` : `${n} painting available`),
+    soonLabel: "Also available, photos coming soon",
     badge: (n: number) => (n > 1 ? `${n} available` : `${n} available`),
     paletteLabel: "The colours of Amazoni",
     aboutTitle: "Hi, I’m Laurine.",

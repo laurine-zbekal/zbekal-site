@@ -116,12 +116,12 @@ export const artworks: Artwork[] = [
       "/oeuvres/maitre-silencieux/detail-3.jpg",
     ],
     alt: {
-      fr: "Maître silencieux : un léopard aux yeux bleus entre des branches, des feuilles en relief et des oiseaux de paradis",
-      en: "Silent Master: a blue-eyed leopard among branches, textured leaves and birds of paradise",
+      fr: "Maître silencieux : un jaguar aux yeux bleus entre des branches, des feuilles en relief et des oiseaux de paradis",
+      en: "Silent Master: a blue-eyed jaguar among branches, textured leaves and birds of paradise",
     },
     description: {
-      fr: "Un léopard aux yeux bleus te regarde à travers les feuillages. Les taches sont posées en relief, les feuilles en épaisseur, quelques éclats dorés dans la fourrure.",
-      en: "A blue-eyed leopard watches you through the foliage. The spots are laid in relief, the leaves painted thick, with a few golden glints in the fur.",
+      fr: "Un jaguar aux yeux bleus te regarde à travers les feuillages. Les taches sont posées en relief, les feuilles en épaisseur, quelques éclats dorés dans la fourrure.",
+      en: "A blue-eyed jaguar watches you through the foliage. The spots are laid in relief, the leaves painted thick, with a few golden glints in the fur.",
     },
     featured: true,
   },

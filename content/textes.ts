@@ -10,8 +10,8 @@ export const home = {
   kicker: { fr: "Artiste peintre · Maine-et-Loire", en: "Painter · Maine-et-Loire, France" } as L<string>,
   title: { fr: ["Bienvenue dans", "ma jungle."], en: ["Welcome to", "my jungle."] } as L<[string, string]>,
   intro: {
-    fr: "Ici, tu découvres mes toiles à l’acrylique, peintes en relief et en couleur : la collection Amazoni, ses perroquets, son léopard aux yeux bleus. Choisis celle qui te parle, ou imaginons ensemble la tienne.",
-    en: "Here you’ll find my acrylic paintings, built up in relief and full of colour: the Amazoni collection, its parrots, its blue-eyed leopard. Pick the one that speaks to you, or let’s imagine yours together.",
+    fr: "Ici, tu découvres mes toiles à l’acrylique, peintes en relief et en couleur : la collection Amazoni, ses perroquets, son jaguar aux yeux bleus. Choisis celle qui te parle, ou imaginons ensemble la tienne.",
+    en: "Here you’ll find my acrylic paintings, built up in relief and full of colour: the Amazoni collection, its parrots, its blue-eyed jaguar. Pick the one that speaks to you, or let’s imagine yours together.",
   } as L<string>,
   heroAlt: {
     fr: "Laurine Girard en train de peindre Duo coloré en extérieur, palette à la main",
@@ -33,6 +33,18 @@ export const home = {
   } as L<string>,
 };
 
+/**
+ * Photo du bloc « Une toile rien que pour toi » (commande sur mesure).
+ * PROVISOIRE : en attendant une photo de Laurine en train de dessiner au crayon de bois,
+ * le fichier esquisse.jpg est une copie de la photo au pinceau. Remplace le fichier, garde le nom.
+ */
+export const commissionPhoto = {
+  src: "/atelier/esquisse.jpg",
+  w: 1060,
+  h: 1600,
+  alt: { fr: "Laurine en train de dessiner l’esquisse d’une commande au crayon de bois", en: "Laurine sketching a commission in pencil" } as L<string>,
+};
+
 /** Palette de la collection Amazoni, affichée sur l’accueil */
 export const palette = [
   { hex: "#1B4D3E", name: { fr: "Vert forêt", en: "Forest green" } },
@@ -48,10 +60,10 @@ export const palette = [
 export const studioPhotos: { src: string; alt: L<string>; w: number; h: number }[] = [
   { src: "/atelier/main-pinceau.jpg", w: 1060, h: 1600, alt: { fr: "Main de l’artiste posant une touche de peinture sur le perroquet rouge", en: "The artist’s hand adding a touch of paint to the red parrot" } },
   { src: "/atelier/matiere.jpg", w: 2000, h: 1325, alt: { fr: "Détail de matière : feuilles en relief, perles vertes et moustaches dorées", en: "Texture detail: leaves in relief, green beads and golden whiskers" } },
-  { src: "/atelier/devant-leopard.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard devant la toile Maître silencieux", en: "Laurine Girard in front of the painting Silent Master" } },
+  { src: "/atelier/devant-jaguar.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard devant la toile Maître silencieux", en: "Laurine Girard in front of the painting Silent Master" } },
   { src: "/atelier/chaise.jpg", w: 1060, h: 1600, alt: { fr: "Pinceaux et palette posés sur une chaise en bois, au bord de l’eau", en: "Brushes and palette on a wooden chair by the water" } },
   { src: "/atelier/laurine-dos.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard de dos, ajustant une toile sur son chevalet en plein air", en: "Laurine Girard from behind, adjusting a canvas on her easel outdoors" } },
-  { src: "/atelier/oeil.jpg", w: 2000, h: 1325, alt: { fr: "Détail de Maître silencieux : l’œil bleu du léopard et des éclats dorés", en: "Detail of Silent Master: the leopard’s blue eye and golden glints" } },
+  { src: "/atelier/oeil.jpg", w: 2000, h: 1325, alt: { fr: "Détail de Maître silencieux : l’œil bleu du jaguar et des éclats dorés", en: "Detail of Silent Master: the jaguar’s blue eye and golden glints" } },
   { src: "/atelier/palette-riviere.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard, palette à la main, devant la rivière", en: "Laurine Girard, palette in hand, by the river" } },
   { src: "/atelier/riviere.jpg", w: 2000, h: 1427, alt: { fr: "La toile Maître silencieux posée sur les rochers au bord de l’eau", en: "The painting Silent Master resting on rocks by the water" } },
 ];

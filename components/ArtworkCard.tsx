@@ -34,18 +34,24 @@ export function ArtworkCard({
   locale,
   priority = false,
   sizes = "(min-width: 1240px) 380px, (min-width: 720px) 45vw, 100vw",
+  className = "",
+  lead = false,
 }: {
   artwork: Artwork;
   locale: Locale;
   priority?: boolean;
   sizes?: string;
+  /** Classes supplémentaires (mise en page) */
+  className?: string;
+  /** Carte vedette : grand titre et bouton d’appel */
+  lead?: boolean;
 }) {
   const t = ui[locale];
   const { title, subtitle } = titleOf(artwork, locale);
   const main = artwork.images[0];
   const sold = artwork.status === "vendue";
   return (
-    <Link href={href(locale, "artwork", artwork.slug)} className={`card card--bordered${sold ? " card__sold" : ""}`}>
+    <Link href={href(locale, "artwork", artwork.slug)} className={`card card--bordered${sold ? " card__sold" : ""}${lead ? " card--lead" : ""}${className ? ` ${className}` : ""}`}>
       <span className="card__img" style={{ aspectRatio: aspectRatio(artwork) }}>
         {main ? (
           <Image src={main} alt={artwork.alt[locale]} fill sizes={sizes} priority={priority} quality={75} style={{ objectFit: "cover" }} />
@@ -64,7 +70,7 @@ export function ArtworkCard({
         <span className="card__sub">{specLine(artwork, locale)}</span>
         <span className="card__foot">
           <span>{sold ? t.status.vendue : priceLabel(artwork, locale)}</span>
-          {!sold ? <span className="accent">{t.cta.wantIt} →</span> : null}
+          {!sold ? lead ? <span className="btn btn--pink btn--sm">{t.cta.wantIt} →</span> : <span className="accent">{t.cta.wantIt} →</span> : null}
         </span>
       </span>
     </Link>

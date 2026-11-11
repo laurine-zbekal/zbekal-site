@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { site, locationLabel } from "@/content/site";
 import { ui, type Locale } from "@/content/ui";
-import { home, studioPhotos } from "@/content/textes";
+import { commissionPhoto, home, studioPhotos } from "@/content/textes";
 import { exhibitions } from "@/content/expositions";
 import { getCollection } from "@/content/collections";
 import { href } from "@/lib/routes";
-import { artworksOf, availableArtworks, featuredArtworks } from "@/lib/content";
+import { artworksOf, availableArtworks, dimensionsLabel, featuredArtworks, titleOf } from "@/lib/content";
 import { personJsonLd, websiteJsonLd } from "@/lib/seo";
 import { ArtworkCard } from "@/components/ArtworkCard";
 import { JsonLd } from "@/components/JsonLd";
@@ -17,7 +17,9 @@ import { InstagramIcon } from "@/components/Icons";
 export function HomePage({ locale }: { locale: Locale }) {
   const t = ui[locale];
   const available = availableArtworks().length;
-  const featured = featuredArtworks(5);
+  const featured = featuredArtworks(6);
+  const withPhoto = featured.filter((a) => a.images.length > 0).slice(0, 5);
+  const withoutPhoto = featured.filter((a) => a.images.length === 0);
   const amazoni = getCollection("amazoni");
   const amazoniShown = artworksOf("amazoni").length;
   const amazoniPlanned = amazoni?.planned ?? amazoniShown;
@@ -64,33 +66,69 @@ export function HomePage({ locale }: { locale: Locale }) {
       <section className="band" aria-labelledby="dispo-title">
         <div className="container section">
           <div className="section-head">
-            <h2 id="dispo-title" className="display h2">
-              {t.home.availableTitle}
-            </h2>
-            <p className="lead" style={{ maxWidth: "46ch" }}>
+            <div className="stack" style={{ "--stack": "14px" } as React.CSSProperties}>
+              <h2 id="dispo-title" className="display h2">
+                {t.home.availableTitle}
+              </h2>
+              {available > 0 ? <span className="count-pill">{t.home.availableCount(available)}</span> : null}
+            </div>
+            <p className="lead" style={{ maxWidth: "44ch" }}>
               {t.home.availableLead}
             </p>
           </div>
-          <div className="grid-cards">
-            {featured.map((a, i) => (
-              <div key={a.slug} className="reveal">
-                <ArtworkCard artwork={a} locale={locale} priority={i < 2} />
-              </div>
-            ))}
-            {amazoniPlanned > amazoniShown ? (
-              <Link href="#newsletter" className="card card--teaser reveal">
-                <span className="card__num">
+
+          {withPhoto.length ? (
+            <div className="showcase">
+              {withPhoto.map((a, i) => (
+                <ArtworkCard
+                  key={a.slug}
+                  artwork={a}
+                  locale={locale}
+                  priority={i < 2}
+                  lead={i === 0}
+                  className={i === 0 ? "showcase__lead reveal" : "reveal"}
+                  sizes={i === 0 ? "(min-width: 1240px) 740px, (min-width: 960px) 60vw, 100vw" : "(min-width: 1240px) 480px, (min-width: 960px) 40vw, (min-width: 720px) 50vw, 100vw"}
+                />
+              ))}
+            </div>
+          ) : null}
+
+          {amazoniPlanned > amazoniShown || withoutPhoto.length ? (
+            <div className="soon reveal">
+              {amazoniPlanned > amazoniShown ? (
+                <span className="soon__num">
                   {String(amazoniShown).padStart(2, "0")}
                   <small>/{amazoniPlanned}</small>
                 </span>
-                <span className="stack" style={{ "--stack": "10px" } as React.CSSProperties}>
-                  <span style={{ fontWeight: 700, fontSize: 24, lineHeight: 1.15 }}>{t.home.upcomingTitle}</span>
-                  <span style={{ fontSize: 16, lineHeight: 1.45 }}>{amazoni?.upcoming?.[locale]}</span>
-                  <span className="link">{t.cta.notify} →</span>
-                </span>
+              ) : null}
+              <div className="soon__body">
+                {amazoniPlanned > amazoniShown ? (
+                  <>
+                    <p className="soon__title">{t.home.upcomingTitle}</p>
+                    <p>{amazoni?.upcoming?.[locale]}</p>
+                  </>
+                ) : null}
+                {withoutPhoto.length ? (
+                  <p className="soon__list">
+                    <strong>{t.home.soonLabel} :</strong>{" "}
+                    {withoutPhoto.map((a, i) => (
+                      <span key={a.slug}>
+                        {i > 0 ? " · " : ""}
+                        <Link href={href(locale, "artwork", a.slug)}>
+                          {titleOf(a, locale).title}
+                        </Link>{" "}
+                        <span className="muted">({dimensionsLabel(a, locale)})</span>
+                      </span>
+                    ))}
+                  </p>
+                ) : null}
+              </div>
+              <Link href="#newsletter" className="btn btn--dark">
+                {t.cta.notify}
               </Link>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
+
           <div className="cluster" style={{ marginTop: 32 }}>
             <Link href={href(locale, "gallery")} className="btn">
               {t.cta.allWorks}
@@ -128,16 +166,19 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       {/* Commande sur mesure */}
       <section className="container" aria-labelledby="commission-title">
-        <div className="panel panel--pink reveal" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "24px 56px" }}>
-          <div className="stack" style={{ flex: "1 1 420px", minWidth: 0, "--stack": "14px" } as React.CSSProperties}>
+        <div className="panel panel--pink commission reveal">
+          <div className="commission__img rounded-img">
+            <Image src={commissionPhoto.src} alt={commissionPhoto.alt[locale]} width={commissionPhoto.w} height={commissionPhoto.h} sizes="(min-width: 900px) 34vw, 100vw" quality={75} />
+          </div>
+          <div className="commission__body stack" style={{ "--stack": "16px" } as React.CSSProperties}>
             <h2 id="commission-title" className="display h2" style={{ color: "#fff" }}>
               {t.home.commissionTitle}
             </h2>
             <p style={{ fontSize: 19, lineHeight: 1.5, maxWidth: "50ch" }}>{t.home.commissionText}</p>
+            <Link href={`${href(locale, "contact")}?sujet=commission`} className="btn btn--white btn--lg" style={{ alignSelf: "flex-start" }}>
+              {t.home.commissionCta}
+            </Link>
           </div>
-          <Link href={`${href(locale, "contact")}?sujet=commission`} className="btn btn--white btn--lg">
-            {t.home.commissionCta}
-          </Link>
         </div>
       </section>
 
