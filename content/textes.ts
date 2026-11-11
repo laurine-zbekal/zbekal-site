@@ -8,10 +8,10 @@ type L<T> = Record<Locale, T>;
 
 export const home = {
   kicker: { fr: "Artiste peintre · Maine-et-Loire", en: "Painter · Maine-et-Loire, France" } as L<string>,
-  title: { fr: ["Des jungles qui ont", "du relief."], en: ["Jungles with", "relief."] } as L<[string, string]>,
+  title: { fr: ["Bienvenue dans", "ma jungle."], en: ["Welcome to", "my jungle."] } as L<[string, string]>,
   intro: {
-    fr: "Je suis Laurine, alias Zbekal. Je peins à l’acrylique des toiles en couleur et en matière : des femmes, des perroquets, un léopard aux yeux bleus.",
-    en: "I’m Laurine, also known as Zbekal. I paint acrylic canvases full of colour and texture: women, parrots, a blue-eyed leopard.",
+    fr: "Ici, tu découvres mes toiles à l’acrylique, peintes en relief et en couleur : la collection Amazoni, ses perroquets, son léopard aux yeux bleus. Choisis celle qui te parle, ou imaginons ensemble la tienne.",
+    en: "Here you’ll find my acrylic paintings, built up in relief and full of colour: the Amazoni collection, its parrots, its blue-eyed leopard. Pick the one that speaks to you, or let’s imagine yours together.",
   } as L<string>,
   heroAlt: {
     fr: "Laurine Girard en train de peindre Duo coloré en extérieur, palette à la main",
