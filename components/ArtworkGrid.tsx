@@ -1,16 +1,28 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Artwork, CollectionSlug } from "@/content/oeuvres";
 import type { Collection } from "@/content/collections";
 import { ui, type Locale } from "@/content/ui";
+import { galleryFilterParam, type GalleryFilter } from "@/lib/routes";
 import { ArtworkCard } from "./ArtworkCard";
 
-type Filter = "all" | "available" | "order" | "sold";
+type Filter = "all" | GalleryFilter;
+
+/** Valeur du filtre dans l’adresse (français ou anglais) → filtre */
+function filterFromParam(value: string | null): Filter {
+  for (const p of Object.values(galleryFilterParam)) {
+    const hit = (Object.keys(p.values) as GalleryFilter[]).find((k) => p.values[k] === value);
+    if (hit) return hit;
+  }
+  return "all";
+}
 
 /**
- * Grille de la galerie avec filtres : disponibilité et collection.
- * Les toiles sont groupées par collection quand aucune collection n’est choisie.
+ * Grille de la galerie avec filtres : disponibilité et collection. Seules les toiles
+ * qui correspondent aux filtres sont affichées, groupées par collection.
+ * Les filtres sont lus dans l’adresse (/galerie?filtre=disponibles&collection=fleurs)
+ * et y sont reportés à chaque clic : un lien partagé ou un retour arrière garde le tri.
  */
 export function ArtworkGrid({
   artworks,
@@ -24,8 +36,31 @@ export function ArtworkGrid({
   initialCollection?: CollectionSlug;
 }) {
   const t = ui[locale];
-  const [filter, setFilter] = useState<Filter>("all");
-  const [collection, setCollection] = useState<CollectionSlug | "all">(initialCollection ?? "all");
+  const [filter, setFilterState] = useState<Filter>("all");
+  const [collection, setCollectionState] = useState<CollectionSlug | "all">(initialCollection ?? "all");
+
+  // Filtres présents dans l’adresse à l’arrivée sur la page (une synchronisation après l’hydratation).
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const f = filterFromParam(params.get("filtre") ?? params.get("filter"));
+    const c = collections.find((x) => x.slug === params.get("collection"))?.slug;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (f !== "all") setFilterState(f);
+    if (c) setCollectionState(c);
+  }, [collections]);
+
+  const apply = (nextFilter: Filter, nextCollection: CollectionSlug | "all") => {
+    setFilterState(nextFilter);
+    setCollectionState(nextCollection);
+    const p = galleryFilterParam[locale];
+    const params = new URLSearchParams();
+    if (nextFilter !== "all") params.set(p.key, p.values[nextFilter]);
+    if (nextCollection !== "all") params.set("collection", nextCollection);
+    const query = params.toString();
+    window.history.replaceState(null, "", query ? `${window.location.pathname}?${query}` : window.location.pathname);
+  };
+  const setFilter = (f: Filter) => apply(f, collection);
+  const setCollection = (c: CollectionSlug | "all") => apply(filter, c);
 
   const filtered = useMemo(
     () =>

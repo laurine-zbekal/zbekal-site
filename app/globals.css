@@ -1481,9 +1481,9 @@ hr.sep {
    Ajouts : toiles « sur commande », vignettes, expos illustrées, page Laurine
    ========================================================================== */
 
-/* Champ masqué (le sélecteur de toile du formulaire selon l’objet du message) */
-.field[hidden] {
-  display: none;
+/* Un élément marqué « hidden » reste masqué, même si sa classe lui donne un display (cartes, champs, sections) */
+[hidden] {
+  display: none !important;
 }
 
 /* ---------- Statut « Sur commande » ---------- */

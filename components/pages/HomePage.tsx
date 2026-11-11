@@ -5,7 +5,7 @@ import { ui, type Locale } from "@/content/ui";
 import { commissionFormats, commissionPhoto, home, studioPhotos } from "@/content/textes";
 import { highlightedExhibitions } from "@/content/expositions";
 import { getCollection } from "@/content/collections";
-import { href } from "@/lib/routes";
+import { galleryHref, href } from "@/lib/routes";
 import { artworksOf, availableArtworks, getArtwork, hasDimensions, onOrderArtworks } from "@/lib/content";
 import { personJsonLd, websiteJsonLd } from "@/lib/seo";
 import { ArtworkCard } from "@/components/ArtworkCard";
@@ -49,7 +49,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             {home.intro[locale](available)}
           </p>
           <div className="cluster" style={{ "--cluster": "12px 14px" } as React.CSSProperties}>
-            <Link href={href(locale, "gallery")} className="btn btn--pink btn--lg">
+            <Link href={galleryHref(locale, "available")} className="btn btn--pink btn--lg">
               {t.cta.seeWorks}
             </Link>
             <Link href={`${href(locale, "contact")}?sujet=commission`} className="btn btn--lg">
@@ -62,7 +62,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Image src="/atelier/hero.jpg" alt={home.heroAlt[locale]} width={2000} height={1325} sizes="(min-width: 900px) 46vw, 100vw" priority quality={75} style={{ objectPosition: "50% 40%" }} />
           </div>
           {available > 0 ? (
-            <Link href={href(locale, "gallery")} className="hero__badge">
+            <Link href={galleryHref(locale, "available")} className="hero__badge">
               {t.home.badge(available)}
             </Link>
           ) : null}

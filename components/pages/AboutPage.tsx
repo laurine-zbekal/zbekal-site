@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 import { ui, type Locale } from "@/content/ui";
 import { about } from "@/content/textes";
 import { highlightedExhibitions } from "@/content/expositions";
-import { href } from "@/lib/routes";
+import { galleryHref, href } from "@/lib/routes";
 import { breadcrumbJsonLd, personJsonLd } from "@/lib/seo";
 import { ExhibitionList } from "@/components/ExhibitionList";
 import { JsonLd } from "@/components/JsonLd";
@@ -35,7 +35,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
               {about.intro[locale]}
             </p>
             <div className="cluster">
-              <Link href={href(locale, "gallery")} className="btn btn--pink">
+              <Link href={galleryHref(locale, "available")} className="btn btn--pink">
                 {t.cta.seeWorks}
               </Link>
               <a href={site.instagram.url} className="btn" rel="noopener">

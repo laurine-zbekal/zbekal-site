@@ -35,6 +35,19 @@ export function href(locale: Locale, key: RouteKey, slug?: string): string {
   return slug ? `${base}/${slug}` : base;
 }
 
+/** Filtres de la page « Toiles », tels qu'ils apparaissent dans l'adresse : /galerie?filtre=disponibles, /en/gallery?filter=available */
+export type GalleryFilter = "available" | "order" | "sold";
+export const galleryFilterParam: Record<Locale, { key: string; values: Record<GalleryFilter, string> }> = {
+  fr: { key: "filtre", values: { available: "disponibles", order: "sur-commande", sold: "vendues" } },
+  en: { key: "filter", values: { available: "available", order: "made-to-order", sold: "sold" } },
+};
+
+/** Lien vers la page « Toiles » avec un filtre de disponibilité déjà appliqué. */
+export function galleryHref(locale: Locale, filter: GalleryFilter): string {
+  const p = galleryFilterParam[locale];
+  return `${href(locale, "gallery")}?${p.key}=${p.values[filter]}`;
+}
+
 /** Les deux versions d'une même page (pour hreflang et le sélecteur de langue). */
 export function alternates(key: RouteKey, slug?: string): Record<Locale, string> {
   return { fr: href("fr", key, slug), en: href("en", key, slug) };
