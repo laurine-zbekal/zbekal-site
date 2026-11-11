@@ -74,7 +74,19 @@ const fr = {
     filterSold: "Vendues",
     collectionsLabel: "Collections",
     allCollections: "Toutes les collections",
-    empty: "Aucune toile ne correspond à ce filtre.",
+    empty: "Rien à te montrer ici pour l’instant.",
+    /** Filtre « Disponibles » sans résultat : tout est déjà parti dans cette collection */
+    emptyAvailable: {
+      title: "Ici, toutes les toiles ont déjà été adoptées.",
+      text: "Mais rien n’est perdu : si l’une d’elles t’inspire, je crée la tienne, dans le même esprit. Ton format, tes couleurs, ton histoire.",
+      cta: "Voir ces toiles",
+    },
+    /** Filtre « Sur commande » sans résultat : tout est encore en stock dans cette collection */
+    emptyOrder: {
+      title: "Ici, toutes les toiles sont encore disponibles.",
+      text: "Aucune n’a encore quitté l’atelier : c’est le moment de choisir la tienne.",
+      cta: "Voir les toiles disponibles",
+    },
     count: (n: number) => (n > 1 ? `${n} toiles` : `${n} toile`),
     upcomingTitle: "La suite arrive",
     seriesProgress: (shown: number, total: number) => `${shown} toiles dévoilées sur ${total}`,
@@ -242,7 +254,17 @@ const en: UIStrings = {
     filterSold: "Sold",
     collectionsLabel: "Collections",
     allCollections: "All collections",
-    empty: "No painting matches this filter.",
+    empty: "Nothing to show you here for now.",
+    emptyAvailable: {
+      title: "Every painting here has already been adopted.",
+      text: "All is not lost: if one of them inspires you, I’ll create yours in the same spirit. Your size, your colours, your story.",
+      cta: "See these paintings",
+    },
+    emptyOrder: {
+      title: "Every painting here is still available.",
+      text: "None has left the studio yet: now is the time to choose yours.",
+      cta: "See available paintings",
+    },
     count: (n: number) => (n > 1 ? `${n} paintings` : `${n} painting`),
     upcomingTitle: "More on the way",
     seriesProgress: (shown: number, total: number) => `${shown} of ${total} paintings revealed`,
