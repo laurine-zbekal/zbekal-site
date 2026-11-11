@@ -55,7 +55,7 @@ export const commissionFormats = {
   items: [
     { name: "S", size: "60 × 70 cm", price: { fr: "220 €", en: "€220" } },
     { name: "M", size: "80 × 90 cm", price: { fr: "250 €", en: "€250" } },
-    { name: "L", size: "100 cm", price: { fr: "300 €", en: "€300" } },
+    { name: "L", size: "100 × 100 cm", price: { fr: "300 €", en: "€300" } },
     { name: { fr: "Sur mesure", en: "Custom" }, size: { fr: "Ton format", en: "Your size" }, price: { fr: "Sur devis", en: "On quote" } },
   ] as { name: string | L<string>; size: string | L<string>; price: L<string> }[],
 };
