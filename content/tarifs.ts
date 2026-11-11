@@ -3,9 +3,11 @@
  *  TARIFS DES COMMANDES — la grille de la page « Tarifs 2026 »
  * ──────────────────────────────────────────────────────────────────────────
  *  Pour changer un prix : modifie `price` (euros TTC). Pour ajouter un format : copie une ligne.
+ *  Cinq formats, du S (le plus petit que Laurine peint en commande) au XXL : 130 cm de côté au maximum.
  *  Les formats S, M et L sont ceux de Laurine (publication de novembre 2025, confirmés en nov. 2026).
- *  Les sept autres prix sont DÉDUITS de ces trois-là, au prorata de la taille (hauteur + largeur) :
- *  ils sont à valider par Laurine avant la mise en ligne.
+ *  Les prix XL et XXL sont DÉDUITS de ces trois-là : on prolonge l’écart M → L,
+ *  soit 50 € pour 30 cm de plus (hauteur + largeur), environ 1,67 € par cm.
+ *  Ils sont à valider par Laurine avant la mise en ligne.
  *  L’année affichée partout sur la page est `year`.
  */
 import type { Locale } from "./ui";
@@ -29,17 +31,24 @@ export type PriceFormat = {
 export const tarifs = {
   year: 2026,
 
+  /** Photo du haut de page */
+  heroPhoto: {
+    src: "/atelier/pinceau-chevalet.jpg",
+    w: 1014,
+    h: 1531,
+    alt: {
+      fr: "Laurine Girard, pinceau et palette à la main, accoudée à une toile vierge sur son chevalet",
+      en: "Laurine Girard, brush and palette in hand, leaning on a blank canvas on her easel",
+    } as L,
+    caption: { fr: "Ta toile commence ici", en: "Your painting starts here" } as L,
+  },
+
   formats: [
-    { w: 20, h: 20, price: 80, tag: "Mini", color: "#F6C945" },
-    { w: 30, h: 30, price: 110, color: "#F26B21" },
-    { w: 40, h: 40, price: 140, color: "#E85D9C" },
-    { w: 50, h: 50, price: 170, color: "#2E8B57" },
-    { w: 50, h: 70, price: 200, color: "#2041B5" },
     { w: 60, h: 70, price: 220, tag: "S", star: true, color: "#D6336C" },
-    { w: 80, h: 80, price: 240, color: "#F6C945" },
     { w: 80, h: 90, price: 250, tag: "M", star: true, color: "#1B4D3E" },
     { w: 100, h: 100, price: 300, tag: "L", star: true, color: "#D1232A" },
-    { w: 120, h: 120, price: 370, tag: "XL", color: "#2041B5" },
+    { w: 100, h: 120, price: 335, tag: "XL", color: "#F6C945" },
+    { w: 130, h: 130, price: 400, tag: "XXL", color: "#2041B5" },
   ] as PriceFormat[],
 
   kicker: { fr: "Toiles sur commande", en: "Commissioned paintings" } as L,
@@ -47,15 +56,15 @@ export const tarifs = {
     fr: "Une toile peinte pour toi, à partir de ton idée, de tes couleurs, de ton mur. Voici mes prix par format : clairs, et volontairement doux.",
     en: "A painting made for you, from your idea, your colours, your wall. Here are my prices by size: clear, and deliberately gentle.",
   } as L,
-  gridTitle: { fr: "Dix formats, dix prix", en: "Ten sizes, ten prices" } as L,
+  gridTitle: { fr: "Cinq formats, cinq prix", en: "Five sizes, five prices" } as L,
   gridLead: {
-    fr: "Les toiles sont dessinées à la même échelle : tu vois tout de suite ce que change un format.",
-    en: "The canvases are drawn to the same scale, so you can see at a glance what each size changes.",
+    fr: "Du S, le plus petit format que je peins, au XXL de 130 cm de côté, le plus grand. Les toiles sont dessinées à la même échelle : tu vois tout de suite ce que change un format.",
+    en: "From S, the smallest size I paint, to XXL at 130 cm a side, the largest. The canvases are drawn to the same scale, so you can see at a glance what each size changes.",
   } as L,
   starLabel: { fr: "Format", en: "Size" } as L,
   custom: {
-    fr: "Un autre format, un diptyque, un triptyque ? Je te fais un devis.",
-    en: "Another size, a diptych, a triptych? I’ll send you a quote.",
+    fr: "Un format entre deux, un diptyque, un triptyque ? Je te fais un devis, de 60 × 70 cm à 130 cm de côté.",
+    en: "A size in between, a diptych, a triptych? I’ll send you a quote, from 60 × 70 cm up to 130 cm a side.",
   } as L,
   legal: {
     fr: "Prix en euros, TTC. TVA non applicable, art. 293 B du CGI. Les toiles disponibles de la galerie ont leur propre prix, sur demande.",

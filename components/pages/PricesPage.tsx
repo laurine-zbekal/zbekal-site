@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ui, type Locale } from "@/content/ui";
 import { tarifs } from "@/content/tarifs";
@@ -5,25 +6,6 @@ import { href } from "@/lib/routes";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { CheckIcon } from "@/components/Icons";
-
-/** Feuille stylisée de la frise (couleurs de la collection Amazoni) */
-const LEAF = "M0 0C12 -17 44 -17 58 0C44 17 12 17 0 0Z";
-const leaves = [
-  { x: 20, y: 62, r: -28, c: "#2E8B57", s: 1.5 },
-  { x: 96, y: 40, r: 18, c: "#1B4D3E", s: 1.9 },
-  { x: 178, y: 70, r: -8, c: "#3FA06A", s: 1.3 },
-  { x: 250, y: 44, r: -34, c: "#2E8B57", s: 1.7 },
-  { x: 340, y: 66, r: 22, c: "#17604A", s: 1.5 },
-  { x: 420, y: 42, r: -14, c: "#3FA06A", s: 1.8 },
-  { x: 512, y: 68, r: 30, c: "#2E8B57", s: 1.4 },
-  { x: 590, y: 44, r: -24, c: "#17604A", s: 1.9 },
-  { x: 684, y: 66, r: 12, c: "#3FA06A", s: 1.5 },
-  { x: 762, y: 42, r: -30, c: "#2E8B57", s: 1.7 },
-  { x: 850, y: 68, r: 20, c: "#17604A", s: 1.4 },
-  { x: 930, y: 46, r: -12, c: "#3FA06A", s: 1.8 },
-  { x: 1020, y: 66, r: 28, c: "#2E8B57", s: 1.5 },
-  { x: 1100, y: 44, r: -22, c: "#17604A", s: 1.8 },
-];
 
 const price = (n: number, locale: Locale) => new Intl.NumberFormat(locale === "fr" ? "fr-FR" : "en-GB", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 
@@ -42,7 +24,7 @@ export function PricesPage({ locale }: { locale: Locale }) {
         ])}
       />
 
-      {/* En-tête : panneau vert jungle, frise de feuilles et branche dorée */}
+      {/* En-tête : le texte à gauche, Laurine devant sa toile vierge à droite */}
       <section className="container" style={{ paddingTop: "clamp(20px, 3vw, 32px)" }}>
         <div className="prices-hero">
           <div className="prices-hero__body">
@@ -52,15 +34,18 @@ export function PricesPage({ locale }: { locale: Locale }) {
             </h1>
             <p className="prices-hero__lead">{tarifs.lead[locale]}</p>
           </div>
-          <svg className="prices-hero__leaves" viewBox="0 0 1180 96" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-            <path d="M-10 78C120 40 220 92 360 62S620 30 760 64S1010 92 1190 46" fill="none" stroke="#C9A227" strokeWidth="5" strokeLinecap="round" />
-            {leaves.map((l, i) => (
-              <path key={i} d={LEAF} fill={l.c} transform={`translate(${l.x} ${l.y}) rotate(${l.r}) scale(${l.s})`} />
-            ))}
-            {[150, 470, 800, 1060].map((x, i) => (
-              <circle key={x} cx={x} cy={i % 2 ? 30 : 58} r="9" fill={i % 2 ? "#F6C945" : "#E85D9C"} />
-            ))}
-          </svg>
+          <div className="prices-hero__photo">
+            <Image
+              src={tarifs.heroPhoto.src}
+              alt={tarifs.heroPhoto.alt[locale]}
+              width={tarifs.heroPhoto.w}
+              height={tarifs.heroPhoto.h}
+              sizes="(min-width: 900px) 520px, 100vw"
+              priority
+              quality={80}
+            />
+            <span className="prices-hero__caption">{tarifs.heroPhoto.caption[locale]}</span>
+          </div>
         </div>
       </section>
 
@@ -78,7 +63,7 @@ export function PricesPage({ locale }: { locale: Locale }) {
           {tarifs.formats.map((f) => (
             <li key={`${f.w}x${f.h}`} className={`price-card reveal${f.star ? " price-card--star" : ""}`}>
               <span className="price-card__wall" aria-hidden="true">
-                <span className="price-card__canvas" style={{ width: `${(f.w / max) * 100}%`, aspectRatio: `${f.w} / ${f.h}`, background: f.color }} />
+                <span className="price-card__canvas" style={{ width: `${(f.w / max) * 90}%`, aspectRatio: `${f.w} / ${f.h}`, background: f.color }} />
               </span>
               <span className="price-card__body">
                 {f.tag ? <span className={`badge ${f.star ? "badge--pink" : "badge--grey"}`}>{f.star ? `${tarifs.starLabel[locale]} ${f.tag}` : f.tag}</span> : <span className="price-card__spacer" />}
