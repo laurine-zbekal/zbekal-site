@@ -12,9 +12,9 @@ export const home = {
   /** n = nombre de toiles disponibles (calculé tout seul) */
   intro: {
     fr: (n: number) =>
-      `De l’acrylique posée en épaisseur, de la feuille d’or, des perles : mes toiles se regardent de loin pour la couleur, de près pour la matière. En ce moment, ${n} sont disponibles. Les autres, je peux les repeindre pour toi.`,
+      `De l’acrylique posée en épaisseur, de la feuille d’or, des perles : mes toiles se regardent de loin pour la couleur, de près pour la matière. En ce moment, ${n} sont disponibles. Les autres ont trouvé leur maison : si l’une d’elles t’inspire, je crée la tienne, dans le même esprit.`,
     en: (n: number) =>
-      `Thick acrylic, gold leaf, beads: my paintings are made to be seen from afar for the colour and up close for the texture. Right now, ${n} are available. The others, I can repaint for you.`,
+      `Thick acrylic, gold leaf, beads: my paintings are made to be seen from afar for the colour and up close for the texture. Right now, ${n} are available. The others have found their homes: if one of them inspires you, I’ll create yours in the same spirit.`,
   } as L<(n: number) => string>,
   heroAlt: {
     fr: "Laurine Girard en train de peindre Duo coloré en extérieur, palette à la main",
@@ -34,8 +34,8 @@ export const home = {
     fr: "Laurine Girard souriante, appuyée sur une toile, pinceau et palette à la main",
     en: "Laurine Girard smiling, leaning on a canvas, brush and palette in hand",
   } as L<string>,
-  /** Toiles « sur commande » mises en avant sur l’accueil (slugs de oeuvres.ts) */
-  repaintPicks: ["retiens-moi", "regarde-moi", "delicatesse", "fusion"],
+  /** Toiles déjà parties mises en avant sur l’accueil, comme sources d’inspiration (slugs de oeuvres.ts) */
+  inspiredPicks: ["retiens-moi", "regarde-moi", "delicatesse", "fusion"],
 };
 
 /** Photo du bloc « Une toile rien que pour toi » (commande sur mesure). Remplace le fichier, garde le nom. */

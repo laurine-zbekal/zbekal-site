@@ -32,10 +32,10 @@ Ou, plus simple : envoie-moi la photo et les informations, et je fais la mise à
 Les statuts d'une toile :
 
 - `"disponible"` : en stock, bouton « Je la veux ».
-- `"sur-commande"` : déjà partie, mais Laurine peut la repeindre. La fiche affiche « Coup de cœur ? » et le bouton « Je veux la mienne », qui ouvre le formulaire de commande avec la toile déjà choisie.
+- `"sur-commande"` : déjà partie chez son propriétaire, où elle reste unique. Elle peut inspirer une nouvelle création : la fiche affiche « Coup de cœur ? » et le bouton « Je veux la mienne », qui ouvre le formulaire de commande avec la toile déjà choisie. On ne parle jamais de « repeindre » ou de « refaire » une toile : on en crée une nouvelle, dans le même esprit.
 - `"reservee"` et `"vendue"` : affichées sans bouton d'achat.
 
-Quand une toile en stock est vendue, passe-la en `"sur-commande"` (ou `"vendue"` si elle ne doit pas être refaite). Pour une nouvelle collection : ajoute-la dans `content/collections.ts`.
+Quand une toile en stock est vendue, passe-la en `"sur-commande"` (ou `"vendue"` si elle ne doit pas servir d’inspiration à une commande). Pour une nouvelle collection : ajoute-la dans `content/collections.ts`.
 
 ## Ce qui reste à compléter avant la mise en ligne
 

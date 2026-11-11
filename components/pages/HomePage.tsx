@@ -26,8 +26,8 @@ export function HomePage({ locale }: { locale: Locale }) {
   const showcase = [jungle[0], ...jungle.filter((a) => a !== jungle[0] && hasDimensions(a) && a.width === a.height).slice(0, 2)].filter(Boolean);
   const jungleRest = jungle.filter((a) => !showcase.includes(a));
   const others = availableWorks.filter((a) => a.collection !== "amazoni");
-  const repaintCount = onOrderArtworks().length;
-  const repaintPicks = home.repaintPicks.map((slug) => getArtwork(slug)).filter((a) => a != null && a.status === "sur-commande");
+  const adoptedCount = onOrderArtworks().length;
+  const inspiredPicks = home.inspiredPicks.map((slug) => getArtwork(slug)).filter((a) => a != null && a.status === "sur-commande");
   const amazoni = getCollection("amazoni");
   const amazoniShown = artworksOf("amazoni").length;
   const amazoniPlanned = amazoni?.planned ?? amazoniShown;
@@ -148,23 +148,23 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* Déjà partie ? Je te la repeins */}
-      {repaintPicks.length ? (
-        <section className="container section" aria-labelledby="repaint-title">
+      {/* Déjà partie ? Je crée la tienne */}
+      {inspiredPicks.length ? (
+        <section className="container section" aria-labelledby="inspired-title">
           <div className="section-head">
-            <h2 id="repaint-title" className="display h2">
-              {t.home.repaintTitle}
+            <h2 id="inspired-title" className="display h2">
+              {t.home.inspiredTitle}
             </h2>
             <p className="lead" style={{ maxWidth: "46ch" }}>
-              {t.home.repaintLead(repaintCount)}
+              {t.home.inspiredLead(adoptedCount)}
             </p>
           </div>
           <div className="tiles tiles--4">
-            {repaintPicks.map((a) => (a ? <ArtworkCard key={a.slug} artwork={a} locale={locale} mini className="reveal" sizes="(min-width: 1240px) 280px, (min-width: 720px) 24vw, 46vw" /> : null))}
+            {inspiredPicks.map((a) => (a ? <ArtworkCard key={a.slug} artwork={a} locale={locale} mini className="reveal" sizes="(min-width: 1240px) 280px, (min-width: 720px) 24vw, 46vw" /> : null))}
           </div>
           <div className="cluster" style={{ marginTop: 28 }}>
             <Link href={href(locale, "gallery")} className="btn">
-              {t.cta.seeRepaint}
+              {t.cta.seeAllWorks}
             </Link>
             <Link href={`${href(locale, "contact")}?sujet=commission`} className="link">
               {t.cta.commission} →

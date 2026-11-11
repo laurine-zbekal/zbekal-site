@@ -5,7 +5,7 @@ import { GalleryPage } from "@/components/pages/GalleryPage";
           locale: "fr",
           key: "gallery",
           title: "Les toiles",
-          description: "Toutes les toiles de Zbekal : la collection Amazoni, les bouquets, les mains, les corps. Originaux disponibles et toiles à repeindre sur commande.",
+          description: "Toutes les toiles de Zbekal : la collection Amazoni, les bouquets, les mains, les corps. Originaux disponibles et créations sur commande.",
           image: "/og/galerie.jpg",
 });
 

@@ -20,7 +20,7 @@ export function availableArtworks(): Artwork[] {
   return artworks.filter((a) => a.status === "disponible");
 }
 
-/** Toiles parties chez leurs propriétaires, que Laurine peut repeindre. */
+/** Toiles parties chez leurs propriétaires : elles peuvent inspirer une création sur commande. */
 export function onOrderArtworks(): Artwork[] {
   return artworks.filter((a) => a.status === "sur-commande");
 }

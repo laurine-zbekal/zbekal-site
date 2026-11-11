@@ -51,11 +51,11 @@ export const collections: Collection[] = [
     description: {
       fr: [
         "Un bouquet qu’on t’a offert, un mariage, une fleur préférée : ici, les fleurs racontent toujours quelqu’un. Je les pose une à une, en épaisseur, pour que les pétales sortent de la toile.",
-        "Cinq bouquets sont disponibles. Les autres ont trouvé leur maison, mais je peux les repeindre pour toi, à ton format et dans tes couleurs.",
+        "Cinq bouquets sont disponibles. Les autres ont trouvé leur maison : si l’un d’eux t’inspire, je crée le tien, à ton format et dans tes couleurs.",
       ],
       en: [
         "A bouquet someone gave you, a wedding, a favourite flower: here, flowers always tell someone’s story. I lay them down one by one, thickly, so the petals rise off the canvas.",
-        "Five bouquets are available. The others have found their home, but I can repaint them for you, in your size and your colours.",
+        "Five bouquets are available. The others have found their home: if one of them inspires you, I’ll create yours, in your size and your colours.",
       ],
     },
   },
@@ -69,11 +69,11 @@ export const collections: Collection[] = [
     description: {
       fr: [
         "Deux mains suffisent à raconter un lien : un couple, un mariage, un premier chez-soi. Des fonds de nuit, de l’argent, du cuivre, de la feuille d’or.",
-        "Ces toiles sont toutes parties chez leurs propriétaires. Si l’une d’elles te parle, je peux la repeindre pour toi, dans tes couleurs.",
+        "Ces toiles sont toutes parties chez leurs propriétaires, et chacune raconte leur histoire. Si l’une d’elles te parle, je crée la tienne, avec tes couleurs et ton histoire à toi.",
       ],
       en: [
         "Two hands are enough to tell a bond: a couple, a wedding, a first home. Night-sky backgrounds, silver, copper, gold leaf.",
-        "These paintings have all gone to their owners. If one of them speaks to you, I can repaint it for you, in your colours.",
+        "These paintings have all gone to their owners, and each one tells their story. If one of them speaks to you, I’ll create yours, with your colours and your own story.",
       ],
     },
   },
@@ -87,11 +87,11 @@ export const collections: Collection[] = [
     description: {
       fr: [
         "Le corps féminin est mon premier sujet : des silhouettes sans visage, des courbes, des aplats francs et des rehauts de feuille d’or.",
-        "Toutes ces toiles ont été adoptées. Un coup de cœur ? Je peux la repeindre pour toi, au format et dans les teintes de ton intérieur.",
+        "Toutes ces toiles ont été adoptées. Un coup de cœur ? Je m’en inspire pour créer la tienne, au format et dans les teintes de ton intérieur.",
       ],
       en: [
         "The female body is my first subject: faceless silhouettes, curves, bold flat colour and highlights in gold leaf.",
-        "All these paintings have been adopted. Fallen for one? I can repaint it for you, in the size and shades of your home.",
+        "All these paintings have been adopted. Fallen for one? I’ll take it as inspiration to create yours, in the size and shades of your home.",
       ],
     },
   },
@@ -105,11 +105,11 @@ export const collections: Collection[] = [
     description: {
       fr: [
         "J’ai peint ma première toile le 10 avril 2020, en plein confinement. Voici celles qui ont suivi : des corps, des fruits, un lion, un œil, une abstraction.",
-        "Elles sont toutes parties, mais elles racontent d’où je viens. Et si l’une d’elles te plaît, je peux la repeindre.",
+        "Elles sont toutes parties, mais elles racontent d’où je viens. Et si l’une d’elles t’inspire, on imagine la tienne ensemble.",
       ],
       en: [
         "I painted my first canvas on 10 April 2020, in the middle of lockdown. Here are the ones that followed: bodies, fruit, a lion, an eye, an abstraction.",
-        "They have all gone, but they tell where I come from. And if you like one of them, I can repaint it.",
+        "They have all gone, but they tell where I come from. And if one of them inspires you, we can imagine yours together.",
       ],
     },
   },

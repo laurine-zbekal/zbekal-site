@@ -104,7 +104,7 @@ export async function ArtworkPage({ locale, artwork }: { locale: Locale; artwork
                 </>
               ) : null}
               <dt>{t.work.availability}</dt>
-              <dd>{onOrder ? `${t.status[artwork.status]} · ${t.work.repaint.toLowerCase()}` : t.status[artwork.status]}</dd>
+              <dd>{onOrder ? t.work.onOrderAvailability : t.status[artwork.status]}</dd>
             </dl>
 
             {onOrder ? (

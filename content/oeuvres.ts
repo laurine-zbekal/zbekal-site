@@ -21,7 +21,7 @@
  *    width: 80, height: 80,                   // (optionnel) en cm, largeur × hauteur, quand le format exact est connu
  *    size: { fr: "Format mini", en: "Mini format" }, // (optionnel) format en toutes lettres, remplace largeur × hauteur à l’affichage
  *    panels: 3,                               // (optionnel) 3 = triptyque, 4 = quadriptyque
- *    status: "disponible",                    // "disponible" = en stock · "sur-commande" = partie, mais je peux la repeindre · "reservee" · "vendue"
+ *    status: "disponible",                    // "disponible" = en stock · "sur-commande" = déjà partie, peut inspirer une nouvelle création · "reservee" · "vendue"
  *    price: 1200,                             // (optionnel) en euros TTC ; absent = « prix sur demande »
  *    images: imgs("mon-titre", 2),            // main.jpg + 2 détails ; ou la liste des chemins
  *    alt: { fr: "Description de l’image", en: "Image description" },

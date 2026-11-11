@@ -7,7 +7,7 @@ import { ui, type Locale } from "@/content/ui";
 import { href } from "@/lib/routes";
 
 type Kind = "acquisition" | "commission" | "other";
-/** `available` : toile en stock (acquisition) ; sinon toile déjà partie, à repeindre (commande) */
+/** `available` : toile en stock (acquisition) ; sinon toile déjà partie, qui peut inspirer une commande */
 export type ArtworkOption = { slug: string; label: string; available: boolean };
 
 type Errors = Partial<Record<"name" | "email" | "message" | "consent", string>>;
@@ -32,10 +32,10 @@ export function ContactForm({ locale, artworks }: { locale: Locale; artworks: Ar
     if (found) setArtwork(a);
   }, [artworks]);
 
-  // Acquisition : les toiles en stock. Commande : les toiles déjà parties, à repeindre.
+  // Acquisition : les toiles en stock. Commande : les toiles déjà parties, comme inspiration.
   const inStock = artworks.filter((a) => a.available);
-  const toRepaint = artworks.filter((a) => !a.available);
-  const choices = kind === "acquisition" ? inStock : kind === "commission" ? toRepaint : [];
+  const asInspiration = artworks.filter((a) => !a.available);
+  const choices = kind === "acquisition" ? inStock : kind === "commission" ? asInspiration : [];
   const chosen = choices.some((a) => a.slug === artwork) ? artwork : "";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -120,12 +120,12 @@ export function ContactForm({ locale, artworks }: { locale: Locale; artworks: Ar
         </div>
       ) : null}
 
-      {toRepaint.length > 0 ? (
+      {asInspiration.length > 0 ? (
         <div className="field" hidden={kind !== "commission"} data-contact-field="commission">
           <label htmlFor={`${id}-inspiration`}>{t.inspiration}</label>
           <select id={`${id}-inspiration`} className="select" value={kind === "commission" ? chosen : ""} onChange={(e) => setArtwork(e.target.value)}>
             <option value="">{t.inspirationNone}</option>
-            {toRepaint.map((a) => (
+            {asInspiration.map((a) => (
               <option key={a.slug} value={a.slug}>
                 {a.label}
               </option>

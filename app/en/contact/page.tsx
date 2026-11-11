@@ -5,7 +5,7 @@ import { ContactPage } from "@/components/pages/ContactPage";
           locale: "en",
           key: "contact",
           title: "Contact and commissions",
-          description: "Buy a painting by Zbekal, have one repainted or commission a custom piece: write to Laurine, reply within 48 hours.",
+          description: "Buy a painting by Zbekal or commission a one-of-a-kind custom piece: write to Laurine, reply within 48 hours.",
           image: "/og/default.jpg",
 });
 

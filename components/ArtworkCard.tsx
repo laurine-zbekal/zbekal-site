@@ -73,10 +73,10 @@ export function ArtworkCard({
         </span>
         {mini ? null : <span className="card__sub">{specLine(artwork, locale)}</span>}
         {mini ? (
-          <span className="card__foot">{sold ? <span>{t.status.vendue}</span> : <span className="accent">{onOrder ? t.work.repaint : t.cta.wantIt} →</span>}</span>
+          <span className="card__foot">{sold ? <span>{t.status.vendue}</span> : <span className="accent">{onOrder ? t.work.crush : t.cta.wantIt} →</span>}</span>
         ) : (
           <span className="card__foot">
-            <span>{sold ? t.status.vendue : onOrder ? t.work.repaint : priceLabel(artwork, locale)}</span>
+            <span>{sold ? t.status.vendue : onOrder ? t.work.adopted : priceLabel(artwork, locale)}</span>
             {sold ? null : onOrder ? (
               <span className="accent">{t.work.crush} →</span>
             ) : lead ? (
