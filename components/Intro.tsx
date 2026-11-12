@@ -57,7 +57,7 @@ const BANDS = [
   { y: 295, bend: 150, color: [27, 77, 62] }, // vert forêt de la collection Amazoni
   { y: 500, bend: 110, color: [254, 0, 0] },
   { y: 705, bend: 160, color: [255, 210, 63] },
-  { y: 910, bend: 120, color: [214, 51, 108] },
+  { y: 910, bend: 120, color: [32, 65, 181] }, // bleu roi des perroquets (palette Amazoni)
 ];
 /** chaque coup de pinceau = 14 poils côte à côte ; chacun a son léger retard, sa longueur et sa nuance */
 const BAND_HAIRS = Array.from({ length: 14 }, (_, j) => -143 + 22 * j);
