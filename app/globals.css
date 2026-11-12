@@ -611,17 +611,47 @@ ol {
     display: none !important;
   }
 }
+/* Menu mobile : panneau plein écran, au-dessus de l’en-tête et du bandeau. Il défile s’il est plus haut que l’écran. */
 .menu {
   position: fixed;
-  inset: var(--header-h) 0 0 0;
-  z-index: 49;
+  inset: 0;
+  z-index: 60;
   background: #fff;
-  overflow: auto;
-  padding: 24px var(--gutter) 40px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 var(--gutter) max(32px, env(safe-area-inset-bottom));
   display: none;
 }
 .menu[data-open="true"] {
   display: block;
+}
+/* sa barre : le logo à gauche, « Fermer » à droite ; elle reste en haut quand le menu défile */
+.menu__bar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: var(--header-h);
+  margin: 0 calc(-1 * var(--gutter)) 12px;
+  padding-inline: var(--gutter);
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+.menu__close {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: var(--pill);
+  border: 1.5px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
 }
 .menu__list {
   display: flex;
