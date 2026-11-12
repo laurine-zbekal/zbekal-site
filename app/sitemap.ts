@@ -25,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...entry("about", undefined, 0.7, "monthly"),
     ...entry("exhibitions", undefined, 0.6, "monthly"),
     ...entry("prices", undefined, 0.7, "monthly"),
+    ...entry("gift", undefined, 0.7, "monthly"),
     ...entry("contact", undefined, 0.6, "yearly"),
     ...entry("legal", undefined, 0.2, "yearly"),
     ...entry("privacy", undefined, 0.2, "yearly"),

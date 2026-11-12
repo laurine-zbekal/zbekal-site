@@ -7,7 +7,7 @@ export const defaultLocale: Locale = "fr";
 
 const fr = {
   skip: "Aller au contenu",
-  nav: { home: "Accueil", gallery: "Toiles", about: "Laurine", exhibitions: "Expos", prices: "Tarifs 2026", contact: "Contact" },
+  nav: { home: "Accueil", gallery: "Toiles", about: "Laurine", exhibitions: "Expos", prices: "Tarifs 2026", gift: "Carte cadeau", contact: "Contact" },
   menu: { open: "Menu", close: "Fermer", label: "Navigation principale" },
   lang: { switch: "English", code: "EN", hreflang: "en" },
   cta: {
@@ -135,12 +135,12 @@ const fr = {
   },
   contact: {
     title: "On en parle\u00a0?",
-    lead: "Une toile te plaît, tu veux la tienne sur mesure, ou tu as juste une question : écris-moi ici. Je réponds sous 48 h.",
+    lead: "Une toile te plaît, tu veux la tienne sur mesure, tu veux offrir une carte cadeau, ou tu as juste une question : écris-moi ici. Je réponds sous 48 h.",
     directTitle: "En direct",
     directText: "Tu peux aussi m’écrire par e-mail ou sur Instagram.",
     form: {
       kind: "Je t’écris pour",
-      kinds: { acquisition: "Acquérir une toile", commission: "Une commande sur mesure", other: "Autre chose" },
+      kinds: { acquisition: "Acquérir une toile", commission: "Une commande sur mesure", gift: "Offrir une carte cadeau", other: "Autre chose" },
       artwork: "La toile",
       artworkNone: "— Pas de toile en particulier —",
       inspiration: "La toile qui t’inspire",
@@ -151,6 +151,7 @@ const fr = {
       messagePlaceholder: {
         acquisition: "Dis-moi quelle toile te plaît, et où elle irait.",
         commission: "Format, couleurs, sujet, pièce où elle sera accrochée, délai : dis-m’en le plus possible.",
+        gift: "Le format (S, M ou L), à qui tu l’offres, ton message pour la carte, et si tu la veux en main propre ou par courrier.",
         other: "Je t’écoute.",
       },
       consent: "J’accepte que mes informations soient utilisées pour répondre à ma demande.",
@@ -190,7 +191,7 @@ export type UIStrings = typeof fr;
 
 const en: UIStrings = {
   skip: "Skip to content",
-  nav: { home: "Home", gallery: "Paintings", about: "Laurine", exhibitions: "Shows", prices: "Prices 2026", contact: "Contact" },
+  nav: { home: "Home", gallery: "Paintings", about: "Laurine", exhibitions: "Shows", prices: "Prices 2026", gift: "Gift card", contact: "Contact" },
   menu: { open: "Menu", close: "Close", label: "Main navigation" },
   lang: { switch: "Français", code: "FR", hreflang: "fr" },
   cta: {
@@ -315,12 +316,12 @@ const en: UIStrings = {
   },
   contact: {
     title: "Shall we talk?",
-    lead: "You like a painting, you’d like one made just for you, or you simply have a question: write to me here. I reply within 48 hours.",
+    lead: "You like a painting, you’d like one made just for you, you’d like to give a gift card, or you simply have a question: write to me here. I reply within 48 hours.",
     directTitle: "Directly",
     directText: "You can also reach me by email or on Instagram.",
     form: {
       kind: "I’m writing about",
-      kinds: { acquisition: "Buying a painting", commission: "A commission", other: "Something else" },
+      kinds: { acquisition: "Buying a painting", commission: "A commission", gift: "Giving a gift card", other: "Something else" },
       artwork: "The painting",
       artworkNone: "— No painting in particular —",
       inspiration: "The painting that inspires you",
@@ -331,6 +332,7 @@ const en: UIStrings = {
       messagePlaceholder: {
         acquisition: "Tell me which painting you like, and where it would hang.",
         commission: "Size, colours, subject, the room it will hang in, timing: tell me as much as you can.",
+        gift: "The size (S, M or L), who it’s for, your message for the card, and whether you’d like it handed over or sent by post.",
         other: "I’m listening.",
       },
       consent: "I agree that my details are used to answer my request.",

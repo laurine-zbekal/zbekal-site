@@ -12,7 +12,7 @@ import { site } from "@/content/site";
 
 type Payload = {
   type?: "contact" | "newsletter";
-  kind?: "acquisition" | "commission" | "other";
+  kind?: "acquisition" | "commission" | "gift" | "other";
   artwork?: string;
   artworkLabel?: string;
   name?: string;
@@ -82,7 +82,7 @@ export async function POST(req: Request) {
   const message = clean(body.message, 5000);
   if (!name || !message) return NextResponse.json({ error: "missing_fields" }, { status: 400 });
 
-  const kinds: Record<string, string> = { acquisition: "Acquérir une toile", commission: "Commande sur mesure", other: "Autre" };
+  const kinds: Record<string, string> = { acquisition: "Acquérir une toile", commission: "Commande sur mesure", gift: "Carte cadeau", other: "Autre" };
   const kind = kinds[body.kind ?? ""] ?? "Autre";
   const artwork = clean(body.artworkLabel ?? body.artwork, 200);
   const subject = `[${site.name}] ${kind}${artwork ? ` — ${artwork}` : ""} — ${name}`;

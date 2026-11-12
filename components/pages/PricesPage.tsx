@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ui, type Locale } from "@/content/ui";
 import { tarifs } from "@/content/tarifs";
+import { carteCadeau } from "@/content/carte-cadeau";
 import { href } from "@/lib/routes";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
@@ -59,7 +60,7 @@ export function PricesPage({ locale }: { locale: Locale }) {
             {tarifs.gridLead[locale]}
           </p>
         </div>
-        <ul className="price-grid">
+        <ul className={`price-grid${tarifs.formats.length === 3 ? " price-grid--3" : ""}`} style={{ "--cols": tarifs.formats.length } as React.CSSProperties}>
           {tarifs.formats.map((f) => (
             <li key={`${f.w}x${f.h}`} className={`price-card reveal${f.star ? " price-card--star" : ""}`}>
               <span className="price-card__wall" aria-hidden="true">
@@ -79,6 +80,11 @@ export function PricesPage({ locale }: { locale: Locale }) {
           <strong>{tarifs.custom[locale]}</strong>
         </p>
         <p className="price-legal">{tarifs.legal[locale]}</p>
+        <p style={{ marginTop: 20 }}>
+          <Link href={href(locale, "gift")} className="link" style={{ fontWeight: 700 }}>
+            {carteCadeau.fromPrices[locale]} →
+          </Link>
+        </p>
       </section>
 
       {/* Ce que le prix comprend */}

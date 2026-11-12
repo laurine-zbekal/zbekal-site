@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 import { ui, type Locale } from "@/content/ui";
 import { href } from "@/lib/routes";
 
-type Kind = "acquisition" | "commission" | "other";
+type Kind = "acquisition" | "commission" | "gift" | "other";
 /** `available` : toile en stock (acquisition) ; sinon toile déjà partie, qui peut inspirer une commande */
 export type ArtworkOption = { slug: string; label: string; available: boolean };
 
@@ -19,7 +19,7 @@ export function ContactForm({ locale, artworks }: { locale: Locale; artworks: Ar
   const [kind, setKind] = useState<Kind>("acquisition");
   const [artwork, setArtwork] = useState("");
 
-  // Pré-remplissage depuis l’adresse : /contact?sujet=commission ou ?oeuvre=<slug>
+  // Pré-remplissage depuis l’adresse : /contact?sujet=commission, ?sujet=gift (carte cadeau) ou ?oeuvre=<slug>
   // (une seule synchronisation après l’hydratation ; le rendu serveur reste identique pour tous)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -27,7 +27,7 @@ export function ContactForm({ locale, artworks }: { locale: Locale; artworks: Ar
     const a = params.get("oeuvre") ?? params.get("artwork") ?? "";
     const found = artworks.find((x) => x.slug === a);
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (k === "acquisition" || k === "commission" || k === "other") setKind(k);
+    if (k === "acquisition" || k === "commission" || k === "gift" || k === "other") setKind(k);
     else if (found) setKind(found.available ? "acquisition" : "commission");
     if (found) setArtwork(a);
   }, [artworks]);
@@ -102,6 +102,7 @@ export function ContactForm({ locale, artworks }: { locale: Locale; artworks: Ar
         <select id={`${id}-kind`} className="select" value={kind} onChange={(e) => setKind(e.target.value as Kind)} data-contact-kind>
           <option value="acquisition">{t.kinds.acquisition}</option>
           <option value="commission">{t.kinds.commission}</option>
+          <option value="gift">{t.kinds.gift}</option>
           <option value="other">{t.kinds.other}</option>
         </select>
       </div>

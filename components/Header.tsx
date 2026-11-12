@@ -14,6 +14,7 @@ const items: { key: RouteKey; label: keyof (typeof ui)["fr"]["nav"] }[] = [
   { key: "about", label: "about" },
   { key: "exhibitions", label: "exhibitions" },
   { key: "prices", label: "prices" },
+  { key: "gift", label: "gift" },
 ];
 
 export function Header({ locale }: { locale: Locale }) {

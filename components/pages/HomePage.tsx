@@ -3,6 +3,8 @@ import Link from "next/link";
 import { site, locationLabel } from "@/content/site";
 import { ui, type Locale } from "@/content/ui";
 import { commissionFormats, commissionPhoto, home, studioPhotos } from "@/content/textes";
+import { carteCadeau } from "@/content/carte-cadeau";
+import { tarifs } from "@/content/tarifs";
 import { highlightedExhibitions } from "@/content/expositions";
 import { getCollection } from "@/content/collections";
 import { galleryHref, href } from "@/lib/routes";
@@ -15,6 +17,7 @@ import { ExhibitionList } from "@/components/ExhibitionList";
 import { InstagramIcon } from "@/components/Icons";
 
 const text = (v: string | Record<Locale, string>, locale: Locale) => (typeof v === "string" ? v : v[locale]);
+const euros = (n: number, locale: Locale) => new Intl.NumberFormat(locale === "fr" ? "fr-FR" : "en-GB", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 
 export function HomePage({ locale }: { locale: Locale }) {
   const t = ui[locale];
@@ -31,6 +34,7 @@ export function HomePage({ locale }: { locale: Locale }) {
   const amazoni = getCollection("amazoni");
   const amazoniShown = artworksOf("amazoni").length;
   const amazoniPlanned = amazoni?.planned ?? amazoniShown;
+  const giftFrom = euros(Math.min(...tarifs.formats.map((f) => f.price)), locale);
 
   return (
     <>
@@ -206,6 +210,29 @@ export function HomePage({ locale }: { locale: Locale }) {
                 {t.cta.seePrices} →
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Carte cadeau */}
+      <section className="container" aria-labelledby="gift-home-title">
+        <div className="panel panel--green gift-home reveal">
+          <div className="stack" style={{ "--stack": "16px" } as React.CSSProperties}>
+            <span className="badge badge--yellow" style={{ alignSelf: "flex-start" }}>
+              {carteCadeau.home.badge[locale]}
+            </span>
+            <h2 id="gift-home-title" className="display h2" style={{ color: "#fff" }}>
+              {carteCadeau.home.title[locale]}
+            </h2>
+            <p style={{ fontSize: 19, lineHeight: 1.5, maxWidth: "50ch" }}>{carteCadeau.home.text[locale](giftFrom)}</p>
+            <div className="cluster" style={{ "--cluster": "10px 18px" } as React.CSSProperties}>
+              <Link href={href(locale, "gift")} className="btn btn--white btn--lg">
+                {carteCadeau.home.cta[locale]}
+              </Link>
+            </div>
+          </div>
+          <div className="gift-home__img rounded-img">
+            <Image src={carteCadeau.photos.recto.src} alt={carteCadeau.photos.recto.alt[locale]} width={carteCadeau.photos.recto.w} height={carteCadeau.photos.recto.h} sizes="(min-width: 900px) 34vw, 100vw" quality={78} />
           </div>
         </div>
       </section>

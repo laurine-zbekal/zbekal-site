@@ -537,6 +537,7 @@ ol {
 .nav__link {
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
   min-height: 44px;
   padding: 8px 16px;
   border-radius: var(--pill);
@@ -602,7 +603,8 @@ ol {
   align-items: center;
   gap: 6px;
 }
-@media (min-width: 960px) {
+/* le menu complet (cinq liens + bouton) demande 1100 px ; en dessous, c’est le bouton « Menu » */
+@media (min-width: 1100px) {
   .nav {
     display: flex;
   }
@@ -1769,8 +1771,7 @@ hr.sep {
 /* ==========================================================================
    Écran d’ouverture : sur fond sombre, le rond rose est là d’emblée, les traits rouges du logo
    sont peints au pinceau, puis le voile sombre se dissout doucement sur le site.
-   Durée totale : 3,1 s (3,9 s pendant les fêtes, le temps que les paillettes se posent).
-   Une seule fois par visite (voir components/Intro.tsx).
+   Durée totale : 3,1 s. Une seule fois par visite (voir components/Intro.tsx).
    ========================================================================== */
 .intro {
   position: fixed;
@@ -1781,13 +1782,13 @@ hr.sep {
   background: #0f0f0e;
   cursor: pointer;
   /* le passage au site : le logo s’efface, puis le voile sombre se dissout lentement. Rien d’autre. */
-  animation: intro-out 0.8s cubic-bezier(0.4, 0, 0.2, 1) calc(2.3s + var(--intro-hold, 0s)) forwards;
+  animation: intro-out 0.8s cubic-bezier(0.4, 0, 0.2, 1) 2.3s forwards;
 }
 .intro__logo {
   width: min(clamp(150px, 22vw, 230px), 30vh);
   aspect-ratio: 1;
   /* le logo s’efface en premier, en avançant à peine vers nous : il ne reste pas en surimpression sur le site */
-  animation: intro-logo-out 0.45s cubic-bezier(0.4, 0, 0.6, 1) calc(2s + var(--intro-hold, 0s)) forwards;
+  animation: intro-logo-out 0.45s cubic-bezier(0.4, 0, 0.6, 1) 2s forwards;
 }
 /* les traits rouges : chaque « poil » du pinceau avance avec un léger décalage */
 .intro__hair {
@@ -1829,68 +1830,9 @@ hr.sep {
   }
 }
 
-/* ==========================================================================
-   Paillettes des fêtes : petites étoiles dorées sur le logo (ouverture et menu).
-   Affichées seulement quand <html> porte data-festive (voir `festiveUntil` dans content/site.ts).
-   ========================================================================== */
-.glitter {
-  display: none;
-}
-html[data-festive] .glitter {
-  display: inline;
-}
-/* le logo reste un peu plus longtemps à l’écran pour laisser les paillettes se poser */
-html[data-festive] {
-  --intro-hold: 0.8s;
-}
-/* logo du menu : un scintillement lent, chaque paillette à son rythme */
-.glint {
-  animation: glint-twinkle var(--t) ease-in-out var(--a) infinite;
-}
-/* écran d’ouverture : elles se posent une à une après les traits rouges, puis scintillent */
-.glitter--intro .glint {
-  animation:
-    glint-in 0.45s cubic-bezier(0.2, 0.8, 0.3, 1) var(--a) both,
-    glint-twinkle var(--t) ease-in-out calc(var(--a) + 0.45s) infinite;
-}
-@keyframes glint-in {
-  0% {
-    opacity: 0;
-    transform: scale(0) rotate(-45deg);
-  }
-  60% {
-    opacity: 1;
-    transform: scale(1.25) rotate(0deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-@keyframes glint-twinkle {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.2;
-    transform: scale(0.55);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .glint {
-    animation: none;
-  }
-}
-/* déjà vu pendant cette visite, clic pour passer, animations réduites, impression */
+/* déjà vu pendant cette visite, clic pour passer, impression */
 html[data-intro="seen"] .intro {
   display: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .intro {
-    display: none;
-  }
 }
 @media print {
   .intro {
@@ -1986,7 +1928,30 @@ html[data-intro="seen"] .intro {
 }
 @media (min-width: 900px) {
   .price-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--cols, 5), minmax(0, 1fr));
+  }
+}
+/* trois formats : trois colonnes dès que la place le permet ; sur téléphone, une carte par ligne, la toile à gauche */
+.price-grid--3 {
+  grid-template-columns: 1fr;
+  max-width: 960px;
+}
+@media (min-width: 600px) {
+  .price-grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 599px) {
+  .price-grid--3 .price-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+  .price-grid--3 .price-card__wall {
+    flex: 0 0 40%;
+  }
+  .price-grid--3 .price-card__body {
+    padding: 0;
   }
 }
 .price-card {
@@ -2114,4 +2079,93 @@ html[data-intro="seen"] .intro {
   font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
+}
+
+/* ==========================================================================
+   Carte cadeau : page dédiée et bloc de la page d’accueil
+   ========================================================================== */
+/* haut de page : la photo de la carte, cadrée sur la carte */
+.hero__img--card {
+  aspect-ratio: 1 / 1;
+}
+.hero__img--card img {
+  object-position: 50% 64%;
+}
+@media (min-width: 900px) {
+  .hero__img--card {
+    aspect-ratio: 4 / 5;
+  }
+  .hero__img--card img {
+    object-position: 50% 100%;
+  }
+}
+.gift-title {
+  font-size: clamp(46px, 6.4vw, 86px);
+}
+span.hero__badge {
+  font-size: 16px;
+}
+#formats,
+#carte-cadeau {
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+/* le dos de la carte et ce qu’elle comprend */
+.gift-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(20px, 3.5vw, 48px);
+  align-items: center;
+}
+.gift-card__img {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+}
+.gift-card__img img {
+  object-position: 50% 73%;
+}
+@media (min-width: 900px) {
+  .gift-card {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+  .gift-card__img {
+    aspect-ratio: 4 / 5;
+    max-width: 460px;
+  }
+  .gift-card__img img {
+    object-position: 50% 100%;
+  }
+}
+/* bloc de l’accueil : vert Amazoni, la carte rose à droite */
+.panel--green {
+  background: #123d31;
+  color: #fff;
+}
+.gift-home {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  align-items: center;
+  margin-top: clamp(16px, 2.4vw, 28px);
+}
+.gift-home__img {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.12);
+}
+.gift-home__img img {
+  object-position: 50% 58%;
+}
+@media (min-width: 900px) {
+  .gift-home {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  }
+  .gift-home__img {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    max-width: 420px;
+    justify-self: end;
+  }
+  .gift-home__img img {
+    object-position: 50% 100%;
+  }
 }

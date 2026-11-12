@@ -3,10 +3,9 @@
  *  TARIFS DES COMMANDES — la grille de la page « Tarifs 2026 »
  * ──────────────────────────────────────────────────────────────────────────
  *  Pour changer un prix : modifie `price` (euros TTC). Pour ajouter un format : copie une ligne.
- *  Cinq formats, du S (le plus petit que Laurine peint en commande) au XXL : 130 cm de côté au maximum.
- *  Les formats S, M et L sont ceux de Laurine (publication de novembre 2025, confirmés en nov. 2026).
- *  Les prix XL et XXL sont fixés par nous (novembre 2026) : un peu sous le prix au m² du format L
- *  (300 € le m²), pour rester accessibles et déclencher des ventes. Ils sont à valider par Laurine.
+ *  Trois formats à prix fixe : S (le plus petit que Laurine peint en commande), M et L.
+ *  Tout le reste (plus grand, jusqu’à 130 cm de côté, entre deux formats, diptyque…) est sur devis.
+ *  Ces trois formats servent aussi à la page « Carte cadeau » (content/carte-cadeau.ts).
  *  L’année affichée partout sur la page est `year`.
  */
 import type { Locale } from "./ui";
@@ -46,8 +45,6 @@ export const tarifs = {
     { w: 60, h: 70, price: 220, tag: "S", star: true, color: "#D6336C" },
     { w: 80, h: 90, price: 250, tag: "M", star: true, color: "#1B4D3E" },
     { w: 100, h: 100, price: 300, tag: "L", star: true, color: "#D1232A" },
-    { w: 100, h: 120, price: 350, tag: "XL", color: "#F6C945" },
-    { w: 130, h: 130, price: 450, tag: "XXL", color: "#2041B5" },
   ] as PriceFormat[],
 
   kicker: { fr: "Toiles sur commande", en: "Commissioned paintings" } as L,
@@ -55,15 +52,15 @@ export const tarifs = {
     fr: "Une toile peinte pour toi, à partir de ton idée, de tes couleurs, de ton mur. Voici mes prix par format : clairs, et volontairement doux.",
     en: "A painting made for you, from your idea, your colours, your wall. Here are my prices by size: clear, and deliberately gentle.",
   } as L,
-  gridTitle: { fr: "Cinq formats, cinq prix", en: "Five sizes, five prices" } as L,
+  gridTitle: { fr: "Trois formats, trois prix", en: "Three sizes, three prices" } as L,
   gridLead: {
-    fr: "Du S, le plus petit format que je peins, au XXL de 130 cm de côté, le plus grand. Les toiles sont dessinées à la même échelle : tu vois tout de suite ce que change un format.",
-    en: "From S, the smallest size I paint, to XXL at 130 cm a side, the largest. The canvases are drawn to the same scale, so you can see at a glance what each size changes.",
+    fr: "Du S, le plus petit format que je peins, au L d’un mètre de côté. Les toiles sont dessinées à la même échelle : tu vois tout de suite ce que change un format.",
+    en: "From S, the smallest size I paint, to L at one metre a side. The canvases are drawn to the same scale, so you can see at a glance what each size changes.",
   } as L,
   starLabel: { fr: "Format", en: "Size" } as L,
   custom: {
-    fr: "Un format entre deux, un diptyque, un triptyque ? Je te fais un devis, de 60 × 70 cm à 130 cm de côté.",
-    en: "A size in between, a diptych, a triptych? I’ll send you a quote, from 60 × 70 cm up to 130 cm a side.",
+    fr: "Plus grand, un format entre deux, un diptyque, un triptyque ? C’est sur devis, jusqu’à 130 cm de côté.",
+    en: "Larger, a size in between, a diptych, a triptych? That’s on quote, up to 130 cm a side.",
   } as L,
   legal: {
     fr: "Prix en euros, TTC. TVA non applicable, art. 293 B du CGI. Les toiles disponibles de la galerie ont leur propre prix, sur demande.",

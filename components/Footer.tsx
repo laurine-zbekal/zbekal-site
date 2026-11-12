@@ -27,6 +27,7 @@ export function Footer({ locale }: { locale: Locale }) {
               </Link>
             ))}
             <Link href={href(locale, "prices")}>{t.nav.prices}</Link>
+            <Link href={href(locale, "gift")}>{t.nav.gift}</Link>
           </div>
           <div className="footer__col">
             <h2>{t.nav.contact}</h2>
