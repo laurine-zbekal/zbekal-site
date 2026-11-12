@@ -11,14 +11,17 @@ Ce qui est déjà fait :
 - Domaines `zbekal.com` (adresse principale) et `zbekal.fr` (redirigera vers `zbekal.com`) achetés chez OVH, au nom de Laurine.
 - Boîte `laurine@zbekal.com` sur Google Workspace (alias `contact@zbekal.com`). C'est l'adresse affichée partout sur le site.
 
+- Dépôt GitHub privé `laurine-zbekal/zbekal-site` (compte de Laurine).
+- Hébergement sur Netlify (offre gratuite, utilisable pour un site commercial), branché sur ce dépôt : chaque envoi sur `main` redéploie le site.
+- Envoi des formulaires par [Resend](https://resend.com) (domaine `zbekal.com`, région Irlande).
+
 Ce qui reste à faire au moment de publier :
 
-1. Créer un dépôt GitHub privé `zbekal-site` et y envoyer ce dossier.
-2. Brancher le dépôt sur l'hébergeur (Netlify envisagé : offre gratuite utilisable pour un site commercial ; l'offre gratuite de Vercel est réservée à un usage non commercial).
-3. Régler les variables d'environnement ci-dessous chez l'hébergeur, dont `RESEND_API_KEY` (clé créée sur [resend.com](https://resend.com)) : sans elle, le formulaire affiche l'e-mail au lieu d'envoyer.
-4. Chez OVH, zone DNS de `zbekal.com` : remplacer l'enregistrement `A` et le `www` par ceux que donne l'hébergeur. Rediriger `zbekal.fr` vers `zbekal.com`.
-5. Dans Resend, vérifier le domaine `zbekal.com` (enregistrements DNS à copier chez OVH), puis mettre `CONTACT_FROM` = `Zbekal <laurine@zbekal.com>`.
-6. Mettre à jour l'hébergeur dans `content/site.ts` (bloc `host`, repris dans les mentions légales et la politique de confidentialité).
+1. Chez Netlify, régler les variables d'environnement ci-dessous, dont `RESEND_API_KEY` (clé créée sur resend.com) : sans elle, le formulaire affiche l'e-mail au lieu d'envoyer.
+2. Chez OVH, zone DNS de `zbekal.com` : ajouter les enregistrements de Resend, puis remplacer l'enregistrement `A` et le `www` par ceux que donne Netlify. Rediriger `zbekal.fr` vers `zbekal.com`.
+3. Une fois le domaine vérifié chez Resend, mettre `CONTACT_FROM` = `Zbekal <laurine@zbekal.com>`.
+
+L'adresse provisoire `xxx.netlify.app` n'est pas référencée par les moteurs de recherche (en-tête `noindex` dans `next.config.ts`).
 
 ## Ajouter une nouvelle toile
 

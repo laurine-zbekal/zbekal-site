@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/next";
 import type { Locale } from "@/content/ui";
 import { ui } from "@/content/ui";
 import { fontClassName } from "@/app/fonts";
@@ -23,7 +22,6 @@ export function SiteShell({ locale, children }: { locale: Locale; children: Reac
         <main id="contenu">{children}</main>
         <Footer locale={locale} />
         <RevealObserver />
-        {process.env.VERCEL ? <Analytics /> : null}
       </body>
     </html>
   );

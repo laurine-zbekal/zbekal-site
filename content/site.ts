@@ -38,11 +38,11 @@ export const site = {
     },
   },
 
-  /** Hébergeur : à mettre à jour au moment de la mise en ligne (Netlify envisagé). */
+  /** Hébergeur du site (repris dans les mentions légales et la politique de confidentialité). */
   host: {
-    name: "Vercel Inc.",
-    address: "440 N Barranca Ave #4133, Covina, CA 91723, USA",
-    url: "https://vercel.com",
+    name: "Netlify, Inc.",
+    address: "San Francisco, Californie, États-Unis",
+    url: "https://www.netlify.com",
   },
 
   /**

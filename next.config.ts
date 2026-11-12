@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-// PREVIEW_EXPORT=1 : export statique (dossier out/) utilisé pour fabriquer un aperçu hors Vercel.
+// PREVIEW_EXPORT=1 : export statique (dossier out/) utilisé pour fabriquer un aperçu privé, hors hébergeur.
 const preview = process.env.PREVIEW_EXPORT === "1";
 
 const nextConfig: NextConfig = {
@@ -31,6 +31,13 @@ const nextConfig: NextConfig = {
   async headers() {
     if (preview) return [];
     return [
+      // L’adresse provisoire de l’hébergeur (xxx.netlify.app) ne doit pas apparaître dans Google :
+      // seul zbekal.com est référencé.
+      {
+        source: "/(.*)",
+        has: [{ type: "host", value: ".*\\.netlify\\.app" }],
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
       {
         source: "/(.*)",
         headers: [

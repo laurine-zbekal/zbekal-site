@@ -23,9 +23,6 @@ export function PrivacyPage({ locale }: { locale: Locale }) {
           <li>
             <strong>Technical logs:</strong> the hosting provider processes technical data (IP address, browser) for security purposes, for a limited time.
           </li>
-          <li>
-            <strong>Audience measurement:</strong> aggregated statistics (pages viewed, country, device type) without cookies and without any personal identifier.
-          </li>
         </ul>
         <h2 className="display h4">How long it is kept</h2>
         <ul>
@@ -71,9 +68,6 @@ export function PrivacyPage({ locale }: { locale: Locale }) {
         </li>
         <li>
           <strong>Journaux techniques :</strong> l’hébergeur traite des données techniques (adresse IP, navigateur) à des fins de sécurité, pour une durée limitée.
-        </li>
-        <li>
-          <strong>Mesure d’audience :</strong> des statistiques agrégées (pages vues, pays, type d’appareil), sans cookie et sans identifiant personnel.
         </li>
       </ul>
       <h2 className="display h4">Combien de temps</h2>
