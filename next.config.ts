@@ -23,6 +23,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     if (preview) return [];
     return [
+      // zbekal.fr (avec ou sans www) renvoie vers zbekal.com, page pour page.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "(www\\.)?zbekal\\.fr" }],
+        destination: "https://zbekal.com/:path*",
+        permanent: true,
+      },
       // Le français est servi à la racine : /fr/... renvoie vers /...
       { source: "/fr", destination: "/", permanent: true },
       { source: "/fr/:path*", destination: "/:path*", permanent: true },
