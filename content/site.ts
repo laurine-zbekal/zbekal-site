@@ -41,7 +41,7 @@ export const site = {
   /** Hébergeur du site (repris dans les mentions légales et la politique de confidentialité). */
   host: {
     name: "Netlify, Inc.",
-    address: "San Francisco, Californie, États-Unis",
+    address: "101 2nd Street, San Francisco, CA 94105, États-Unis",
     url: "https://www.netlify.com",
   },
 
