@@ -14,7 +14,7 @@ export function SiteShell({ locale, children }: { locale: Locale; children: Reac
   return (
     <html lang={locale} className={fontClassName} suppressHydrationWarning>
       <body>
-        <Intro locale={locale} />
+        <Intro />
         <a href="#contenu" className="skip-link">
           {t.skip}
         </a>

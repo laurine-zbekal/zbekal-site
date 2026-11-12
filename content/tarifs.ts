@@ -5,9 +5,8 @@
  *  Pour changer un prix : modifie `price` (euros TTC). Pour ajouter un format : copie une ligne.
  *  Cinq formats, du S (le plus petit que Laurine peint en commande) au XXL : 130 cm de côté au maximum.
  *  Les formats S, M et L sont ceux de Laurine (publication de novembre 2025, confirmés en nov. 2026).
- *  Les prix XL et XXL sont DÉDUITS de ces trois-là : on prolonge l’écart M → L,
- *  soit 50 € pour 30 cm de plus (hauteur + largeur), environ 1,67 € par cm.
- *  Ils sont à valider par Laurine avant la mise en ligne.
+ *  Les prix XL et XXL sont fixés par nous (novembre 2026) : un peu sous le prix au m² du format L
+ *  (300 € le m²), pour rester accessibles et déclencher des ventes. Ils sont à valider par Laurine.
  *  L’année affichée partout sur la page est `year`.
  */
 import type { Locale } from "./ui";
@@ -47,8 +46,8 @@ export const tarifs = {
     { w: 60, h: 70, price: 220, tag: "S", star: true, color: "#D6336C" },
     { w: 80, h: 90, price: 250, tag: "M", star: true, color: "#1B4D3E" },
     { w: 100, h: 100, price: 300, tag: "L", star: true, color: "#D1232A" },
-    { w: 100, h: 120, price: 335, tag: "XL", color: "#F6C945" },
-    { w: 130, h: 130, price: 400, tag: "XXL", color: "#2041B5" },
+    { w: 100, h: 120, price: 350, tag: "XL", color: "#F6C945" },
+    { w: 130, h: 130, price: 450, tag: "XXL", color: "#2041B5" },
   ] as PriceFormat[],
 
   kicker: { fr: "Toiles sur commande", en: "Commissioned paintings" } as L,

@@ -1737,96 +1737,117 @@ hr.sep {
 }
 
 /* ==========================================================================
-   Écran d’ouverture : le logo apparaît sur fond sombre, puis le rideau se lève
-   Durée totale : 2,9 s. Une seule fois par visite (voir components/Intro.tsx).
+   Écran d’ouverture : le logo est peint au pinceau sur fond sombre, puis de larges
+   coups de pinceau traversent l’écran et découvrent le site.
+   Durée totale : 3,5 s. Une seule fois par visite (voir components/Intro.tsx).
+   Repères : 2,25 s = début du balayage ; 2,8 s = le logo disparaît sous la peinture.
    ========================================================================== */
 .intro {
   position: fixed;
   inset: 0;
   z-index: 3000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
+  overflow: hidden;
   background: #0f0f0e;
-  color: #fff;
-  text-align: center;
   cursor: pointer;
-  animation: intro-out 0.85s cubic-bezier(0.76, 0, 0.24, 1) 2.05s forwards;
+  /* le fond passe la main aux bandes du SVG au début du balayage, puis l’écran se retire */
+  animation:
+    intro-clear 1ms linear 2.25s forwards,
+    intro-end 1ms linear 3.5s forwards;
 }
-.intro__logo {
-  width: clamp(104px, 13vw, 148px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  opacity: 0;
-  transform: scale(0.88);
-  filter: blur(8px);
-  animation: intro-logo 1.05s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s forwards;
-}
-.intro__logo svg {
+.intro__layer {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
 }
-.intro__name {
-  margin-top: 10px;
-  font-family: var(--font-display);
-  font-size: clamp(30px, 4.4vw, 46px);
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.62em;
-  margin-right: -0.62em; /* compense l’espace après la dernière lettre : le mot reste centré */
-  opacity: 0;
-  animation: intro-name 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s forwards;
+.intro__logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(clamp(150px, 22vw, 230px), 30vh);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  /* il disparaît d’un coup, au moment où le coup de pinceau du milieu le recouvre */
+  animation: intro-hide 1ms linear 2.8s forwards;
 }
-.intro__line {
-  width: 84px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.55);
-  transform: scaleX(0);
-  animation: intro-line 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.95s forwards;
+.intro__ring,
+.intro__hair,
+.intro__canvas,
+.intro__paint {
+  fill: none;
 }
-.intro__sub {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
-  opacity: 0;
-  animation: intro-fade 0.8s ease 1.15s forwards;
+/* le rond rose et les traits rouges : chaque « poil » du pinceau avance avec un léger décalage */
+.intro__ring {
+  stroke-width: 50;
+  stroke-dasharray: 100 100;
+  animation: intro-draw 0.5s cubic-bezier(0.3, 0.1, 0.2, 1) var(--d) both;
 }
-@keyframes intro-logo {
+.intro__hair {
+  stroke-width: 17;
+  stroke-dasharray: 100 100;
+  animation: intro-draw var(--t) cubic-bezier(0.3, 0.1, 0.2, 1) var(--d) both;
+}
+/* la forme nette prend le relais à la fin de chaque trait */
+.intro__solid {
+  animation: intro-show 0.14s linear var(--d) both;
+}
+/* le balayage : la peinture avance (intro__paint, traînée de longueur --s), le fond sombre s’efface dessous (intro__canvas) */
+.intro__canvas {
+  stroke: #0f0f0e;
+  stroke-width: 27;
+  stroke-dasharray: 1700 1700;
+  animation: intro-canvas 0.8s cubic-bezier(0.4, 0, 0.6, 1) var(--d) both;
+}
+.intro__paint {
+  stroke-width: 27;
+  stroke-dasharray: var(--s) 3000;
+  animation: intro-paint 0.8s cubic-bezier(0.4, 0, 0.6, 1) var(--d) both;
+}
+@keyframes intro-draw {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes intro-show {
+  from {
+    opacity: 0;
+  }
   to {
     opacity: 1;
-    transform: none;
-    filter: none;
   }
 }
-@keyframes intro-name {
+@keyframes intro-hide {
   to {
-    opacity: 1;
-    letter-spacing: 0.34em;
-    margin-right: -0.34em;
+    opacity: 0;
   }
 }
-@keyframes intro-line {
+@keyframes intro-canvas {
+  from {
+    stroke-dashoffset: 350;
+  }
   to {
-    transform: none;
+    stroke-dashoffset: -1350;
   }
 }
-@keyframes intro-fade {
+@keyframes intro-paint {
+  from {
+    stroke-dashoffset: 760; /* = la plus longue traînée : toutes partent cachées, hors de l’écran */
+  }
   to {
-    opacity: 1;
+    stroke-dashoffset: -1000;
   }
 }
-@keyframes intro-out {
-  0% {
-    transform: none;
-    visibility: visible;
+@keyframes intro-clear {
+  to {
+    background-color: transparent;
   }
-  100% {
-    transform: translateY(-100%);
+}
+@keyframes intro-end {
+  to {
     visibility: hidden;
   }
 }
