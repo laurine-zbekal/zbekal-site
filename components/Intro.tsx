@@ -1,23 +1,22 @@
 import type { CSSProperties } from "react";
+import { site } from "@/content/site";
+import { Glint, type GlintSpec } from "./Logo";
 
 /**
  * Écran d’ouverture : sur fond sombre, le rond rose du logo est déjà là ; les trois traits rouges du
- * monogramme sont peints au pinceau, puis de larges coups de pinceau traversent l’écran et découvrent le site.
- * - Tout est en SVG + CSS (voir « Écran d’ouverture » dans globals.css) : il fonctionne sans JavaScript.
+ * monogramme sont peints au pinceau. Pendant les fêtes (voir `festiveUntil` dans content/site.ts),
+ * de petites paillettes dorées se posent ensuite sur le logo. Puis le voile sombre se dissout doucement
+ * et laisse voir le site.
+ * - Tout est en SVG + CSS (voir « Écran d’ouverture » dans globals.css).
  * - Montré une seule fois par visite : le petit script ci-dessous le masque dès la deuxième page
  *   (ou au rechargement), et un clic ou une touche le passe tout de suite.
  * - Masqué pour les personnes qui ont demandé moins d’animations.
- * Pour le retirer : supprimer <Intro /> dans SiteShell.tsx.
- *
- * Réglages : les horaires (en secondes) sont ci-dessous ; les couleurs des coups de pinceau dans BANDS.
- * Si tu changes WIPE ou la durée du balayage, reporte-les dans globals.css (.intro, .intro__logo) :
- * le logo doit disparaître quand le coup de pinceau du milieu le recouvre entièrement (WIPE + 0,55 s).
+ * Pour le retirer : supprimer <Intro /> dans SiteShell.tsx (garder alors la ligne « data-festive » du script).
  */
-const script = `(function(){try{var d=document.documentElement,s=sessionStorage;if(s.getItem("zbekal-intro")){d.setAttribute("data-intro","seen");return}s.setItem("zbekal-intro","1");var skip=function(){d.setAttribute("data-intro","seen");removeEventListener("pointerdown",skip,true);removeEventListener("keydown",skip,true)};addEventListener("pointerdown",skip,true);addEventListener("keydown",skip,true);setTimeout(skip,4200)}catch(e){}})();`;
+const script = `(function(){try{var d=document.documentElement,f=${JSON.stringify(site.festiveUntil)};if(f&&Date.now()<Date.parse(f))d.setAttribute("data-festive","1");var s=sessionStorage;if(s.getItem("zbekal-intro")){d.setAttribute("data-intro","seen");return}s.setItem("zbekal-intro","1");var skip=function(){d.setAttribute("data-intro","seen");removeEventListener("pointerdown",skip,true);removeEventListener("keydown",skip,true)};addEventListener("pointerdown",skip,true);addEventListener("keydown",skip,true);setTimeout(skip,4600)}catch(e){}})();`;
 
 const n = (v: number) => Math.round(v * 10) / 10;
-const css = (delay: number, duration?: number) =>
-  ({ "--d": `${delay.toFixed(3)}s`, ...(duration ? { "--t": `${duration.toFixed(3)}s` } : {}) }) as CSSProperties;
+const css = (delay: number, duration: number) => ({ "--d": `${delay.toFixed(3)}s`, "--t": `${duration.toFixed(3)}s` }) as CSSProperties;
 
 /* ── Le logo, dans son repère 719 × 719 (mêmes tracés que Logo.tsx) ── */
 const C = 359.5;
@@ -50,57 +49,35 @@ const HAIR_LAG = [0, 0.05, 0.015, 0.07, 0.03, 0.005, 0.045];
 /** nuances du rouge pendant le geste : on voit les poils ; la forme nette (couleur exacte) arrive à la fin */
 const HAIR_TONE = ["#fe0000", "#e20000", "#fe0000", "#f31212", "#d90000", "#fe0000", "#ea0000"];
 
-/* ── Le passage au site : cinq larges coups de pinceau, dans un repère 1600 × 1000 étiré à l’écran ── */
-const WIPE = 1.9; // début du balayage
-const BANDS = [
-  { y: 90, bend: 130, color: [254, 188, 202] },
-  { y: 295, bend: 150, color: [27, 77, 62] }, // vert forêt de la collection Amazoni
-  { y: 500, bend: 110, color: [254, 0, 0] },
-  { y: 705, bend: 160, color: [255, 210, 63] },
-  { y: 910, bend: 120, color: [32, 65, 181] }, // bleu roi des perroquets (palette Amazoni)
+/**
+ * Les paillettes dorées des fêtes : x, y, taille (dans le repère du logo), `on` = posée sur le rouge ou sur le rose.
+ * Elles arrivent une à une après le dernier trait rouge (à partir de 1,6 s), puis scintillent.
+ */
+const GLINTS: GlintSpec[] = [
+  { x: 232, y: 214, r: 24, on: "red" },
+  { x: 506, y: 506, r: 22, on: "red" },
+  { x: 468, y: 206, r: 17, on: "red" },
+  { x: 586, y: 162, r: 18, on: "pink" },
+  { x: 250, y: 610, r: 15, on: "pink" },
+  { x: 300, y: 505, r: 12, on: "red" },
+  { x: 120, y: 300, r: 12, on: "pink" },
+  { x: 350, y: 360, r: 10, on: "red" },
+  { x: 610, y: 400, r: 10, on: "pink" },
+  { x: 530, y: 292, r: 8, on: "red" },
+  { x: 360, y: 116, r: 8, on: "pink" },
+  { x: 205, y: 346, r: 7, on: "red" },
+  { x: 440, y: 626, r: 7, on: "pink" },
+  { x: 150, y: 500, r: 6, on: "pink" },
 ];
-/** chaque coup de pinceau = 14 poils côte à côte ; chacun a son léger retard, sa longueur et sa nuance */
-const BAND_HAIRS = Array.from({ length: 14 }, (_, j) => -143 + 22 * j);
-/** tirage pseudo-aléatoire fixe (le rendu est identique à chaque chargement) */
-const rand = (seed: number) => {
-  const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
-  return x - Math.floor(x);
-};
-const tone = ([r, g, b]: number[], k: number) => {
-  const mix = (c: number) => Math.round(k < 0 ? c * (1 + k) : c + (255 - c) * k);
-  return `rgb(${mix(r)} ${mix(g)} ${mix(b)})`;
-};
-const bandHairs = BANDS.flatMap((b, i) =>
-  BAND_HAIRS.map((o, j) => {
-    const seed = i * 31 + j;
-    const streak = rand(seed + 0.5) > 0.82; // quelques poils en retard : les mèches qui traînent
-    return {
-      key: `${i}-${j}`,
-      d: sweep(b.y + o, b.bend, i % 2 === 1),
-      delay: WIPE + i * 0.07 + rand(seed) * 0.012 + (streak ? 0.012 : 0),
-      length: Math.round(640 + rand(seed + 0.25) * 120), // longueur de la traînée de peinture (sur 1000)
-      color: tone(b.color, (rand(seed + 0.75) - 0.5) * 0.16),
-    };
-  }),
-);
-/** un coup de pinceau sur toute la largeur, une fois de gauche à droite, une fois de droite à gauche */
-function sweep(y: number, bend: number, reverse: boolean) {
-  return reverse ? `M1760 ${y}C1180 ${y + bend} 420 ${y - bend} -160 ${y}` : `M-160 ${y}C420 ${y - bend} 1180 ${y + bend} 1760 ${y}`;
-}
+/** ordre d’arrivée et rythme du scintillement, différents pour chaque paillette */
+const GLINT_ORDER = [0, 6, 3, 9, 1, 12, 5, 10, 2, 7, 13, 4, 8, 11];
+const GLINT_PACE = [2.1, 2.9, 2.4, 3.3, 2.6, 2.2, 3.1, 2.7, 2.3, 3.4, 2.5, 3.0, 2.8, 2.0];
 
 export function Intro() {
   return (
     <>
       <script dangerouslySetInnerHTML={{ __html: script }} />
       <div className="intro" aria-hidden="true">
-        {/* le fond sombre : il part sous les coups de pinceau */}
-        <svg className="intro__layer" viewBox="0 0 1600 1000" preserveAspectRatio="none" focusable="false">
-          {bandHairs.map((h) => (
-            <path key={h.key} className="intro__canvas" pathLength={1000} d={h.d} style={css(h.delay)} />
-          ))}
-        </svg>
-
-        {/* le logo, peint trait après trait */}
         <svg className="intro__logo" viewBox="0 0 719 719" focusable="false">
           <defs>
             {STROKES.map((s) => (
@@ -111,28 +88,21 @@ export function Intro() {
           </defs>
           {/* le rond rose est là dès la première image, sans animation */}
           <circle cx={C} cy={C} r={C} fill="#FEBCCA" />
+          {/* les traits rouges, peints l’un après l’autre */}
           {STROKES.map((s) => (
             <g key={s.id} clipPath={`url(#intro-clip-${s.id})`}>
               {HAIRS.map((k, j) => (
                 <path key={k} className="intro__hair" pathLength={100} stroke={HAIR_TONE[j]} d={s.path(k)} style={css(s.start + HAIR_LAG[j], s.duration)} />
               ))}
-              <path className="intro__solid" d={s.shape} fill="#FE0000" style={css(s.start + s.duration - 0.02)} />
+              <path className="intro__solid" d={s.shape} fill="#FE0000" style={css(s.start + s.duration - 0.02, 0.14)} />
             </g>
           ))}
-        </svg>
-
-        {/* la peinture qui traverse l’écran */}
-        <svg className="intro__layer" viewBox="0 0 1600 1000" preserveAspectRatio="none" focusable="false">
-          {bandHairs.map((h) => (
-            <path
-              key={h.key}
-              className="intro__paint"
-              pathLength={1000}
-              stroke={h.color}
-              d={h.d}
-              style={{ ...css(h.delay), "--s": h.length } as CSSProperties}
-            />
-          ))}
+          {/* les paillettes dorées (pendant les fêtes seulement) */}
+          <g className="glitter glitter--intro">
+            {GLINTS.map((g, i) => (
+              <Glint key={i} {...g} delay={1.6 + GLINT_ORDER[i] * 0.04} pace={GLINT_PACE[i]} />
+            ))}
+          </g>
         </svg>
       </div>
     </>

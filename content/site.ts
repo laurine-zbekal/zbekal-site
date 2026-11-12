@@ -53,6 +53,13 @@ export const site = {
    */
   showPrices: true,
 
+  /**
+   * Paillettes dorées du logo pour les fêtes (écran d’ouverture et logo du menu).
+   * Elles s’affichent jusqu’à cette date (non comprise), puis disparaissent toutes seules.
+   * Pour les arrêter tout de suite : mettre "". Pour l’an prochain : mettre par exemple "2028-01-07".
+   */
+  festiveUntil: "2027-01-07",
+
   /** Année de création du site, pour le copyright */
   since: 2026,
 } as const;

@@ -1738,65 +1738,37 @@ hr.sep {
 
 /* ==========================================================================
    Écran d’ouverture : sur fond sombre, le rond rose est là d’emblée, les traits rouges du logo
-   sont peints au pinceau, puis de larges coups de pinceau traversent l’écran et découvrent le site.
-   Durée totale : 3,15 s. Une seule fois par visite (voir components/Intro.tsx).
-   Repères : 1,9 s = début du balayage ; 2,45 s = le logo disparaît sous la peinture.
+   sont peints au pinceau, puis le voile sombre se dissout doucement sur le site.
+   Durée totale : 3,1 s (3,9 s pendant les fêtes, le temps que les paillettes se posent).
+   Une seule fois par visite (voir components/Intro.tsx).
    ========================================================================== */
 .intro {
   position: fixed;
   inset: 0;
   z-index: 3000;
-  overflow: hidden;
+  display: grid;
+  place-items: center;
   background: #0f0f0e;
   cursor: pointer;
-  /* le fond passe la main aux bandes du SVG au début du balayage, puis l’écran se retire */
-  animation:
-    intro-clear 1ms linear 1.9s forwards,
-    intro-end 1ms linear 3.15s forwards;
-}
-.intro__layer {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
+  /* le passage au site : le logo s’efface, puis le voile sombre se dissout lentement. Rien d’autre. */
+  animation: intro-out 0.8s cubic-bezier(0.4, 0, 0.2, 1) calc(2.3s + var(--intro-hold, 0s)) forwards;
 }
 .intro__logo {
-  position: absolute;
-  left: 50%;
-  top: 50%;
   width: min(clamp(150px, 22vw, 230px), 30vh);
   aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  /* il disparaît d’un coup, au moment où le coup de pinceau du milieu le recouvre */
-  animation: intro-hide 1ms linear 2.45s forwards;
-}
-.intro__hair,
-.intro__canvas,
-.intro__paint {
-  fill: none;
+  /* le logo s’efface en premier, en avançant à peine vers nous : il ne reste pas en surimpression sur le site */
+  animation: intro-logo-out 0.45s cubic-bezier(0.4, 0, 0.6, 1) calc(2s + var(--intro-hold, 0s)) forwards;
 }
 /* les traits rouges : chaque « poil » du pinceau avance avec un léger décalage */
 .intro__hair {
+  fill: none;
   stroke-width: 17;
   stroke-dasharray: 100 100;
   animation: intro-draw var(--t) cubic-bezier(0.3, 0.1, 0.2, 1) var(--d) both;
 }
 /* la forme nette prend le relais à la fin de chaque trait */
 .intro__solid {
-  animation: intro-show 0.14s linear var(--d) both;
-}
-/* le balayage : la peinture avance (intro__paint, traînée de longueur --s), le fond sombre s’efface dessous (intro__canvas) */
-.intro__canvas {
-  stroke: #0f0f0e;
-  stroke-width: 27;
-  stroke-dasharray: 1700 1700;
-  animation: intro-canvas 0.8s cubic-bezier(0.4, 0, 0.6, 1) var(--d) both;
-}
-.intro__paint {
-  stroke-width: 27;
-  stroke-dasharray: var(--s) 3000;
-  animation: intro-paint 0.8s cubic-bezier(0.4, 0, 0.6, 1) var(--d) both;
+  animation: intro-show var(--t) linear var(--d) both;
 }
 @keyframes intro-draw {
   from {
@@ -1814,35 +1786,71 @@ hr.sep {
     opacity: 1;
   }
 }
-@keyframes intro-hide {
+@keyframes intro-out {
   to {
     opacity: 0;
-  }
-}
-@keyframes intro-canvas {
-  from {
-    stroke-dashoffset: 350;
-  }
-  to {
-    stroke-dashoffset: -1350;
-  }
-}
-@keyframes intro-paint {
-  from {
-    stroke-dashoffset: 760; /* = la plus longue traînée : toutes partent cachées, hors de l’écran */
-  }
-  to {
-    stroke-dashoffset: -1000;
-  }
-}
-@keyframes intro-clear {
-  to {
-    background-color: transparent;
-  }
-}
-@keyframes intro-end {
-  to {
     visibility: hidden;
+  }
+}
+@keyframes intro-logo-out {
+  to {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+/* ==========================================================================
+   Paillettes des fêtes : petites étoiles dorées sur le logo (ouverture et menu).
+   Affichées seulement quand <html> porte data-festive (voir `festiveUntil` dans content/site.ts).
+   ========================================================================== */
+.glitter {
+  display: none;
+}
+html[data-festive] .glitter {
+  display: inline;
+}
+/* le logo reste un peu plus longtemps à l’écran pour laisser les paillettes se poser */
+html[data-festive] {
+  --intro-hold: 0.8s;
+}
+/* logo du menu : un scintillement lent, chaque paillette à son rythme */
+.glint {
+  animation: glint-twinkle var(--t) ease-in-out var(--a) infinite;
+}
+/* écran d’ouverture : elles se posent une à une après les traits rouges, puis scintillent */
+.glitter--intro .glint {
+  animation:
+    glint-in 0.45s cubic-bezier(0.2, 0.8, 0.3, 1) var(--a) both,
+    glint-twinkle var(--t) ease-in-out calc(var(--a) + 0.45s) infinite;
+}
+@keyframes glint-in {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-45deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.25) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes glint-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(0.55);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glint {
+    animation: none;
   }
 }
 /* déjà vu pendant cette visite, clic pour passer, animations réduites, impression */
