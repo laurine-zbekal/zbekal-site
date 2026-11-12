@@ -1737,10 +1737,10 @@ hr.sep {
 }
 
 /* ==========================================================================
-   Écran d’ouverture : le logo est peint au pinceau sur fond sombre, puis de larges
-   coups de pinceau traversent l’écran et découvrent le site.
-   Durée totale : 3,5 s. Une seule fois par visite (voir components/Intro.tsx).
-   Repères : 2,25 s = début du balayage ; 2,8 s = le logo disparaît sous la peinture.
+   Écran d’ouverture : sur fond sombre, le rond rose est là d’emblée, les traits rouges du logo
+   sont peints au pinceau, puis de larges coups de pinceau traversent l’écran et découvrent le site.
+   Durée totale : 3,15 s. Une seule fois par visite (voir components/Intro.tsx).
+   Repères : 1,9 s = début du balayage ; 2,45 s = le logo disparaît sous la peinture.
    ========================================================================== */
 .intro {
   position: fixed;
@@ -1751,8 +1751,8 @@ hr.sep {
   cursor: pointer;
   /* le fond passe la main aux bandes du SVG au début du balayage, puis l’écran se retire */
   animation:
-    intro-clear 1ms linear 2.25s forwards,
-    intro-end 1ms linear 3.5s forwards;
+    intro-clear 1ms linear 1.9s forwards,
+    intro-end 1ms linear 3.15s forwards;
 }
 .intro__layer {
   position: absolute;
@@ -1769,20 +1769,14 @@ hr.sep {
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   /* il disparaît d’un coup, au moment où le coup de pinceau du milieu le recouvre */
-  animation: intro-hide 1ms linear 2.8s forwards;
+  animation: intro-hide 1ms linear 2.45s forwards;
 }
-.intro__ring,
 .intro__hair,
 .intro__canvas,
 .intro__paint {
   fill: none;
 }
-/* le rond rose et les traits rouges : chaque « poil » du pinceau avance avec un léger décalage */
-.intro__ring {
-  stroke-width: 50;
-  stroke-dasharray: 100 100;
-  animation: intro-draw 0.5s cubic-bezier(0.3, 0.1, 0.2, 1) var(--d) both;
-}
+/* les traits rouges : chaque « poil » du pinceau avance avec un léger décalage */
 .intro__hair {
   stroke-width: 17;
   stroke-dasharray: 100 100;
