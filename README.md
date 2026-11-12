@@ -4,28 +4,19 @@ Site vitrine et galerie, bilingue français/anglais (`/` et `/en`), construit av
 
 ## Mise en ligne
 
-Le site n'est pas encore en ligne : il se valide d'abord sur l'aperçu privé.
+Le site est en ligne depuis le 12 novembre 2026 sur `https://zbekal.com`.
 
-Ce qui est déjà fait :
+- **Code** : dépôt GitHub privé `laurine-zbekal/zbekal-site` (compte de Laurine). Chaque envoi sur `main` redéploie le site.
+- **Hébergement** : Netlify, projet `zbekal` (offre gratuite, utilisable pour un site commercial). Adresse technique : `zbekal.netlify.app` (non référencée par les moteurs de recherche, en-tête `noindex` dans `next.config.ts`).
+- **Domaines** (achetés chez OVH, au nom de Laurine) : `zbekal.com` est l'adresse principale ; `www.zbekal.com`, `zbekal.fr` et `www.zbekal.fr` y renvoient (alias Netlify + règle de redirection dans `next.config.ts`).
+- **DNS chez OVH**, zones `zbekal.com` et `zbekal.fr` : `A` → `75.2.60.5` et `www` `CNAME` → `zbekal.netlify.app.` Pour revenir à la page d'attente OVH : remettre `213.186.33.5`.
+- **E-mails** : boîte `laurine@zbekal.com` sur Google Workspace (alias `contact@zbekal.com`). C'est l'adresse affichée partout sur le site.
+- **Formulaires** : envoyés par [Resend](https://resend.com) (domaine `zbekal.com` vérifié, région Irlande ; enregistrements `send`, `rsend`, `resend._domainkey`, `_dmarc` dans la zone OVH). Variables chez Netlify : `RESEND_API_KEY` (secrète, contexte Production) et `CONTACT_FROM` = `Zbekal <laurine@zbekal.com>`.
 
-- Domaines `zbekal.com` (adresse principale) et `zbekal.fr` (redirigera vers `zbekal.com`) achetés chez OVH, au nom de Laurine.
-- Boîte `laurine@zbekal.com` sur Google Workspace (alias `contact@zbekal.com`). C'est l'adresse affichée partout sur le site.
+À savoir :
 
-- Dépôt GitHub privé `laurine-zbekal/zbekal-site` (compte de Laurine).
-- Hébergement sur Netlify (offre gratuite, utilisable pour un site commercial), branché sur ce dépôt : chaque envoi sur `main` redéploie le site.
-- Envoi des formulaires par [Resend](https://resend.com) (domaine `zbekal.com`, région Irlande).
-
-- Variables d'environnement réglées chez Netlify : `RESEND_API_KEY` (secrète, contexte Production) et `CONTACT_FROM` = `Zbekal <laurine@zbekal.com>`.
-- Zone DNS de `zbekal.com` chez OVH : enregistrements de Resend ajoutés (`send`, `rsend`, `resend._domainkey`, `_dmarc`), domaine vérifié chez Resend. Formulaire testé le 12/11/2026 : messages reçus sur `laurine@zbekal.com`.
-
-Ce qui reste à faire au moment de publier :
-
-1. Chez Netlify : passer le projet en public (« Make public ») et déclarer le domaine `zbekal.com` (et `www`).
-2. Chez OVH, zone DNS de `zbekal.com` : remplacer l'enregistrement `A` et le `www` (page d'attente OVH) par ceux que donne Netlify. Rediriger `zbekal.fr` vers `zbekal.com`.
-
-Une variable d'environnement modifiée chez Netlify ne prend effet qu'au déploiement suivant (« Trigger deploy »). Chaque déploiement de production consomme des crédits de l'offre gratuite : grouper les mises à jour.
-
-L'adresse provisoire `xxx.netlify.app` n'est pas référencée par les moteurs de recherche (en-tête `noindex` dans `next.config.ts`).
+- Une variable d'environnement modifiée chez Netlify ne prend effet qu'au déploiement suivant (« Trigger deploy »).
+- Chaque déploiement de production consomme des crédits de l'offre gratuite de Netlify : grouper les mises à jour.
 
 ## Ajouter une nouvelle toile
 
