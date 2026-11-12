@@ -15,11 +15,15 @@ Ce qui est déjà fait :
 - Hébergement sur Netlify (offre gratuite, utilisable pour un site commercial), branché sur ce dépôt : chaque envoi sur `main` redéploie le site.
 - Envoi des formulaires par [Resend](https://resend.com) (domaine `zbekal.com`, région Irlande).
 
+- Variables d'environnement réglées chez Netlify : `RESEND_API_KEY` (secrète, contexte Production) et `CONTACT_FROM` = `Zbekal <laurine@zbekal.com>`.
+- Zone DNS de `zbekal.com` chez OVH : enregistrements de Resend ajoutés (`send`, `rsend`, `resend._domainkey`, `_dmarc`), domaine vérifié chez Resend. Formulaire testé le 12/11/2026 : messages reçus sur `laurine@zbekal.com`.
+
 Ce qui reste à faire au moment de publier :
 
-1. Chez Netlify, régler les variables d'environnement ci-dessous, dont `RESEND_API_KEY` (clé créée sur resend.com) : sans elle, le formulaire affiche l'e-mail au lieu d'envoyer.
-2. Chez OVH, zone DNS de `zbekal.com` : ajouter les enregistrements de Resend, puis remplacer l'enregistrement `A` et le `www` par ceux que donne Netlify. Rediriger `zbekal.fr` vers `zbekal.com`.
-3. Une fois le domaine vérifié chez Resend, mettre `CONTACT_FROM` = `Zbekal <laurine@zbekal.com>`.
+1. Chez Netlify : passer le projet en public (« Make public ») et déclarer le domaine `zbekal.com` (et `www`).
+2. Chez OVH, zone DNS de `zbekal.com` : remplacer l'enregistrement `A` et le `www` (page d'attente OVH) par ceux que donne Netlify. Rediriger `zbekal.fr` vers `zbekal.com`.
+
+Une variable d'environnement modifiée chez Netlify ne prend effet qu'au déploiement suivant (« Trigger deploy »). Chaque déploiement de production consomme des crédits de l'offre gratuite : grouper les mises à jour.
 
 L'adresse provisoire `xxx.netlify.app` n'est pas référencée par les moteurs de recherche (en-tête `noindex` dans `next.config.ts`).
 
