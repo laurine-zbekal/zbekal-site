@@ -1069,36 +1069,129 @@ body[data-menu-open="true"] {
 .breadcrumb a:hover {
   text-decoration: underline;
 }
+.artwork-page {
+  padding-top: clamp(24px, 4vw, 40px);
+}
 .artwork {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: minmax(0, 1fr);
   align-items: start;
 }
-@media (min-width: 960px) {
-  .artwork {
-    grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.85fr);
-  }
-  .artwork__info {
-    position: sticky;
-    top: calc(var(--header-h) + 24px);
-  }
+.artwork__info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
 }
+.artwork__ask {
+  width: 100%;
+}
+
+/* Visionneuse : les photos se font glisser (défilement horizontal natif, une photo par cran).
+   Le cadre suit le format de la photo principale (--frame = largeur / hauteur) et ne change pas d’une photo à l’autre. */
 .viewer {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  min-width: 0;
 }
-.viewer__main {
+.viewer__stage {
   position: relative;
-  border-radius: var(--radius-md);
+  display: flex;
+  justify-content: center;
   overflow: hidden;
   background: var(--bg-soft);
 }
-.viewer__main img {
+.viewer__stage--empty {
+  min-height: 240px;
+}
+.viewer__track {
+  display: flex;
   width: 100%;
-  height: auto;
-  display: block;
+  aspect-ratio: var(--frame, 0.8);
+  /* téléphone : la photo laisse la place au titre et au bouton sur le premier écran (elle peut être un peu rognée, le zoom la montre entière) */
+  max-height: min(118vw, 62vh);
+  max-height: min(118vw, 62svh);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.viewer__track::-webkit-scrollbar {
+  display: none;
+}
+.viewer__track:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: -3px;
+}
+.viewer__slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+.viewer__slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.viewer__slide[data-fit="contain"] img {
+  object-fit: contain;
+}
+/* boutons posés sur la photo */
+.viewer__back,
+.viewer__nav {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 6px 24px rgba(20, 20, 19, 0.18);
+}
+.viewer__back {
+  top: 12px;
+  left: 12px;
+}
+.viewer__back svg,
+.viewer__nav--prev svg {
+  transform: rotate(180deg);
+}
+.viewer__nav {
+  top: 50%;
+  margin-top: -22px;
+  display: none;
+}
+.viewer__nav--prev {
+  left: 12px;
+}
+.viewer__nav--next {
+  right: 12px;
+}
+.viewer__nav[disabled] {
+  opacity: 0;
+  pointer-events: none;
+}
+.viewer__count {
+  position: absolute;
+  top: 20px;
+  right: 12px;
+  padding: 5px 12px;
+  border-radius: var(--pill);
+  background: var(--ink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
 }
 .viewer__zoom {
   position: absolute;
@@ -1107,6 +1200,7 @@ body[data-menu-open="true"] {
   box-shadow: 0 6px 24px rgba(20, 20, 19, 0.18);
 }
 .viewer__thumbs {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -1129,6 +1223,106 @@ body[data-menu-open="true"] {
 .viewer__thumb[aria-pressed="true"] {
   border-color: var(--ink);
 }
+
+/* Téléphone et tablette : photo bord à bord, puis le feuillet blanc qui remonte dessus */
+@media (max-width: 959px) {
+  .artwork-page {
+    padding-top: 0;
+  }
+  .artwork-page .breadcrumb {
+    display: none;
+  }
+  .viewer {
+    margin-inline: calc(var(--gutter) * -1);
+  }
+  .viewer__cap {
+    position: relative;
+    margin-top: -28px;
+    padding: 28px var(--gutter) 0;
+    border-radius: 28px 28px 0 0;
+    background: #fff;
+  }
+  .viewer__cap::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 44px;
+    height: 5px;
+    margin-left: -22px;
+    border-radius: var(--pill);
+    background: var(--line);
+  }
+  .viewer__thumbs {
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 12px;
+  }
+  .viewer__thumbs::-webkit-scrollbar {
+    display: none;
+  }
+  .viewer__thumb {
+    width: 60px;
+    height: 60px;
+  }
+  .viewer__zoom {
+    right: 12px;
+    bottom: 40px;
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border-radius: 50%;
+  }
+  .viewer__zoom span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .artwork__info {
+    gap: 16px;
+  }
+}
+/* Grand téléphone couché et tablette : la photo garde ses proportions, centrée sur fond clair */
+@media (min-width: 600px) and (max-width: 959px) {
+  .viewer__track {
+    max-width: calc(62vh * var(--frame, 0.8));
+    max-width: calc(62svh * var(--frame, 0.8));
+    max-height: 62vh;
+    max-height: 62svh;
+  }
+}
+/* Ordinateur : deux colonnes ; la photo n’est jamais plus haute que l’écran */
+@media (min-width: 960px) {
+  .artwork {
+    grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.85fr);
+    gap: clamp(28px, 4vw, 56px);
+  }
+  .artwork__info {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+  }
+  .viewer {
+    gap: 12px;
+  }
+  .viewer__stage {
+    border-radius: var(--radius-md);
+  }
+  .viewer__track {
+    max-width: calc(min(76vh, 780px) * var(--frame, 0.8));
+    max-height: none;
+  }
+  .viewer__back {
+    display: none;
+  }
+  .viewer__nav {
+    display: flex;
+  }
+}
 .artwork__title {
   font-size: clamp(38px, 5.4vw, 72px);
 }
@@ -1136,6 +1330,108 @@ body[data-menu-open="true"] {
   font-size: 18px;
   color: var(--ink-2);
   font-style: italic;
+}
+.artwork__meta {
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+/* prix à gauche, bouton à droite (le prix se réduit sur petit écran pour tenir sur la même ligne) */
+.buy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+}
+.buy .price {
+  font-size: clamp(22px, 6.4vw, 36px);
+}
+/* Volets (balises <details> : ils fonctionnent sans script) */
+.folds {
+  border-top: 1.5px solid var(--ink);
+}
+.fold {
+  border-bottom: 1px solid var(--line);
+}
+.fold > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 56px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 700;
+  font-size: 17px;
+}
+.fold > summary::-webkit-details-marker {
+  display: none;
+}
+.fold > summary svg {
+  flex: 0 0 auto;
+  transition: transform 0.2s var(--ease);
+}
+.fold[open] > summary svg {
+  transform: rotate(180deg);
+}
+.fold > summary:hover {
+  color: var(--pink);
+}
+.fold__body {
+  padding-bottom: 18px;
+}
+.fold .specs {
+  border: 0;
+  padding: 0;
+}
+/* « Autres toiles de la collection » : des lignes, une colonne sur téléphone, trois sur ordinateur */
+.more-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: 0 clamp(16px, 2.4vw, 28px);
+  border-top: 1px solid var(--line);
+}
+.more-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--ink);
+}
+.more-row__img {
+  position: relative;
+  flex: 0 0 84px;
+  height: 105px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+.more-row__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+.more-row__title {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1.2;
+}
+.more-row__sub {
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--ink-2);
+}
+.more-row__arrow {
+  flex: 0 0 auto;
+  color: var(--pink);
+}
+.more-row:hover .more-row__title {
+  color: var(--pink);
 }
 .specs {
   display: grid;

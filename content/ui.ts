@@ -65,6 +65,10 @@ const fr = {
     moreFromCollection: "Autres toiles de la collection",
     detailOf: "Détail",
     fullView: "Vue entière",
+    prev: "Photo précédente",
+    next: "Photo suivante",
+    /** Volets de la fiche (ils s’ouvrent au toucher) */
+    folds: { description: "Description", specs: "Fiche technique", delivery: "Livraison et paiement" },
     imageOf: (title: string, i: number) => `${title}, image ${i}`,
   },
   gallery: {
@@ -248,6 +252,9 @@ const en: UIStrings = {
     moreFromCollection: "More from the collection",
     detailOf: "Detail",
     fullView: "Full view",
+    prev: "Previous photo",
+    next: "Next photo",
+    folds: { description: "Description", specs: "Details", delivery: "Delivery and payment" },
     imageOf: (title: string, i: number) => `${title}, image ${i}`,
   },
   gallery: {

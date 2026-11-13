@@ -43,6 +43,15 @@ Quand une toile en stock est vendue, passe-la en `"sur-commande"` (ou `"vendue"`
 - Les conditions de la carte (pas de date limite, format acquis, 14 jours de rétractation à distance) sont à l'article 7 des conditions de vente (`components/pages/TermsPage.tsx`).
 - Le formulaire de contact a un sujet « Offrir une carte cadeau » (`/contact?sujet=gift`).
 
+## Fiche d'une toile
+
+`components/pages/ArtworkPage.tsx` et `components/ArtworkViewer.tsx`.
+
+- Sur téléphone : la photo prend toute la largeur, les photos se font glisser au doigt, et la fiche est un feuillet blanc qui remonte sur la photo (vignettes sur une ligne, titre, prix, bouton, puis des volets à ouvrir).
+- Sur ordinateur : deux colonnes, les photos à gauche (flèches, vignettes, touches ← →), la fiche à droite.
+- Le cadre des photos suit le format de la photo principale (`main.jpg`) et garde la même hauteur d'une photo à l'autre. Une photo d'un format très différent est montrée en entier sur fond clair ; les autres remplissent le cadre et peuvent être un peu rognées (le zoom montre toujours la photo entière).
+- Les volets (« Description », « Fiche technique », « Livraison et paiement », « À l'échelle ») sont des balises `<details>` : ils fonctionnent sans script. Leurs titres sont dans `content/ui.ts` (`work.folds`).
+
 ## Animation d'ouverture
 
 `components/Intro.tsx` : le logo sur fond sombre, les traits rouges peints au pinceau, puis un fondu vers le site. Jouée une fois par visite, y compris quand l'ordinateur est réglé sur « moins d'animations » (réglage fréquent sous Windows, qui la masquait avant). Pour la retirer : supprimer `<Intro />` dans `components/SiteShell.tsx`.

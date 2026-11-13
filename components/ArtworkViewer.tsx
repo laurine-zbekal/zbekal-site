@@ -1,64 +1,151 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { ui, type Locale } from "@/content/ui";
 import type { Sized } from "@/lib/images";
-import { CloseIcon, ZoomIcon } from "./Icons";
+import { ArrowIcon, CloseIcon, ZoomIcon } from "./Icons";
 
 type Props = {
   images: Sized[];
   title: string;
   alt: string;
   locale: Locale;
+  /** Lien « retour » affiché sur la photo, sur téléphone (la collection de la toile) */
+  back?: { href: string; label: string };
 };
 
+/** Le cadre des photos suit le format de la photo principale, dans ces limites (largeur / hauteur). */
+const FRAME_MIN = 0.8;
+const FRAME_MAX = 1.6;
+
 /**
- * Visionneuse d’une toile : image principale, vignettes des détails, et zoom
- * plein écran sur la matière (double-clic, pincement, boutons + / −).
+ * Visionneuse d’une toile.
+ * - Les photos se font glisser au doigt (défilement horizontal natif, une photo par cran) ;
+ *   à la souris : flèches, vignettes, ou les touches ← →.
+ * - Le cadre garde la même hauteur d’une photo à l’autre : la page ne saute plus.
+ *   La photo principale est montrée (presque) entière ; une autre vue d’un format très différent du cadre aussi, sur fond clair.
+ * - Les vignettes suivent la photo affichée ; sur téléphone elles tiennent sur une seule ligne.
+ * - Zoom plein écran sur la matière (double-clic, pincement, boutons + / −).
  */
-export function ArtworkViewer({ images, title, alt, locale }: Props) {
+export function ArtworkViewer({ images, title, alt, locale, back }: Props) {
   const t = ui[locale];
+  const trackRef = useRef<HTMLDivElement>(null);
+  const stripRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [open, setOpen] = useState(false);
-  const current = images[index];
+  const n = images.length;
+  const frame = Math.min(FRAME_MAX, Math.max(FRAME_MIN, images[0].width / images[0].height));
+  // La photo principale n’est presque jamais rognée ; les autres vues remplissent le cadre, sauf format vraiment différent.
+  const fit = (img: Sized, i: number) => {
+    const r = img.width / img.height;
+    const limit = i === 0 ? 1.15 : 1.6;
+    return r / frame > limit || frame / r > limit ? "contain" : "cover";
+  };
+  const altOf = (i: number) => (i === 0 ? alt : t.work.imageOf(title, i + 1));
+
+  // La photo affichée se déduit de la position du défilement.
+  const onScroll = useCallback(() => {
+    const el = trackRef.current;
+    if (!el || !el.clientWidth) return;
+    const i = Math.max(0, Math.min(n - 1, Math.round(el.scrollLeft / el.clientWidth)));
+    setIndex((cur) => (cur === i ? cur : i));
+  }, [n]);
+
+  const go = (i: number) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const k = Math.max(0, Math.min(n - 1, i));
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollTo({ left: k * el.clientWidth, behavior: calm ? "auto" : "smooth" });
+  };
+
+  // La vignette active reste visible dans sa rangée (on ne fait défiler que la rangée, jamais la page).
+  useEffect(() => {
+    const strip = stripRef.current;
+    const thumb = strip?.children[index] as HTMLElement | undefined;
+    if (!strip || !thumb || strip.scrollWidth <= strip.clientWidth) return;
+    strip.scrollTo({ left: thumb.offsetLeft - (strip.clientWidth - thumb.clientWidth) / 2, behavior: "smooth" });
+  }, [index]);
 
   return (
-    <div className="viewer">
-      <div className="viewer__main" style={{ aspectRatio: `${current.width} / ${current.height}` }}>
-        <Image
-          key={current.src}
-          src={current.src}
-          alt={index === 0 ? alt : t.work.imageOf(title, index + 1)}
-          width={current.width}
-          height={current.height}
-          sizes="(min-width: 1240px) 720px, (min-width: 960px) 58vw, 100vw"
-          priority={index === 0}
-          quality={85}
-        />
-        <button type="button" className="btn btn--white btn--sm viewer__zoom" onClick={() => setOpen(true)}>
-          <ZoomIcon size={18} /> {t.work.zoom}
+    <div className="viewer" style={{ "--frame": String(frame) } as CSSProperties}>
+      <div className="viewer__stage">
+        <div
+          ref={trackRef}
+          className="viewer__track"
+          onScroll={onScroll}
+          tabIndex={n > 1 ? 0 : undefined}
+          role={n > 1 ? "group" : undefined}
+          aria-label={n > 1 ? t.work.detailsTitle : undefined}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowRight") go(index + 1);
+            if (e.key === "ArrowLeft") go(index - 1);
+          }}
+        >
+          {images.map((img, i) => (
+            <div key={img.src} className="viewer__slide" data-fit={fit(img, i)}>
+              <Image
+                src={img.src}
+                alt={altOf(i)}
+                width={img.width}
+                height={img.height}
+                sizes="(min-width: 1240px) 720px, (min-width: 960px) 58vw, 100vw"
+                priority={i === 0}
+                loading={i === 0 ? undefined : i === 1 ? "eager" : "lazy"}
+                quality={85}
+              />
+            </div>
+          ))}
+        </div>
+
+        {back ? (
+          <Link href={back.href} className="viewer__back" aria-label={back.label}>
+            <ArrowIcon size={20} />
+          </Link>
+        ) : null}
+        {n > 1 ? (
+          <span className="viewer__count" aria-hidden="true">
+            {index + 1} / {n}
+          </span>
+        ) : null}
+        {n > 1 ? (
+          <>
+            <button type="button" className="viewer__nav viewer__nav--prev" onClick={() => go(index - 1)} disabled={index === 0} aria-label={t.work.prev}>
+              <ArrowIcon size={20} />
+            </button>
+            <button type="button" className="viewer__nav viewer__nav--next" onClick={() => go(index + 1)} disabled={index === n - 1} aria-label={t.work.next}>
+              <ArrowIcon size={20} />
+            </button>
+          </>
+        ) : null}
+        <button type="button" className="btn btn--white btn--sm viewer__zoom" onClick={() => setOpen(true)} aria-label={t.work.zoom}>
+          <ZoomIcon size={18} /> <span>{t.work.zoom}</span>
         </button>
       </div>
 
-      {images.length > 1 ? (
-        <div className="viewer__thumbs" role="group" aria-label={t.work.detailsTitle}>
-          {images.map((img, i) => (
-            <button
-              key={img.src}
-              type="button"
-              className="viewer__thumb"
-              aria-pressed={i === index}
-              aria-label={i === 0 ? t.work.fullView : `${t.work.detailOf} ${i}`}
-              onClick={() => setIndex(i)}
-            >
-              <Image src={img.src} alt="" width={84} height={84} sizes="84px" quality={60} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
-            </button>
-          ))}
-        </div>
-      ) : null}
+      {/* Sur téléphone, ce bloc est le haut du feuillet blanc qui remonte sur la photo. */}
+      <div className="viewer__cap">
+        {n > 1 ? (
+          <div ref={stripRef} className="viewer__thumbs" role="group" aria-label={t.work.detailsTitle}>
+            {images.map((img, i) => (
+              <button
+                key={img.src}
+                type="button"
+                className="viewer__thumb"
+                aria-pressed={i === index}
+                aria-label={i === 0 ? t.work.fullView : `${t.work.detailOf} ${i}`}
+                onClick={() => go(i)}
+              >
+                <Image src={img.src} alt="" width={84} height={84} sizes="84px" quality={60} />
+              </button>
+            ))}
+          </div>
+        ) : null}
+      </div>
 
-      {open ? <Lightbox image={current} alt={index === 0 ? alt : t.work.imageOf(title, index + 1)} locale={locale} onClose={() => setOpen(false)} /> : null}
+      {open ? <Lightbox image={images[index]} alt={altOf(index)} locale={locale} onClose={() => setOpen(false)} /> : null}
     </div>
   );
 }
