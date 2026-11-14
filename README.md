@@ -45,6 +45,13 @@ Quand une toile en stock est vendue, passe-la en `"sur-commande"` (ou `"vendue"`
 - Les conditions de la carte (pas de date limite, format acquis, 14 jours de rétractation à distance) sont à l'article 7 des conditions de vente (`components/pages/TermsPage.tsx`).
 - Le formulaire de contact a un sujet « Offrir une carte cadeau » (`/contact?sujet=gift`).
 
+## Photos
+
+- Les photos des toiles sont dans `public/oeuvres/<nom>/` : `main.jpg` puis `detail-1.jpg`, `detail-2.jpg`… Le nombre de détails se règle dans `content/oeuvres.ts` (`imgs("<nom>", n)`).
+- Depuis le 14 novembre 2026, 87 photos viennent des fichiers d'origine (HEIC ou JPEG, jusqu'à 2 200 px de côté) et 44 ont été ajoutées aux fiches. Les autres sont encore en définition moyenne (captures Instagram ou WeTransfer) : il faut l'original pour les améliorer.
+- Toutes les photos ont reçu la même retouche : un peu plus de lumière pour les photos sombres, des couleurs plus présentes, sans changer les teintes.
+- « Le Regard » garde son ancienne photo principale, à la demande de Charly.
+
 ## Fiche d'une toile
 
 `components/pages/ArtworkPage.tsx` et `components/ArtworkViewer.tsx`.
