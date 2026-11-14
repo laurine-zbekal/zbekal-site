@@ -74,7 +74,7 @@ export const palette = [
 type Photo = { src: string; alt: L<string>; w: number; h: number };
 
 const photos = {
-  mainPinceau: { src: "/atelier/main-pinceau.jpg", w: 1060, h: 1600, alt: { fr: "Main de l’artiste posant une touche de peinture sur le perroquet rouge", en: "The artist’s hand adding a touch of paint to the red parrot" } },
+  mainPinceau: { src: "/atelier/main-pinceau.jpg", w: 1403, h: 2200, alt: { fr: "Main de l’artiste posant une touche de peinture sur le perroquet rouge", en: "The artist’s hand adding a touch of paint to the red parrot" } },
   matiere: { src: "/atelier/matiere.jpg", w: 2000, h: 1325, alt: { fr: "Détail de matière : feuilles en relief, perles vertes et moustaches dorées", en: "Texture detail: leaves in relief, green beads and golden whiskers" } },
   devantJaguar: { src: "/atelier/devant-jaguar.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard devant la toile Maître silencieux", en: "Laurine Girard in front of the painting Silent Master" } },
   chaise: { src: "/atelier/chaise.jpg", w: 1060, h: 1600, alt: { fr: "Pinceaux et palette posés sur une chaise en bois, au bord de l’eau", en: "Brushes and palette on a wooden chair by the water" } },
@@ -83,7 +83,7 @@ const photos = {
   paletteRiviere: { src: "/atelier/palette-riviere.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard, palette à la main, devant la rivière", en: "Laurine Girard, palette in hand, by the river" } },
   riviere: { src: "/atelier/riviere.jpg", w: 2000, h: 1427, alt: { fr: "La toile Maître silencieux posée sur les rochers au bord de l’eau", en: "The painting Silent Master resting on rocks by the water" } },
   auSol: { src: "/atelier/au-sol.jpg", w: 719, h: 942, alt: { fr: "Laurine Girard assise par terre, en train de rire, au milieu de ses toiles", en: "Laurine Girard sitting on the floor, laughing, surrounded by her canvases" } },
-  portraitRose: { src: "/atelier/portrait-rose.jpg", w: 1014, h: 1531, alt: { fr: "Laurine Girard en train de rire, une toile dans les mains, sous un ciel bleu", en: "Laurine Girard laughing, a canvas in her hands, under a blue sky" } },
+  portraitRose: { src: "/atelier/portrait-rose.jpg", w: 1457, h: 2200, alt: { fr: "Laurine Girard en train de rire, une toile dans les mains, sous un ciel bleu", en: "Laurine Girard laughing, a canvas in her hands, under a blue sky" } },
 } satisfies Record<string, Photo>;
 
 /** Photos du bloc Instagram de l’accueil */
@@ -97,8 +97,8 @@ export const about = {
   } as L<string>,
   portrait: {
     src: "/atelier/portrait-palette.jpg",
-    w: 1014,
-    h: 1531,
+    w: 1457,
+    h: 2200,
     alt: {
       fr: "Laurine Girard souriante, accoudée à une toile sur son chevalet, palette à la main, au bord de l’eau",
       en: "Laurine Girard smiling, leaning on a canvas on her easel, palette in hand, by the water",

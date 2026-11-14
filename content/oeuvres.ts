@@ -88,7 +88,7 @@ export const artworks: Artwork[] = [
     height: 130,
     status: "disponible",
     // price: 700, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
-    images: imgs("la-femme-aux-perroquets", 3),
+    images: imgs("la-femme-aux-perroquets", 9),
     alt: {
       fr: "La femme aux perroquets : une femme de profil allongée dans un feuillage vert, quatre perroquets rouge, jaune et bleu posés sur elle",
       en: "The Woman with Parrots: a woman in profile lying in green foliage, four red, yellow and blue parrots perched on her",
@@ -110,7 +110,7 @@ export const artworks: Artwork[] = [
     height: 100,
     status: "disponible",
     // price: 600, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
-    images: imgs("maitre-silencieux", 5),
+    images: imgs("maitre-silencieux", 10),
     alt: {
       fr: "Maître silencieux : un jaguar aux yeux bleus entre des branches, des feuilles en relief et des oiseaux de paradis en perles",
       en: "Silent Master: a blue-eyed jaguar among branches, textured leaves and beaded birds of paradise",
@@ -132,7 +132,7 @@ export const artworks: Artwork[] = [
     height: 70,
     status: "disponible",
     // price: 400, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
-    images: imgs("le-regard", 4),
+    images: imgs("le-regard", 7),
     frame: "7 / 10",
     alt: {
       fr: "Le Regard : un visage de femme à moitié caché par des feuilles vertes bordées de perles, un œil vert grand ouvert, une mèche noire et des branches rehaussées de feuille d’or",
@@ -155,7 +155,7 @@ export const artworks: Artwork[] = [
     height: 80,
     status: "disponible",
     // price: 480, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
-    images: imgs("duo-colore", 4),
+    images: imgs("duo-colore", 8),
     alt: {
       fr: "Duo coloré : deux aras, l’un rouge et rose, l’autre bleu, posés sur des branches dorées dans un feuillage vert sombre",
       en: "Colourful Duo: two macaws, one red and pink, the other blue, perched on golden branches in dark green foliage",
@@ -247,7 +247,7 @@ export const artworks: Artwork[] = [
     height: 70,
     status: "disponible",
     price: 400,
-    images: imgs("douceur", 7),
+    images: imgs("douceur", 9),
     alt: {
       fr: "Douceur : un bouquet champêtre rose, jaune et orange noué d’un ruban blanc, tenu par une main, sur fond vert sauge",
       en: "Softness: a pink, yellow and orange wildflower bouquet tied with a white ribbon, held by a hand, on a sage-green background",
@@ -289,7 +289,7 @@ export const artworks: Artwork[] = [
     height: 70,
     status: "disponible",
     price: 400,
-    images: imgs("fleur-du-soleil", 6),
+    images: imgs("fleur-du-soleil", 8),
     alt: {
       fr: "Fleur du soleil : un bouquet de tournesols tenu à bout de bras sur fond bleu ciel",
       en: "Sunflower: a bouquet of sunflowers held at arm’s length on a sky-blue background",
@@ -327,7 +327,7 @@ export const artworks: Artwork[] = [
     year: 2025,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("delicatesse", 4),
+    images: imgs("delicatesse", 7),
     alt: {
       fr: "Délicatesse : un grand bouquet rouge, blanc et violet tenu par une main, sur fond vieux rose",
       en: "Delicacy: a large red, white and purple bouquet held by a hand, on a dusty-pink background",
@@ -344,7 +344,7 @@ export const artworks: Artwork[] = [
     year: 2026,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("union", 5),
+    images: imgs("union", 6),
     alt: {
       fr: "Union : un bouquet bohème aux tons beige et bordeaux noué d’un ruban, tenu par une main portant une alliance",
       en: "Union: a bohemian bouquet in beige and burgundy tones tied with a ribbon, held by a hand wearing a wedding ring",
@@ -458,7 +458,7 @@ export const artworks: Artwork[] = [
     year: 2026,
     technique: dorure,
     status: "sur-commande",
-    images: imgs("retiens-moi", 4),
+    images: imgs("retiens-moi", 6),
     alt: {
       fr: "Retiens-moi : une main argentée descend vers une main rehaussée de feuille d’or, fond kaki, cadre en bois foncé",
       en: "Hold Me Back: a silver hand reaching down to a hand highlighted with gold leaf, khaki background, dark wooden frame",
@@ -493,7 +493,7 @@ export const artworks: Artwork[] = [
     year: 2023,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("attraction", 1),
+    images: imgs("attraction", 3),
     alt: {
       fr: "Attraction : deux poings face à face, l’un argenté, l’autre cuivré, reliés par une traînée d’étoiles sur fond bleu nuit",
       en: "Attraction: two fists facing each other, one silver, one copper, linked by a trail of stars on a midnight-blue background",
@@ -511,7 +511,7 @@ export const artworks: Artwork[] = [
     year: 2023,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("a-deux-mains"),
+    images: imgs("a-deux-mains", 3),
     alt: {
       fr: "À deux mains : deux mains enlacées aux reflets cuivrés sur un ciel étoilé bleu nuit",
       en: "With Both Hands: two entwined hands with copper highlights on a starry midnight-blue sky",
@@ -547,7 +547,7 @@ export const artworks: Artwork[] = [
     year: 2024,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("petit-havre-de-paix", 1),
+    images: imgs("petit-havre-de-paix", 3),
     frame: "1 / 1",
     alt: {
       fr: "Petit havre de paix : deux mains nouées, grise et cuivrée, sur un fond noir étoilé",
@@ -568,7 +568,7 @@ export const artworks: Artwork[] = [
     year: 2025,
     technique: dorure,
     status: "sur-commande",
-    images: imgs("regarde-moi"),
+    images: imgs("regarde-moi", 3),
     alt: {
       fr: "Regarde-moi : un dos féminin en courbes beige et brun rehaussées de feuille d’or, sur fond bleu nuit",
       en: "Look at Me: a woman’s back in beige and brown curves highlighted with gold leaf, on a midnight-blue background",
@@ -588,7 +588,7 @@ export const artworks: Artwork[] = [
     panels: 3,
     size: { fr: "Triptyque", en: "Triptych" },
     status: "sur-commande",
-    images: imgs("carmin", 3),
+    images: imgs("carmin", 4),
     alt: {
       fr: "Carmin : triptyque rouge, une silhouette allongée grise et dorée sous un croissant de lune",
       en: "Carmine: a red triptych, a reclining grey and gold figure under a crescent moon",
@@ -643,7 +643,7 @@ export const artworks: Artwork[] = [
     year: 2024,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("au-fil-des-branches", 2),
+    images: imgs("au-fil-des-branches", 4),
     alt: {
       fr: "Au fil des branches : un corps féminin en gris et blanc traversé de branches d’oranger, fond rose",
       en: "Along the Branches: a female body in grey and white crossed by orange-tree branches, pink background",
@@ -661,7 +661,7 @@ export const artworks: Artwork[] = [
     year: 2024,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("ames-reunies", 5),
+    images: imgs("ames-reunies", 6),
     alt: {
       fr: "Âmes réunies : une femme enceinte de profil, cheveux ornés de feuilles rouges, sur fond vert profond étoilé",
       en: "Souls Together: a pregnant woman in profile, her hair adorned with red leaves, on a deep green starry background",
@@ -697,7 +697,7 @@ export const artworks: Artwork[] = [
     year: 2023,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("fission", 1),
+    images: imgs("fission", 2),
     alt: {
       fr: "Fission : un buste féminin zébré de noir et de gris sur fond bleu pailleté",
       en: "Fission: a female torso striped in black and grey on a glittering blue background",

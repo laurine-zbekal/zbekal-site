@@ -35,8 +35,8 @@ export const tarifs = {
   /** Photo du haut de page */
   heroPhoto: {
     src: "/atelier/pinceau-chevalet.jpg",
-    w: 1014,
-    h: 1531,
+    w: 1457,
+    h: 2200,
     alt: {
       fr: "Laurine Girard, pinceau et palette à la main, accoudée à une toile vierge sur son chevalet",
       en: "Laurine Girard, brush and palette in hand, leaning on a blank canvas on her easel",

@@ -79,7 +79,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
         <div className="hero__media">
           <div className="hero__img">
-            <Image src="/atelier/hero.jpg" alt={home.heroAlt[locale]} width={2000} height={1325} sizes="(min-width: 900px) 46vw, 100vw" priority quality={75} style={{ objectPosition: "50% 40%" }} />
+            <Image src="/atelier/hero.jpg" alt={home.heroAlt[locale]} width={2200} height={1457} sizes="(min-width: 900px) 46vw, 100vw" priority quality={75} style={{ objectPosition: "50% 40%" }} />
           </div>
           {available > 0 ? (
             <Link href={galleryHref(locale, "available")} className="hero__badge">
@@ -270,7 +270,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             </Link>
           </div>
           <div className="rounded-img" style={{ aspectRatio: "3 / 4", maxWidth: 460, justifySelf: "end", width: "100%" }}>
-            <Image src="/atelier/laurine-sourire.jpg" alt={home.portraitAlt[locale]} width={1059} height={1600} sizes="(min-width: 900px) 40vw, 100vw" quality={75} />
+            <Image src="/atelier/laurine-sourire.jpg" alt={home.portraitAlt[locale]} width={1457} height={2200} sizes="(min-width: 900px) 40vw, 100vw" quality={75} />
           </div>
         </div>
       </section>
