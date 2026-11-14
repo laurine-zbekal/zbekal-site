@@ -1,6 +1,9 @@
 /**
  * Expositions, salons, prix et actualités — du plus récent au plus ancien.
  * `upcoming: true` affiche l’événement dans le bandeau d’actualité.
+ * `now: true` (en plus) : l’événement a commencé, l’étiquette passe de « À venir » à « En ce moment ».
+ * `ticker` : phrase à faire défiler dans le bandeau à la place du message automatique (titre, dates, détails).
+ * À la fin de l’événement : retirer `upcoming`, `now` et `ticker`.
  * `images` : photos déposées dans public/expos/ (facultatif).
  */
 type L = { fr: string; en: string };
@@ -19,6 +22,10 @@ export type Exhibition = {
   story?: L;
   award?: L;
   upcoming?: boolean;
+  /** L’événement est en cours (avec `upcoming: true`) */
+  now?: boolean;
+  /** Message du bandeau défilant, à la place du message automatique */
+  ticker?: L;
   /** Lien externe (optionnel) */
   url?: string;
   urlLabel?: L;
@@ -33,12 +40,17 @@ export const exhibitions: Exhibition[] = [
     date: { fr: "14 au 22 novembre 2026", en: "14–22 November 2026" },
     title: { fr: "Salon des Arts de Jallais", en: "Salon des Arts, Jallais" },
     place: { fr: "Jallais, Maine-et-Loire (49)", en: "Jallais, Maine-et-Loire, France" },
-    details: { fr: "Entrée libre et gratuite.", en: "Free entry, open to all." },
+    details: { fr: "Entrée libre et gratuite. À voir sur place : Toco farouche, Maître silencieux et Le Regard.", en: "Free entry, open to all. On show: Wild Toco, Silent Master and The Gaze." },
     story: {
-      fr: "Je reviens là où le public m’a remis son prix en 2023, avec de nouvelles toiles. Le salon est ouvert à tous, et l’entrée est gratuite.",
-      en: "I’m back where the public gave me its award in 2023, with new paintings. The fair is open to all, and entry is free.",
+      fr: "Je reviens là où le public m’a remis son prix en 2023, avec de nouvelles toiles : Toco farouche, Maître silencieux et Le Regard. Le salon est ouvert à tous, et l’entrée est gratuite.",
+      en: "I’m back where the public gave me its award in 2023, with new paintings: Wild Toco, Silent Master and The Gaze. The fair is open to all, and entry is free.",
     },
     upcoming: true,
+    now: true,
+    ticker: {
+      fr: "Le Salon des Arts à Jallais est ouvert, venez y découvrir Toco farouche, Maître silencieux et Le Regard · Jusqu’au 22 novembre · Entrée libre et gratuite",
+      en: "The Salon des Arts in Jallais is open: come and discover Wild Toco, Silent Master and The Gaze · Until 22 November · Free entry",
+    },
   },
   {
     year: 2026,

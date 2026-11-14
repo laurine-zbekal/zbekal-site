@@ -134,6 +134,9 @@ const fr = {
     title: "Expos et actualités",
     lead: "Paris, Jallais, et chaque Noël sur Instagram : là où mes toiles sont sorties de l’atelier.",
     upcoming: "À venir",
+    now: "En ce moment",
+    /** Étiquette courte dans les listes (la pastille est étroite) */
+    nowTag: "Ouvert",
     past: "Ce qui s’est passé",
     award: "Prix",
   },
@@ -188,7 +191,7 @@ const fr = {
     cta: "Voir les toiles",
   },
   breadcrumb: { home: "Accueil", gallery: "Toiles" },
-  ticker: { upcoming: "À venir" },
+  ticker: { upcoming: "À venir", now: "En ce moment" },
 };
 
 export type UIStrings = typeof fr;
@@ -318,6 +321,8 @@ const en: UIStrings = {
     title: "Shows and news",
     lead: "Paris, Jallais, and every Christmas on Instagram: where my paintings have left the studio.",
     upcoming: "Coming up",
+    now: "On now",
+    nowTag: "On now",
     past: "What’s happened so far",
     award: "Award",
   },
@@ -372,7 +377,7 @@ const en: UIStrings = {
     cta: "See the paintings",
   },
   breadcrumb: { home: "Home", gallery: "Paintings" },
-  ticker: { upcoming: "Coming up" },
+  ticker: { upcoming: "Coming up", now: "On now" },
 };
 
 export const ui: Record<Locale, UIStrings> = { fr, en };

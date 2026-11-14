@@ -6,12 +6,15 @@ import { upcomingExhibition } from "@/lib/content";
 /** Le message est répété pour remplir toute la largeur de l’écran pendant le défilement. */
 const REPEAT = 4;
 
-/** Bandeau défilant en haut de page : uniquement la prochaine exposition (rien s’il n’y en a pas). */
+/** Bandeau défilant en haut de page : l’exposition en cours ou la prochaine (rien s’il n’y en a pas). */
 export function Ticker({ locale }: { locale: Locale }) {
   const t = ui[locale];
   const expo = upcomingExhibition();
   if (!expo) return null;
-  const text = `${t.ticker.upcoming} · ${expo.title[locale]} · ${expo.date[locale]}${expo.details ? ` · ${expo.details[locale]}` : ""}`;
+  // message écrit à la main s’il y en a un (`ticker` dans content/expositions.ts), sinon : étiquette, titre, dates, détails
+  const text = expo.ticker
+    ? expo.ticker[locale].replace(/[.\s]+$/, "")
+    : `${expo.now ? t.ticker.now : t.ticker.upcoming} · ${expo.title[locale]} · ${expo.date[locale]}${expo.details ? ` · ${expo.details[locale]}` : ""}`;
   const to = href(locale, "exhibitions");
 
   // Seule la première occurrence est lue par les lecteurs d’écran et atteignable au clavier.

@@ -9,7 +9,7 @@ export function ExhibitionList({ items, locale, compact = false }: { items: Exhi
     <ul>
       {items.map((e, i) => (
         <li key={`${e.year}-${i}`} className="expo">
-          <span className={`expo__year${e.upcoming ? " expo__year--upcoming" : ""}`}>{e.upcoming ? t.exhibitions.upcoming : e.year}</span>
+          <span className={`expo__year${e.upcoming ? " expo__year--upcoming" : ""}`}>{e.upcoming ? (e.now ? t.exhibitions.nowTag : t.exhibitions.upcoming) : e.year}</span>
           <div className="stack" style={{ "--stack": "2px" } as React.CSSProperties}>
             <span className="expo__title">
               {e.url ? (

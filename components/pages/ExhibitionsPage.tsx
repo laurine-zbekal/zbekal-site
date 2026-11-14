@@ -32,7 +32,7 @@ export function ExhibitionsPage({ locale }: { locale: Locale }) {
 
         {upcoming.length ? (
           <div className="stack" style={{ "--stack": "16px", marginBottom: 48 } as React.CSSProperties}>
-            <h2 className="display h3">{t.exhibitions.upcoming}</h2>
+            <h2 className="display h3">{upcoming.every((e) => e.now) ? t.exhibitions.now : t.exhibitions.upcoming}</h2>
             <div className="panel panel--pink-soft" style={{ padding: "8px clamp(16px, 3vw, 32px)" }}>
               <ExhibitionList items={upcoming} locale={locale} />
             </div>
