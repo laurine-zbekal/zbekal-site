@@ -6,6 +6,7 @@
  *  Trois formats à prix fixe : S (le plus petit que Laurine peint en commande), M et L.
  *  Tout le reste (plus grand, jusqu’à 130 cm de côté, entre deux formats, diptyque…) est sur devis.
  *  Ces trois formats servent aussi à la page « Carte cadeau » (content/carte-cadeau.ts).
+ *  `hours` = heures de travail par format, affichées dans le bloc « Pourquoi mes toiles coûtent plus cher… » (plus bas).
  *  L’année affichée partout sur la page est `year`.
  */
 import type { Locale } from "./ui";
@@ -22,6 +23,8 @@ export type PriceFormat = {
   tag?: string;
   /** true = format phare (S, M, L) */
   star?: boolean;
+  /** Heures de travail, en moyenne (carte « Le temps » du bloc « pourquoi ») */
+  hours?: number;
   /** Couleur de la toile dessinée sur la carte (palette Amazoni) */
   color: string;
 };
@@ -42,15 +45,15 @@ export const tarifs = {
   },
 
   formats: [
-    { w: 60, h: 70, price: 220, tag: "S", star: true, color: "#D6336C" },
-    { w: 80, h: 90, price: 250, tag: "M", star: true, color: "#1B4D3E" },
-    { w: 100, h: 100, price: 300, tag: "L", star: true, color: "#D1232A" },
+    { w: 60, h: 70, price: 400, hours: 10, tag: "S", star: true, color: "#D6336C" },
+    { w: 80, h: 90, price: 500, hours: 13, tag: "M", star: true, color: "#1B4D3E" },
+    { w: 100, h: 100, price: 600, hours: 15, tag: "L", star: true, color: "#D1232A" },
   ] as PriceFormat[],
 
   kicker: { fr: "Toiles sur commande", en: "Commissioned paintings" } as L,
   lead: {
-    fr: "Une toile peinte pour toi, à partir de ton idée, de tes couleurs, de ton mur. Voici mes prix par format : clairs, et volontairement doux.",
-    en: "A painting made for you, from your idea, your colours, your wall. Here are my prices by size: clear, and deliberately gentle.",
+    fr: "Une toile peinte pour toi, à partir de ton idée, de tes couleurs, de ton mur. Voici mes prix par format.",
+    en: "A painting made for you, from your idea, your colours, your wall. Here are my prices by size.",
   } as L,
   gridTitle: { fr: "Trois formats, trois prix", en: "Three sizes, three prices" } as L,
   gridLead: {
@@ -63,48 +66,103 @@ export const tarifs = {
     en: "Larger, a size in between, a diptych, a triptych? That’s on quote, up to 130 cm a side.",
   } as L,
   legal: {
-    fr: "Prix en euros, TTC. TVA non applicable, art. 293 B du CGI. Les toiles disponibles de la galerie ont leur propre prix, sur demande.",
-    en: "Prices in euros, all taxes included. VAT not applicable, art. 293 B of the French General Tax Code. Available paintings in the gallery have their own price, on request.",
+    fr: "Prix en euros, TTC. TVA non applicable, art. 293 B du CGI. Les toiles disponibles de la galerie ont leur propre prix, indiqué sur leur fiche.",
+    en: "Prices in euros, all taxes included. VAT not applicable, art. 293 B of the French General Tax Code. Available paintings in the gallery have their own price, shown on their page.",
   } as L,
 
-  includedTitle: { fr: "Ce que le prix comprend", en: "What the price includes" } as L,
-  included: {
-    fr: [
-      "La toile sur châssis et toute la matière : acrylique, médiums, feuille d’or, perles.",
-      "Les heures de création, du premier trait à la signature.",
-      "Nos échanges, l’esquisse et une photo de la toile en cours : tu valides avant la fin.",
-      "Le certificat d’authenticité, signé.",
-    ],
-    en: [
-      "The stretched canvas and all the materials: acrylic, mediums, gold leaf, beads.",
-      "The hours of creation, from the first line to the signature.",
-      "Our conversations, the sketch and a photo of the work in progress: you approve before the end.",
-      "The signed certificate of authenticity.",
-    ],
-  } as L<string[]>,
+  /** Deux rappels pratiques, affichés sous la grille */
+  vary: {
+    fr: "Un sujet très détaillé (un portrait, un animal), beaucoup de feuille d’or ou de perles : je te fais un devis avant de commencer.",
+    en: "A very detailed subject (a portrait, an animal), a lot of gold leaf or beads: I send you a quote before I start.",
+  } as L,
   notIncluded: {
     fr: "En plus : l’envoi, si la toile voyage. La remise en main propre est possible.",
     en: "Extra: shipping, if the painting travels. Collection in person is possible.",
   } as L,
 
-  whyTitle: { fr: ["Des prix d’artiste,", "en début de carrière."], en: ["An artist’s prices,", "early in her career."] } as L<[string, string]>,
-  why: {
-    fr: [
-      "Le prix d’une toile ne se calcule pas comme celui d’un objet. Il dépend du format, du temps passé et de la matière, mais aussi du parcours de l’artiste : ses expositions, ses prix, les personnes qui vivent déjà avec ses toiles. C’est ce qu’on appelle la cote.",
-      "La mienne commence. J’ai peint ma première toile en 2020, exposé à Paris en 2022, reçu le prix du public à Jallais en 2023. Mes tarifs sont donc ceux d’une artiste en début de carrière : je préfère voir mes toiles vivre chez toi plutôt qu’attendre à l’atelier.",
-      "Ils évolueront avec mon parcours, comme pour tout artiste. Une toile commandée cette année l’est au tarif 2026.",
-    ],
-    en: [
-      "The price of a painting isn’t worked out like that of an object. It depends on the size, the time spent and the materials, but also on the artist’s journey: her exhibitions, her awards, the people who already live with her paintings. That’s what makes an artist’s standing.",
-      "Mine is just beginning. I painted my first canvas in 2020, exhibited in Paris in 2022, received the audience award in Jallais in 2023. So my prices are those of an artist early in her career: I’d rather see my paintings live in your home than wait in the studio.",
-      "They will grow with my journey, as they do for every artist. A painting commissioned this year is at the 2026 price.",
-    ],
-  } as L<string[]>,
-  varyTitle: { fr: "Ce qui peut faire varier le prix", en: "What can change the price" } as L,
-  vary: {
-    fr: "Un sujet très détaillé (un portrait, un animal), beaucoup de feuille d’or ou de perles, un format hors grille : dans ces cas-là, je te fais un devis avant de commencer.",
-    en: "A very detailed subject (a portrait, an animal), a lot of gold leaf or beads, a size outside the grid: in those cases, I send you a quote before I start.",
-  } as L,
+  /**
+   * Bloc « Pourquoi mes toiles coûtent plus cher qu’un tableau déco ? » : cinq cartes de couleur.
+   * Chaque carte : un thème, un mot-clé en grand, la phrase de Laurine, et ce qui se passe « en enseigne de déco ».
+   * Le mot-clé de la carte « time » se calcule tout seul à partir des `hours` des formats (plus haut).
+   * Ne pas changer les `key` : les couleurs et la mise en page en dépendent.
+   */
+  pourquoi: {
+    badge: { fr: "La question qu’on me pose", en: "The question I get asked" } as L,
+    title: {
+      fr: ["Pourquoi mes toiles coûtent plus cher", "qu’un tableau déco ?"],
+      en: ["Why do my paintings cost more", "than a décor-store print?"],
+    } as L<[string, string]>,
+    lead: {
+      fr: "En magasin de déco, un tableau coûte bien moins cher que les miens. C’est normal : ce n’est pas le même objet. La différence tient en cinq points.",
+      en: "In a home décor store, a picture costs far less than mine. That’s normal: it isn’t the same object. The difference comes down to five points.",
+    } as L,
+    storeLabel: { fr: "En enseigne de déco", en: "In a décor store" } as L,
+    hoursKeyword: {
+      fr: (min: number, max: number) => (min === max ? `${min} heures` : `${min} à ${max} heures`),
+      en: (min: number, max: number) => (min === max ? `${min} hours` : `${min} to ${max} hours`),
+    },
+    hoursLabel: { fr: "Format", en: "Size" } as L,
+    cards: [
+      {
+        key: "unique",
+        theme: { fr: "La rareté", en: "Rarity" },
+        keyword: { fr: "Unique", en: "Unique" },
+        text: {
+          fr: "Chaque toile est différente et authentique. Je ne peins jamais deux fois la même.",
+          en: "Every painting is different and authentic. I never paint the same one twice.",
+        },
+        store: { fr: "Une image imprimée à des milliers d’exemplaires.", en: "An image printed in thousands of copies." },
+      },
+      {
+        key: "time",
+        theme: { fr: "Le temps", en: "Time" },
+        keyword: { fr: "", en: "" },
+        text: {
+          fr: "C’est le temps que je passe sur une toile, selon son format. Et derrière chaque geste, il y a tout ce que j’ai appris depuis ma première toile, en 2020.",
+          en: "That’s the time I spend on a painting, depending on its size. And behind every gesture is everything I’ve learned since my first canvas, in 2020.",
+        },
+        store: { fr: "Quelques minutes d’impression.", en: "A few minutes of printing." },
+      },
+      {
+        key: "relief",
+        theme: { fr: "La matière", en: "Texture" },
+        keyword: { fr: "Du relief", en: "Relief" },
+        text: {
+          fr: "De l’acrylique posée en épaisseur, de la feuille d’or, des perles. La lumière s’y accroche : la toile n’est pas la même le matin et le soir.",
+          en: "Thickly laid acrylic, gold leaf, beads. Light catches on it: the painting isn’t the same in the morning and in the evening.",
+        },
+        store: { fr: "Une image à plat.", en: "A flat image." },
+      },
+      {
+        key: "studio",
+        theme: { fr: "Ce que le prix paie", en: "What the price pays for" },
+        keyword: { fr: "Un atelier", en: "A studio" },
+        text: {
+          fr: "Avant de me payer, le prix d’une toile règle tout ça :",
+          en: "Before it pays me, the price of a painting covers all of this:",
+        },
+        store: { fr: "Des coûts divisés par des milliers de ventes.", en: "Costs spread over thousands of sales." },
+      },
+      {
+        key: "signed",
+        theme: { fr: "La signature", en: "The signature" },
+        keyword: { fr: "Signée", en: "Signed" },
+        text: {
+          fr: "Chaque toile part signée, avec son certificat d’authenticité. Elle a une histoire, une collection, parfois une distinction. Elle se garde et se transmet.",
+          en: "Every painting leaves signed, with its certificate of authenticity. It has a story, a collection, sometimes an award. It’s made to be kept and passed on.",
+        },
+        store: { fr: "Un article de catalogue.", en: "A catalogue item." },
+      },
+    ] as { key: "unique" | "time" | "relief" | "studio" | "signed"; theme: L; keyword: L; text: L; store: L }[],
+    /** Carte « studio » : les charges, dans l’ordre, puis ce qui reste */
+    charges: {
+      fr: ["Galerie, quand il y en a une", "Peinture, feuille d’or, perles", "Châssis", "Pinceaux et matériel", "Emballage", "Loyer de l’atelier", "Assurance", "Site web", "Cotisations sociales"],
+      en: ["Gallery, when there is one", "Paint, gold leaf, beads", "Stretched canvas", "Brushes and tools", "Packaging", "Studio rent", "Insurance", "Website", "Social contributions"],
+    } as L<string[]>,
+    rest: { fr: "Ce qui reste : ma paie", en: "What’s left: my pay" } as L,
+    endTitle: { fr: "Une question sur un prix, un format, une commande ?", en: "A question about a price, a size, a commission?" } as L,
+    endText: { fr: "Écris-moi, c’est moi qui te réponds.", en: "Write to me, I’m the one who answers." } as L,
+  },
 
   stepsTitle: { fr: "Comment ça se passe", en: "How it works" } as L,
   steps: {

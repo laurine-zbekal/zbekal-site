@@ -37,7 +37,9 @@ Quand une toile en stock est vendue, passe-la en `"sur-commande"` (ou `"vendue"`
 
 ## Tarifs et carte cadeau
 
-- `content/tarifs.ts` : la grille de la page « Tarifs 2026 ». Trois formats à prix fixe (S, M, L) ; tout le reste est sur devis, jusqu'à 130 cm de côté. Pour changer un prix, modifie `price`.
+- `content/tarifs.ts` : la grille de la page « Tarifs 2026 ». Trois formats à prix fixe (S 400 €, M 500 €, L 600 € depuis le 14 novembre 2026) ; tout le reste est sur devis, jusqu'à 130 cm de côté. Pour changer un prix, modifie `price`. La règle de prix : (largeur + hauteur en cm) × 3.
+- Même fichier, `pourquoi` : le bloc « Pourquoi mes toiles coûtent plus cher qu'un tableau déco ? » (cinq cartes de couleur, composant `components/WhyPrice.tsx`). Les heures de travail affichées viennent du champ `hours` de chaque format ; la liste des charges est dans `charges`. Ne pas changer les `key` des cartes : les couleurs en dépendent.
+- Prix des toiles disponibles : champ `price` de chaque toile dans `content/oeuvres.ts` (sans ce champ, la fiche affiche « Prix sur demande »). Le bloc « formats » de l'accueil se règle dans `content/textes.ts` (`commissionFormats`).
 - `content/carte-cadeau.ts` : les textes de la page « Carte cadeau » (`/carte-cadeau`, `/en/gift-card`) et du bloc vert de la page d'accueil. Les formats et les prix de la carte viennent de `content/tarifs.ts` : un seul endroit à modifier.
 - Photos de la carte : `public/carte-cadeau/recto.jpg` et `verso.jpg`. Sur la photo du dos, le numéro de portable imprimé a été effacé (il n'est affiché nulle part sur le site).
 - Les conditions de la carte (pas de date limite, format acquis, 14 jours de rétractation à distance) sont à l'article 7 des conditions de vente (`components/pages/TermsPage.tsx`).

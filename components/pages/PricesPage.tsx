@@ -6,7 +6,7 @@ import { carteCadeau } from "@/content/carte-cadeau";
 import { href } from "@/lib/routes";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
-import { CheckIcon } from "@/components/Icons";
+import { WhyPrice } from "@/components/WhyPrice";
 
 const price = (n: number, locale: Locale) => new Intl.NumberFormat(locale === "fr" ? "fr-FR" : "en-GB", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 
@@ -79,6 +79,9 @@ export function PricesPage({ locale }: { locale: Locale }) {
         <p className="price-note">
           <strong>{tarifs.custom[locale]}</strong>
         </p>
+        <p className="price-more">
+          {tarifs.vary[locale]} {tarifs.notIncluded[locale]}
+        </p>
         <p className="price-legal">{tarifs.legal[locale]}</p>
         <p style={{ marginTop: 20 }}>
           <Link href={href(locale, "gift")} className="link" style={{ fontWeight: 700 }}>
@@ -87,46 +90,8 @@ export function PricesPage({ locale }: { locale: Locale }) {
         </p>
       </section>
 
-      {/* Ce que le prix comprend */}
-      <section className="container" aria-labelledby="included-title">
-        <div className="panel panel--soft grid-2 reveal" style={{ alignItems: "start" }}>
-          <h2 id="included-title" className="display h3">
-            {tarifs.includedTitle[locale]}
-          </h2>
-          <div className="stack" style={{ "--stack": "16px" } as React.CSSProperties}>
-            <ul className="included">
-              {tarifs.included[locale].map((line) => (
-                <li key={line}>
-                  <CheckIcon /> <span>{line}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="muted" style={{ fontSize: 15 }}>
-              {tarifs.notIncluded[locale]}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Des prix d’artiste, en début de carrière */}
-      <section className="container section" aria-labelledby="why-title">
-        <div className="grid-2" style={{ alignItems: "start" }}>
-          <h2 id="why-title" className="display h2">
-            {tarifs.whyTitle[locale][0]} <span className="accent">{tarifs.whyTitle[locale][1]}</span>
-          </h2>
-          <div className="stack" style={{ "--stack": "20px" } as React.CSSProperties}>
-            <div className="prose">
-              {tarifs.why[locale].map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-            </div>
-            <div className="vary">
-              <h3 className="approach__title">{tarifs.varyTitle[locale]}</h3>
-              <p>{tarifs.vary[locale]}</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Pourquoi mes toiles coûtent plus cher qu’un tableau déco ? */}
+      <WhyPrice locale={locale} />
 
       {/* Comment ça se passe */}
       <section className="container" aria-labelledby="steps-title">

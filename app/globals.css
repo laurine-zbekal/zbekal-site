@@ -2313,6 +2313,267 @@ html[data-intro="seen"] .intro {
   font-size: 14px;
   color: var(--ink-2);
 }
+.price-more {
+  margin-top: 10px;
+  max-width: 78ch;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+/* ---------- Tarifs : « Pourquoi mes toiles coûtent plus cher qu’un tableau déco ? » ----------
+   Cinq cartes aux couleurs d’Amazoni : rose, jaune, vert feuille, vert forêt, rose clair (mot-clé rouge).
+   Téléphone : une colonne. Ordinateur : 5 + 7, puis 4 + 8, puis la dernière en bandeau. */
+.why-price__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: clamp(24px, 3.5vw, 40px);
+}
+.why-price__head .h2 {
+  max-width: 1040px;
+}
+.why-grid {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.why-card {
+  --card-bg: var(--bg-soft);
+  --card-fg: var(--ink);
+  --card-key: var(--ink);
+  --forest: #1b4d3e;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--card-bg);
+  color: var(--card-fg);
+}
+.why-card__head {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  font: inherit;
+}
+.why-card__theme {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.why-card__keyword {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--card-key);
+}
+.why-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.why-card__text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+/* l’encart blanc « En enseigne de déco », toujours en bas de la carte */
+.why-card__store {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: auto;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.4;
+}
+.why-card__store span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.why-card--unique {
+  --card-bg: var(--pink);
+  --card-fg: #fff;
+  --card-key: #fff;
+}
+.why-card--unique .why-card__keyword {
+  font-size: 64px;
+}
+.why-card--time {
+  --card-bg: var(--yellow);
+  --card-key: var(--forest);
+}
+.why-card--time .why-card__keyword {
+  font-size: 46px;
+}
+.why-card--relief {
+  --card-bg: var(--green);
+  --card-fg: #fff;
+  --card-key: var(--yellow);
+}
+.why-card--studio {
+  --card-bg: var(--forest);
+  --card-fg: #fff;
+  --card-key: var(--pink-soft);
+}
+.why-card--signed {
+  --card-bg: var(--pink-soft);
+  --card-key: var(--red);
+}
+/* texte blanc sur fond de couleur : un peu plus gras, pour la lecture */
+.why-card--unique .why-card__text,
+.why-card--relief .why-card__text,
+.why-card--studio .why-card__text {
+  font-weight: 500;
+}
+.why-hours,
+.why-charges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.why-hours li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1.5px solid var(--forest);
+  border-radius: var(--pill);
+  background: #fff;
+  font-size: 14px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.why-charges li {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px;
+  border-radius: var(--pill);
+  background: #fff;
+  color: var(--forest);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.why-charges .why-charges__rest {
+  background: var(--yellow);
+  color: var(--ink);
+}
+.why-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-top: 12px;
+  padding: clamp(20px, 3vw, 28px);
+  border-radius: var(--radius-lg);
+  background: var(--bg-soft);
+}
+.why-end p {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.why-end strong {
+  font-size: clamp(18px, 2vw, 20px);
+  line-height: 1.3;
+  color: var(--ink);
+}
+.btn--forest {
+  background: #1b4d3e;
+  border-color: #1b4d3e;
+  color: #fff;
+}
+.btn--forest:hover {
+  background: var(--pink);
+  border-color: var(--pink);
+}
+@media (min-width: 960px) {
+  .why-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .why-end {
+    margin-top: 16px;
+  }
+  .why-card {
+    min-height: 380px;
+    padding: 28px;
+  }
+  .why-card__text {
+    font-size: 17px;
+  }
+  .why-hours li {
+    font-size: 15px;
+  }
+  .why-charges li {
+    font-size: 16px;
+  }
+  .why-card--unique {
+    grid-column: span 5;
+  }
+  .why-card--unique .why-card__keyword {
+    font-size: clamp(72px, 7.5vw, 96px);
+  }
+  .why-card--time {
+    grid-column: span 7;
+  }
+  .why-card--time .why-card__keyword {
+    font-size: clamp(64px, 6.9vw, 88px);
+  }
+  .why-card--relief {
+    grid-column: span 4;
+    min-height: 420px;
+  }
+  .why-card--relief .why-card__keyword {
+    font-size: clamp(56px, 5.9vw, 76px);
+  }
+  .why-card--studio {
+    grid-column: span 8;
+    min-height: 420px;
+  }
+  .why-card--studio .why-card__keyword {
+    font-size: clamp(52px, 5vw, 64px);
+  }
+  /* la dernière carte en bandeau : mot-clé, texte, encart */
+  .why-card--signed {
+    display: grid;
+    grid-column: span 12;
+    grid-template-columns: auto minmax(0, 1fr) minmax(240px, 300px);
+    align-items: center;
+    gap: 32px;
+    min-height: 0;
+  }
+  .why-card--signed .why-card__keyword {
+    font-size: clamp(64px, 6.9vw, 88px);
+  }
+  .why-card--signed .why-card__store {
+    margin-top: 0;
+  }
+}
+
 .included {
   display: flex;
   flex-direction: column;

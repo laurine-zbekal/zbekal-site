@@ -53,9 +53,9 @@ export const commissionPhoto = {
 export const commissionFormats = {
   show: true,
   items: [
-    { name: "S", size: "60 × 70 cm", price: { fr: "220 €", en: "€220" } },
-    { name: "M", size: "80 × 90 cm", price: { fr: "250 €", en: "€250" } },
-    { name: "L", size: "100 × 100 cm", price: { fr: "300 €", en: "€300" } },
+    { name: "S", size: "60 × 70 cm", price: { fr: "400 €", en: "€400" } },
+    { name: "M", size: "80 × 90 cm", price: { fr: "500 €", en: "€500" } },
+    { name: "L", size: "100 × 100 cm", price: { fr: "600 €", en: "€600" } },
     { name: { fr: "Sur mesure", en: "Custom" }, size: { fr: "Jusqu’à 130 cm", en: "Up to 130 cm" }, price: { fr: "Sur devis", en: "On quote" } },
   ] as { name: string | L<string>; size: string | L<string>; price: L<string> }[],
 };
