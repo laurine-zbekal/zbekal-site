@@ -130,7 +130,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
         <div className="studio-grid reveal">
           {about.studio.map((p) => (
             <div key={p.src} className="rounded-img" style={{ aspectRatio: "3 / 4", borderRadius: "var(--radius-md)" }}>
-              <Image src={p.src} alt={p.alt[locale]} width={p.w} height={p.h} sizes="(min-width: 960px) 380px, 50vw" quality={65} />
+              <Image src={p.src} alt={p.alt[locale]} width={p.w} height={p.h} sizes="(min-width: 720px) 300px, 50vw" quality={65} />
             </div>
           ))}
         </div>

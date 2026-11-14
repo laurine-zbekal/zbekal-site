@@ -78,6 +78,8 @@ const photos = {
   matiere: { src: "/atelier/matiere.jpg", w: 2000, h: 1325, alt: { fr: "Détail de matière : feuilles en relief, perles vertes et moustaches dorées", en: "Texture detail: leaves in relief, green beads and golden whiskers" } },
   devantJaguar: { src: "/atelier/devant-jaguar.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard devant la toile Maître silencieux", en: "Laurine Girard in front of the painting Silent Master" } },
   chaise: { src: "/atelier/chaise.jpg", w: 1060, h: 1600, alt: { fr: "Pinceaux et palette posés sur une chaise en bois, au bord de l’eau", en: "Brushes and palette on a wooden chair by the water" } },
+  laurineRire: { src: "/atelier/laurine-rire.jpg", w: 1325, h: 1766, alt: { fr: "Laurine Girard riant, accoudée au dos d’une toile, palette et pinceau à la main, au bord de l’eau", en: "Laurine Girard laughing, leaning on the back of a canvas, palette and brush in hand, by the water" } },
+  laurineTresse: { src: "/atelier/laurine-tresse.jpg", w: 1325, h: 1766, alt: { fr: "Laurine Girard de dos, une longue tresse dans le dos, pinceau à la main, face à la rivière", en: "Laurine Girard from behind, a long braid down her back, brush in hand, facing the river" } },
   laurineDos: { src: "/atelier/laurine-dos.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard de dos, ajustant une toile sur son chevalet en plein air", en: "Laurine Girard from behind, adjusting a canvas on her easel outdoors" } },
   oeil: { src: "/atelier/oeil.jpg", w: 2000, h: 1325, alt: { fr: "Détail de Maître silencieux : l’œil bleu du jaguar et des éclats dorés", en: "Detail of Silent Master: the jaguar’s blue eye and golden glints" } },
   paletteRiviere: { src: "/atelier/palette-riviere.jpg", w: 1060, h: 1600, alt: { fr: "Laurine Girard, palette à la main, devant la rivière", en: "Laurine Girard, palette in hand, by the river" } },
@@ -187,6 +189,6 @@ export const about = {
     en: "A first exhibition in Paris in 2022. An audience award at the Salon des Arts in Jallais in 2023. And every Christmas, a painting given away to my Instagram community. From 14 to 22 November 2026, I’m back in Jallais with new paintings.",
   } as L<string>,
   /** Photos du bloc « À l’atelier » */
-  studio: [photos.devantJaguar, photos.auSol, photos.laurineDos, photos.paletteRiviere, photos.chaise, photos.portraitRose] as Photo[],
+  studio: [photos.devantJaguar, photos.laurineRire, photos.auSol, photos.laurineDos, photos.paletteRiviere, photos.chaise, photos.portraitRose, photos.laurineTresse] as Photo[],
   cvLabel: { fr: "Télécharger mon CV (PDF)", en: "Download my CV (PDF)" } as L<string>,
 };
