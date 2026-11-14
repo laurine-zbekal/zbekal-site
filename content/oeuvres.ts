@@ -87,7 +87,7 @@ export const artworks: Artwork[] = [
     width: 97,
     height: 130,
     status: "disponible",
-    price: 700,
+    // price: 700, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
     images: imgs("la-femme-aux-perroquets", 3),
     alt: {
       fr: "La femme aux perroquets : une femme de profil allongée dans un feuillage vert, quatre perroquets rouge, jaune et bleu posés sur elle",
@@ -109,7 +109,7 @@ export const artworks: Artwork[] = [
     width: 100,
     height: 100,
     status: "disponible",
-    price: 600,
+    // price: 600, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
     images: imgs("maitre-silencieux", 5),
     alt: {
       fr: "Maître silencieux : un jaguar aux yeux bleus entre des branches, des feuilles en relief et des oiseaux de paradis en perles",
@@ -131,7 +131,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    price: 400,
+    // price: 400, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
     images: imgs("le-regard", 4),
     frame: "7 / 10",
     alt: {
@@ -154,7 +154,7 @@ export const artworks: Artwork[] = [
     width: 80,
     height: 80,
     status: "disponible",
-    price: 480,
+    // price: 480, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
     images: imgs("duo-colore", 4),
     alt: {
       fr: "Duo coloré : deux aras, l’un rouge et rose, l’autre bleu, posés sur des branches dorées dans un feuillage vert sombre",
@@ -176,7 +176,7 @@ export const artworks: Artwork[] = [
     width: 80,
     height: 80,
     status: "disponible",
-    price: 480,
+    // price: 480, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
     images: imgs("toco-farouche"),
     alt: {
       fr: "Toco farouche : un toucan au grand bec jaune et orange, plumage bleu, perché sur une branche dorée dans un feuillage sombre",
@@ -200,7 +200,7 @@ export const artworks: Artwork[] = [
     size: { fr: "Triptyque · 3 toiles de 30 × 90 cm", en: "Triptych · 3 canvases, 30 × 90 cm each" },
     panels: 3,
     status: "disponible",
-    price: 550,
+    // price: 550, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
     images: imgs("veilleur-perche", 1),
     frame: "1 / 1",
     alt: {

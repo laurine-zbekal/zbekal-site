@@ -66,8 +66,8 @@ export const tarifs = {
     en: "Larger, a size in between, a diptych, a triptych? That’s on quote, up to 130 cm a side.",
   } as L,
   legal: {
-    fr: "Prix en euros, TTC. TVA non applicable, art. 293 B du CGI. Les toiles disponibles de la galerie ont leur propre prix, indiqué sur leur fiche.",
-    en: "Prices in euros, all taxes included. VAT not applicable, art. 293 B of the French General Tax Code. Available paintings in the gallery have their own price, shown on their page.",
+    fr: "Prix en euros, TTC. TVA non applicable, art. 293 B du CGI. Les toiles disponibles de la galerie ont leur propre prix, indiqué sur leur fiche ou donné sur demande.",
+    en: "Prices in euros, all taxes included. VAT not applicable, art. 293 B of the French General Tax Code. Available paintings in the gallery have their own price, shown on their page or given on request.",
   } as L,
 
   /** Deux rappels pratiques, affichés sous la grille */

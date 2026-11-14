@@ -8,7 +8,7 @@ import { tarifs } from "@/content/tarifs";
 import { highlightedExhibitions } from "@/content/expositions";
 import { getCollection } from "@/content/collections";
 import { galleryHref, href } from "@/lib/routes";
-import { artworksOf, availableArtworks, getArtwork, hasDimensions, onOrderArtworks } from "@/lib/content";
+import { artworksOf, availableArtworks, getArtwork, hasDimensions, onOrderArtworks, upcomingExhibition } from "@/lib/content";
 import { personJsonLd, websiteJsonLd } from "@/lib/seo";
 import { ArtworkCard } from "@/components/ArtworkCard";
 import { JsonLd } from "@/components/JsonLd";
@@ -34,11 +34,27 @@ export function HomePage({ locale }: { locale: Locale }) {
   const amazoni = getCollection("amazoni");
   const amazoniShown = artworksOf("amazoni").length;
   const amazoniPlanned = amazoni?.planned ?? amazoniShown;
+  // bandeau d’actualité : l’exposition en cours ou la prochaine (content/expositions.ts)
+  const news = upcomingExhibition();
   const giftFrom = euros(Math.min(...tarifs.formats.map((f) => f.price)), locale);
 
   return (
     <>
       <JsonLd data={[websiteJsonLd(locale), personJsonLd(locale)]} />
+
+      {/* Actualité : un bandeau fixe, bien visible, au-dessus du titre */}
+      {news ? (
+        <section className="container home-news" aria-label={locale === "fr" ? "Actualité" : "News"}>
+          <Link href={href(locale, "exhibitions")} className="home-news__link">
+            <span className="home-news__tag">{news.now ? t.exhibitions.nowTag : t.exhibitions.upcoming}</span>
+            <span className="home-news__text">
+              <strong>{news.banner ? news.banner.title[locale] : `${news.title[locale]} ·`}</strong>{" "}
+              {news.banner ? news.banner.text[locale] : `${news.date[locale]}${news.details ? ` · ${news.details[locale]}` : ""}`}
+            </span>
+            <span className="home-news__more">{t.exhibitions.more} →</span>
+          </Link>
+        </section>
+      ) : null}
 
       {/* Hero */}
       <section className="container hero" aria-labelledby="hero-title">

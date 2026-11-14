@@ -137,6 +137,8 @@ const fr = {
     now: "En ce moment",
     /** Étiquette courte dans les listes (la pastille est étroite) */
     nowTag: "Ouvert",
+    /** Lien du bandeau de l’accueil */
+    more: "Infos pratiques",
     past: "Ce qui s’est passé",
     award: "Prix",
   },
@@ -323,6 +325,7 @@ const en: UIStrings = {
     upcoming: "Coming up",
     now: "On now",
     nowTag: "On now",
+    more: "Practical info",
     past: "What’s happened so far",
     award: "Award",
   },

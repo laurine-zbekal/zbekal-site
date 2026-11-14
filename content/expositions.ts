@@ -3,7 +3,8 @@
  * `upcoming: true` affiche l’événement dans le bandeau d’actualité.
  * `now: true` (en plus) : l’événement a commencé, l’étiquette passe de « À venir » à « En ce moment ».
  * `ticker` : phrase à faire défiler dans le bandeau à la place du message automatique (titre, dates, détails).
- * À la fin de l’événement : retirer `upcoming`, `now` et `ticker`.
+ * `banner` : titre et phrase du bandeau jaune de la page d’accueil (sans lui : titre, dates et détails de l’événement).
+ * À la fin de l’événement : retirer `upcoming`, `now`, `ticker` et `banner`.
  * `images` : photos déposées dans public/expos/ (facultatif).
  */
 type L = { fr: string; en: string };
@@ -26,6 +27,8 @@ export type Exhibition = {
   now?: boolean;
   /** Message du bandeau défilant, à la place du message automatique */
   ticker?: L;
+  /** Bandeau de la page d’accueil : un titre court et une phrase */
+  banner?: { title: L; text: L };
   /** Lien externe (optionnel) */
   url?: string;
   urlLabel?: L;
@@ -50,6 +53,13 @@ export const exhibitions: Exhibition[] = [
     ticker: {
       fr: "Le Salon des Arts à Jallais est ouvert, venez y découvrir Toco farouche, Maître silencieux et Le Regard · Jusqu’au 22 novembre · Entrée libre et gratuite",
       en: "The Salon des Arts in Jallais is open: come and discover Wild Toco, Silent Master and The Gaze · Until 22 November · Free entry",
+    },
+    banner: {
+      title: { fr: "Le Salon des Arts à Jallais est ouvert.", en: "The Salon des Arts in Jallais is open." },
+      text: {
+        fr: "Venez y découvrir Toco farouche, Maître silencieux et Le Regard. Jusqu’au 22 novembre, entrée libre et gratuite.",
+        en: "Come and discover Wild Toco, Silent Master and The Gaze. Until 22 November, free entry.",
+      },
     },
   },
   {

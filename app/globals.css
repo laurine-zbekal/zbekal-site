@@ -2322,6 +2322,61 @@ html[data-intro="seen"] .intro {
   color: var(--ink-2);
 }
 
+/* ---------- Accueil : bandeau d’actualité (exposition en cours ou à venir) ----------
+   Fixe et vert forêt, au-dessus du titre : plus lisible que le bandeau défilant du haut de page. */
+.home-news {
+  padding-top: clamp(12px, 2vw, 20px);
+}
+.home-news__link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  background: #1b4d3e;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+.home-news__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: var(--pill);
+  background: var(--yellow);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.home-news__tag::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pink);
+}
+.home-news__text {
+  flex: 1 1 280px;
+}
+.home-news__more {
+  color: var(--yellow);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform 0.2s var(--ease);
+}
+.home-news__link:hover {
+  color: #fff;
+}
+.home-news__link:hover .home-news__more {
+  transform: translateX(4px);
+}
+
 /* ---------- Tarifs : « Pourquoi mes toiles coûtent plus cher qu’un tableau déco ? » ----------
    Cinq cartes aux couleurs d’Amazoni : rose, jaune, vert feuille, vert forêt, rose clair (mot-clé rouge).
    Téléphone : une colonne. Ordinateur : 5 + 7, puis 4 + 8, puis la dernière en bandeau. */
