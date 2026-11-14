@@ -476,7 +476,7 @@ export const artworks: Artwork[] = [
     year: 2025,
     technique: acrylique,
     status: "sur-commande",
-    images: imgs("a-travers-nos-mains", 3),
+    images: imgs("a-travers-nos-mains", 4),
     alt: {
       fr: "À travers nos mains : deux mains qui se tendent l’une vers l’autre sur fond bleu, la toile est tenue par Laurine devant une baie vitrée",
       en: "Through Our Hands: two hands reaching for each other on a blue background, the canvas held by Laurine in front of a window",
