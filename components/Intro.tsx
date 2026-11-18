@@ -61,7 +61,7 @@ export function Intro() {
             ))}
           </defs>
           {/* le rond bordeaux est là dès la première image, sans animation */}
-          <circle cx={C} cy={C} r={C} fill="#4A1310" />
+          <circle cx={C} cy={C} r={C} fill="#680D22" />
           {/* les traits roses, peints l’un après l’autre */}
           {STROKES.map((s) => (
             <g key={s.id} clipPath={`url(#intro-clip-${s.id})`}>

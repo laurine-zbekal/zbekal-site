@@ -71,7 +71,7 @@ Quand une toile en stock est vendue, passe-la en `"sur-commande"` (ou `"vendue"`
 - `content/oeuvres.ts` : prix des toiles disponibles (sans prix, la fiche affiche « Prix sur demande »), dimensions manquantes, titres des deux « Sans titre ».
 - `content/textes.ts` : formats et tarifs des commandes sur la page d'accueil (`commissionFormats`) ; ils doivent rester identiques à ceux de `content/tarifs.ts`.
 - Photos : celles venues d'Instagram et de WeTransfer sont en définition moyenne ; les originaux en haute définition donneront un zoom plus net.
-- Logo : redessiné d'après la photo de profil Instagram (`components/Logo.tsx`, `public/logo.svg`, icônes). À remplacer par le fichier d'origine s'il existe. Couleurs depuis le 18 novembre 2026 : rond bordeaux `#4A1310`, lettres roses `#F0BFC2` (composant, `public/logo.svg`, icônes, écran d'ouverture et cartes de partage `public/og/`).
+- Logo : redessiné d'après la photo de profil Instagram (`components/Logo.tsx`, `public/logo.svg`, icônes). À remplacer par le fichier d'origine s'il existe. Couleurs depuis le 18 novembre 2026 : rond bordeaux `#680D22`, lettres roses `#F0BFC2` (composant, `public/logo.svg`, icônes, écran d'ouverture et cartes de partage `public/og/`).
 - CV : dépose le PDF dans `public/` et ajoute `NEXT_PUBLIC_CV_FILE=/mon-cv.pdf` pour afficher le bouton sur la page « Laurine ».
 - CGV : à faire relire par un juriste, article 7 « Carte cadeau » compris ; désigner un médiateur de la consommation (`NEXT_PUBLIC_MEDIATOR`).
 - Newsletter : tant que Brevo n'est pas branché, chaque inscription arrive par e-mail. Pour Brevo : remplace l'appel `fetch` de `components/NewsletterForm.tsx` par le formulaire Brevo.
