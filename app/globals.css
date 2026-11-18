@@ -2067,8 +2067,8 @@ hr.sep {
 }
 
 /* ==========================================================================
-   Écran d’ouverture : sur fond sombre, le rond rose est là d’emblée, les traits rouges du logo
-   sont peints au pinceau, puis le voile sombre se dissout doucement sur le site.
+   Écran d’ouverture : sur fond rose, le rond bordeaux est là d’emblée, les traits roses du logo
+   sont peints au pinceau, puis le voile rose se dissout doucement sur le site.
    Durée totale : 3,1 s. Une seule fois par visite (voir components/Intro.tsx).
    ========================================================================== */
 .intro {
@@ -2077,9 +2077,10 @@ hr.sep {
   z-index: 3000;
   display: grid;
   place-items: center;
-  background: #0f0f0e;
+  /* voile rose, pour que le rond bordeaux du logo s’en détache (sur fond sombre il disparaissait) */
+  background: #f0bfc2;
   cursor: pointer;
-  /* le passage au site : le logo s’efface, puis le voile sombre se dissout lentement. Rien d’autre. */
+  /* le passage au site : le logo s’efface, puis le voile rose se dissout lentement. Rien d’autre. */
   animation: intro-out 0.8s cubic-bezier(0.4, 0, 0.2, 1) 2.3s forwards;
 }
 .intro__logo {
@@ -2088,7 +2089,7 @@ hr.sep {
   /* le logo s’efface en premier, en avançant à peine vers nous : il ne reste pas en surimpression sur le site */
   animation: intro-logo-out 0.45s cubic-bezier(0.4, 0, 0.6, 1) 2s forwards;
 }
-/* les traits rouges : chaque « poil » du pinceau avance avec un léger décalage */
+/* les traits roses : chaque « poil » du pinceau avance avec un léger décalage */
 .intro__hair {
   fill: none;
   stroke-width: 17;
