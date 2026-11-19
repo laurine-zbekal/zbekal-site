@@ -58,8 +58,9 @@ export const site = {
    * Vide      = pas de Google Analytics, pas de bandeau cookies ; la page Confidentialité dit qu’aucun cookie de suivi n’est déposé.
    * Renseigné = le bandeau cookies s’affiche ; Google Analytics n’est chargé qu’après un clic sur « Accepter »
    *             (components/CookieConsent.tsx), et la page Confidentialité décrit la mesure d’audience.
+   * Propriété « zbekal.com » du compte Google Analytics « Zbekal », créé le 19 novembre 2026 sur le compte Google laurine@zbekal.com.
    */
-  analytics: { gaId: (process.env.NEXT_PUBLIC_GA_ID ?? "").trim() },
+  analytics: { gaId: (process.env.NEXT_PUBLIC_GA_ID ?? "G-SQZV8JB60C").trim() },
 
   /** Année de création du site, pour le copyright */
   since: 2026,
