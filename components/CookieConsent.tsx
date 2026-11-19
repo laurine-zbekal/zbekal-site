@@ -19,7 +19,12 @@ const KEY = "zbekal-cookies";
 /** à augmenter si le texte ou les finalités du bandeau changent : la question est alors reposée à tout le monde */
 const VERSION = 1;
 const SIX_MONTHS = 183 * 24 * 60 * 60 * 1000;
-/** durée de vie des cookies Google Analytics : 13 mois, sans prolongation à chaque visite */
+/**
+ * Durée de vie des cookies Google Analytics : 13 mois, sans prolongation à chaque visite.
+ * Attention : la balise Google ne tient pas compte de cette valeur passée par le site (constaté le 19/11/2026).
+ * Le vrai réglage est dans Google Analytics : Administration > Flux de données > Configurer les paramètres de la balise
+ * > Remplacer les paramètres des cookies (13 mois, par rapport à la première visite). On garde la valeur ici au cas où.
+ */
 const THIRTEEN_MONTHS_S = 395 * 24 * 60 * 60;
 const OPEN_EVENT = "zbekal:cookies";
 

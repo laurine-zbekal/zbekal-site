@@ -168,10 +168,10 @@ export const about = {
       alt: { fr: "Gros plan sur Duo coloré : les deux aras, rouge et bleu, avec leurs perles et les feuilles dorées en relief", en: "Close-up of Colourful Duo: the two macaws, red and blue, with their beads and golden leaf in relief" },
     },
     {
-      src: "/oeuvres/la-femme-aux-perroquets/detail-1.jpg",
-      w: 1085,
-      h: 719,
-      alt: { fr: "Gros plan sur La femme aux perroquets : un ara bleu et jaune bordé de perles, devant le profil de la femme", en: "Close-up of The Woman with Parrots: a blue and yellow macaw edged with beads, in front of the woman’s profile" },
+      src: "/oeuvres/maitre-silencieux/detail-3.jpg",
+      w: 1600,
+      h: 1060,
+      alt: { fr: "Gros plan sur Maître silencieux : une fleur en perles orange, jaunes et bleues, sous les moustaches du jaguar", en: "Close-up of Silent Master: a flower made of orange, yellow and blue beads, beneath the jaguar’s whiskers" },
     },
   ] as Photo[],
   inspirations: {

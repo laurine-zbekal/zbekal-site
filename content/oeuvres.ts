@@ -78,28 +78,6 @@ function cm(v: string): L {
 export const artworks: Artwork[] = [
   // ───────────────────────── AMAZONI (en stock) ─────────────────────────
   {
-    slug: "la-femme-aux-perroquets",
-    title: "La femme aux perroquets",
-    titleEn: "The Woman with Parrots",
-    collection: "amazoni",
-    year: 2026,
-    technique: mixte,
-    width: 97,
-    height: 130,
-    status: "disponible",
-    // price: 700, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
-    images: imgs("la-femme-aux-perroquets", 9),
-    alt: {
-      fr: "La femme aux perroquets : une femme de profil allongée dans un feuillage vert, quatre perroquets rouge, jaune et bleu posés sur elle",
-      en: "The Woman with Parrots: a woman in profile lying in green foliage, four red, yellow and blue parrots perched on her",
-    },
-    description: {
-      fr: "Une femme allongée dans les feuillages, quatre perroquets posés sur elle. C’est la première toile d’Amazoni, inspirée de Frida Kahlo, et le plus grand format de la série.",
-      en: "A woman lying in the foliage, four parrots perched on her. The first Amazoni painting, inspired by Frida Kahlo, and the largest piece in the series.",
-    },
-    featured: true,
-  },
-  {
     slug: "maitre-silencieux",
     title: "Maître silencieux",
     titleEn: "Silent Master",

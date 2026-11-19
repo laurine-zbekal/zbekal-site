@@ -31,6 +31,9 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       // Le français est servi à la racine : /fr/... renvoie vers /...
+      // « La femme aux perroquets » a été retirée du site le 19 novembre 2026 : ses anciennes adresses mènent à la collection.
+      { source: "/oeuvre/la-femme-aux-perroquets", destination: "/collection/amazoni", permanent: false },
+      { source: "/en/artwork/la-femme-aux-perroquets", destination: "/en/collection/amazoni", permanent: false },
       { source: "/fr", destination: "/", permanent: true },
       { source: "/fr/:path*", destination: "/:path*", permanent: true },
     ];
