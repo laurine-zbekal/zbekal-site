@@ -3,6 +3,8 @@ import { ui, type Locale } from "@/content/ui";
 
 export function PrivacyPage({ locale }: { locale: Locale }) {
   const t = ui[locale];
+  /** Google Analytics branché ? (content/site.ts, `analytics.gaId`) : la rubrique « Cookies » change en conséquence */
+  const ga = Boolean(site.analytics.gaId);
 
   if (locale === "en") {
     return (
@@ -35,6 +37,7 @@ export function PrivacyPage({ locale }: { locale: Locale }) {
           <li>{site.host.name} (hosting of the site and of the forms).</li>
           <li>Resend (delivery of the emails sent by the forms).</li>
           <li>Brevo (newsletter tool, servers in the European Union), once the newsletter is launched.</li>
+          {ga ? <li>Google Ireland Limited (Google Analytics, audience measurement, only if you accept it).</li> : null}
         </ul>
         <p>Some of these providers are located in the United States; transfers are governed by the European Commission’s standard contractual clauses or an adequacy decision.</p>
         <h2 className="display h4">Your rights</h2>
@@ -45,8 +48,28 @@ export function PrivacyPage({ locale }: { locale: Locale }) {
           </a>
           ).
         </p>
-        <h2 className="display h4">Cookies</h2>
-        <p>This site places no advertising or tracking cookies, which is why there is no cookie banner. Only strictly necessary technical storage may be used.</p>
+        <h2 id="cookies" className="display h4">
+          Cookies
+        </h2>
+        {ga ? (
+          <>
+            <p>
+              <strong>Audience measurement, only if you agree.</strong> With your consent, this site uses Google Analytics 4 to count visits and see which pages are viewed. Purpose: measuring the site’s audience. Legal basis: your consent.
+            </p>
+            <ul>
+              <li>Until you click “Accept”, nothing is loaded from or sent to Google. If you decline, the site works exactly the same.</li>
+              <li>
+                Cookies placed after you accept: <code>_ga</code> and <code>_ga_…</code> (Google Analytics), kept for 13 months at most. The detailed data is kept by Google for 14 months at most.
+              </li>
+              <li>Your choice (accepted or declined) is stored in your browser for 6 months, then you are asked again.</li>
+              <li>Recipient: Google Ireland Limited. Data may be transferred to the United States, under the adequacy decision between the European Union and the United States (Data Privacy Framework). Google’s advertising features are switched off.</li>
+              <li>You can change your mind at any time with the “Cookie settings” link at the bottom of every page.</li>
+            </ul>
+            <p>The site also stores in your browser your cookie choice and the fact that the opening screen has already been shown. This strictly necessary technical storage does not require consent.</p>
+          </>
+        ) : (
+          <p>This site places no advertising or tracking cookies, which is why there is no cookie banner. Only strictly necessary technical storage may be used.</p>
+        )}
       </section>
     );
   }
@@ -81,6 +104,7 @@ export function PrivacyPage({ locale }: { locale: Locale }) {
         <li>{site.host.name} (hébergement du site et des formulaires).</li>
         <li>Resend (acheminement des e-mails envoyés par les formulaires).</li>
         <li>Brevo (outil de newsletter, serveurs dans l’Union européenne), une fois la newsletter lancée.</li>
+        {ga ? <li>Google Ireland Limited (Google Analytics, mesure d’audience, seulement si tu l’acceptes).</li> : null}
       </ul>
       <p>Certains de ces prestataires sont situés aux États-Unis ; les transferts sont encadrés par les clauses contractuelles types de la Commission européenne ou une décision d’adéquation.</p>
       <h2 className="display h4">Tes droits</h2>
@@ -91,8 +115,28 @@ export function PrivacyPage({ locale }: { locale: Locale }) {
         </a>
         ).
       </p>
-      <h2 className="display h4">Cookies</h2>
-      <p>Ce site ne dépose aucun cookie publicitaire ni de suivi, c’est pourquoi il n’y a pas de bandeau cookies. Seul un stockage technique strictement nécessaire peut être utilisé.</p>
+      <h2 id="cookies" className="display h4">
+        Cookies
+      </h2>
+      {ga ? (
+        <>
+          <p>
+            <strong>Mesure d’audience, seulement avec ton accord.</strong> Si tu l’acceptes, ce site utilise Google Analytics 4 pour compter les visites et savoir quelles pages sont consultées. Finalité : mesurer l’audience du site. Base légale : ton consentement.
+          </p>
+          <ul>
+            <li>Tant que tu n’as pas cliqué sur « Accepter », rien n’est chargé ni envoyé à Google. Si tu refuses, le site fonctionne exactement pareil.</li>
+            <li>
+              Cookies déposés après ton accord : <code>_ga</code> et <code>_ga_…</code> (Google Analytics), conservés 13 mois au plus. Les données détaillées sont gardées 14 mois au plus chez Google.
+            </li>
+            <li>Ton choix (accepté ou refusé) est gardé 6 mois dans ton navigateur, puis la question t’est reposée.</li>
+            <li>Destinataire : Google Ireland Limited. Des données peuvent être transférées aux États-Unis, dans le cadre de la décision d’adéquation entre l’Union européenne et les États-Unis (Data Privacy Framework). Les fonctions publicitaires de Google sont désactivées.</li>
+            <li>Tu peux changer d’avis à tout moment avec le lien « Gérer les cookies », en bas de chaque page.</li>
+          </ul>
+          <p>Le site garde aussi dans ton navigateur ton choix sur les cookies et le fait que l’écran d’ouverture a déjà été vu. Ce stockage technique, strictement nécessaire, ne demande pas d’accord.</p>
+        </>
+      ) : (
+        <p>Ce site ne dépose aucun cookie publicitaire ni de suivi, c’est pourquoi il n’y a pas de bandeau cookies. Seul un stockage technique strictement nécessaire peut être utilisé.</p>
+      )}
     </section>
   );
 }

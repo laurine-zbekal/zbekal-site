@@ -3,6 +3,7 @@ import { site, locationLabel } from "@/content/site";
 import { ui, type Locale } from "@/content/ui";
 import { href } from "@/lib/routes";
 import { collectionsWithWorks } from "@/lib/content";
+import { CookieSettingsLink } from "./CookieConsent";
 
 export function Footer({ locale }: { locale: Locale }) {
   const t = ui[locale];
@@ -43,6 +44,7 @@ export function Footer({ locale }: { locale: Locale }) {
             <Link href={href(locale, "legal")}>{t.footer.legal}</Link>
             <Link href={href(locale, "privacy")}>{t.footer.privacy}</Link>
             <Link href={href(locale, "terms")}>{t.footer.terms}</Link>
+            {site.analytics.gaId ? <CookieSettingsLink label={t.cookies.manage} /> : null}
           </div>
         </div>
         <div className="footer__bottom">

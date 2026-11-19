@@ -61,6 +61,14 @@ Quand une toile en stock est vendue, passe-la en `"sur-commande"` (ou `"vendue"`
 - Le cadre des photos suit le format de la photo principale (`main.jpg`) et garde la même hauteur d'une photo à l'autre. Une photo d'un format très différent est montrée en entier sur fond clair ; les autres remplissent le cadre et peuvent être un peu rognées (le zoom montre toujours la photo entière).
 - Les volets (« Description », « Fiche technique », « Livraison et paiement », « À l'échelle ») sont des balises `<details>` : ils fonctionnent sans script. Leurs titres sont dans `content/ui.ts` (`work.folds`).
 
+## Mesure d'audience et cookies
+
+- Google Analytics 4 se branche avec un seul réglage : l'identifiant de mesure (`G-XXXXXXXXXX`), à mettre dans la variable d'environnement `NEXT_PUBLIC_GA_ID` chez l'hébergeur, ou directement dans `content/site.ts` (`analytics.gaId`). Ce n'est pas un secret.
+- Sans identifiant : pas de Google Analytics, pas de bandeau, et la page Confidentialité dit qu'aucun cookie de suivi n'est déposé.
+- Avec identifiant : le bandeau cookies s'affiche (`components/CookieConsent.tsx`, textes dans `content/ui.ts`, `cookies`). Rien n'est chargé ni envoyé à Google avant un clic sur « Accepter ». « Refuser » et « Accepter » ont le même bouton. Le choix est gardé 6 mois dans le navigateur ; le lien « Gérer les cookies » du pied de page permet de changer d'avis. Les cookies Google Analytics durent 13 mois au plus, les fonctions publicitaires de Google sont désactivées.
+- La rubrique « Cookies » de la page Confidentialité (`components/pages/PrivacyPage.tsx`) s'adapte toute seule. Si le texte du bandeau ou sa finalité change, augmenter `VERSION` dans `CookieConsent.tsx` : la question est reposée à tout le monde.
+- Dans Google Analytics, régler la conservation des données sur 14 mois au plus et laisser les signaux Google désactivés, pour rester d'accord avec ce que dit la page Confidentialité.
+
 ## Animation d'ouverture
 
 `components/Intro.tsx` : le logo sur fond sombre, les traits rouges peints au pinceau, puis un fondu vers le site. Jouée une fois par visite, y compris quand l'ordinateur est réglé sur « moins d'animations » (réglage fréquent sous Windows, qui la masquait avant). Pour la retirer : supprimer `<Intro />` dans `components/SiteShell.tsx`.

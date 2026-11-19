@@ -53,6 +53,14 @@ export const site = {
    */
   showPrices: true,
 
+  /**
+   * Mesure d’audience : identifiant de mesure Google Analytics 4 (de la forme « G-XXXXXXXXXX », ce n’est pas un secret).
+   * Vide      = pas de Google Analytics, pas de bandeau cookies ; la page Confidentialité dit qu’aucun cookie de suivi n’est déposé.
+   * Renseigné = le bandeau cookies s’affiche ; Google Analytics n’est chargé qu’après un clic sur « Accepter »
+   *             (components/CookieConsent.tsx), et la page Confidentialité décrit la mesure d’audience.
+   */
+  analytics: { gaId: (process.env.NEXT_PUBLIC_GA_ID ?? "").trim() },
+
   /** Année de création du site, pour le copyright */
   since: 2026,
 } as const;
