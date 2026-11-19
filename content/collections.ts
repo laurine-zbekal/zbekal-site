@@ -27,11 +27,11 @@ export const collections: Collection[] = [
     description: {
       fr: [
         "Amazoni, c’est une jungle en dix toiles : des femmes, des animaux sauvages, des feuillages qui débordent. Chaque tableau a son caractère, et tous se répondent par leurs verts, leurs branches dorées et leurs fleurs.",
-        "La peinture est posée en épaisseur, avec de la feuille d’or et des perles. De loin, tu vois la couleur. De près, tu vois la matière : c’est là que tout se joue.",
+        "La peinture est posée en épaisseur, avec des feuilles dorées et des perles. De loin, tu vois la couleur. De près, tu vois la matière : c’est là que tout se joue.",
       ],
       en: [
         "Amazoni is a jungle in ten paintings: women, wild animals, foliage spilling over the edges. Each piece has its own character, and they all echo one another through their greens, golden branches and flowers.",
-        "The paint is laid on thick, with gold leaf and beads. From afar, you see the colour. Up close, you see the texture: that’s where it all happens.",
+        "The paint is laid on thick, with golden leaf and beads. From afar, you see the colour. Up close, you see the texture: that’s where it all happens.",
       ],
     },
     planned: 10,
@@ -68,11 +68,11 @@ export const collections: Collection[] = [
     },
     description: {
       fr: [
-        "Deux mains suffisent à raconter un lien : un couple, un mariage, un premier chez-soi. Des fonds de nuit, de l’argent, du cuivre, de la feuille d’or.",
+        "Deux mains suffisent à raconter un lien : un couple, un mariage, un premier chez-soi. Des fonds de nuit, de l’argent, du cuivre, des feuilles dorées.",
         "Ces toiles sont toutes parties chez leurs propriétaires, et chacune raconte leur histoire. Si l’une d’elles te parle, je crée la tienne, avec tes couleurs et ton histoire à toi.",
       ],
       en: [
-        "Two hands are enough to tell a bond: a couple, a wedding, a first home. Night-sky backgrounds, silver, copper, gold leaf.",
+        "Two hands are enough to tell a bond: a couple, a wedding, a first home. Night-sky backgrounds, silver, copper, golden leaf.",
         "These paintings have all gone to their owners, and each one tells their story. If one of them speaks to you, I’ll create yours, with your colours and your own story.",
       ],
     },
@@ -86,11 +86,11 @@ export const collections: Collection[] = [
     },
     description: {
       fr: [
-        "Le corps féminin est mon premier sujet : des silhouettes sans visage, des courbes, des aplats francs et des rehauts de feuille d’or.",
+        "Le corps féminin est mon premier sujet : des silhouettes sans visage, des courbes, des aplats francs et des rehauts de feuilles dorées.",
         "Toutes ces toiles ont été adoptées. Un coup de cœur ? Je m’en inspire pour créer la tienne, au format et dans les teintes de ton intérieur.",
       ],
       en: [
-        "The female body is my first subject: faceless silhouettes, curves, bold flat colour and highlights in gold leaf.",
+        "The female body is my first subject: faceless silhouettes, curves, bold flat colour and highlights in golden leaf.",
         "All these paintings have been adopted. Fallen for one? I’ll take it as inspiration to create yours, in the size and shades of your home.",
       ],
     },

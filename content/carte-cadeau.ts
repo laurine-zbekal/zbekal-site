@@ -85,14 +85,14 @@ export const carteCadeau = {
   included: {
     fr: [
       "Une toile sur mesure au format offert : le sujet et les couleurs se décident ensemble.",
-      "La toile sur châssis et toute la matière : acrylique, médiums, feuille d’or, perles.",
+      "La toile sur châssis et toute la matière : acrylique, médiums, feuilles dorées, perles.",
       "L’esquisse et une photo de la toile en cours, pour valider avant la fin.",
       "Le certificat d’authenticité, signé.",
       "Pas de date limite : la carte attend que l’idée soit là.",
     ],
     en: [
       "A made-to-order painting in the size you gave: the subject and colours are decided together.",
-      "The stretched canvas and all the materials: acrylic, mediums, gold leaf, beads.",
+      "The stretched canvas and all the materials: acrylic, mediums, golden leaf, beads.",
       "The sketch and a photo of the work in progress, to approve before the end.",
       "The signed certificate of authenticity.",
       "No expiry date: the card waits until the idea is there.",

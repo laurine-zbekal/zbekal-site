@@ -38,8 +38,8 @@ Quand une toile en stock est vendue, passe-la en `"sur-commande"` (ou `"vendue"`
 ## Tarifs et carte cadeau
 
 - `content/tarifs.ts` : la grille de la page « Tarifs 2026 ». Trois formats à prix fixe (S 400 €, M 500 €, L 600 € depuis le 14 novembre 2026) ; tout le reste est sur devis, jusqu'à 130 cm de côté. Pour changer un prix, modifie `price`. La règle de prix : (largeur + hauteur en cm) × 3.
-- Même fichier, `pourquoi` : le bloc « Pourquoi mes toiles coûtent plus cher qu'un tableau déco ? » (cinq cartes de couleur, composant `components/WhyPrice.tsx`). Les heures de travail affichées viennent du champ `hours` de chaque format ; la liste des charges est dans `charges`. Ne pas changer les `key` des cartes : les couleurs en dépendent.
-- Prix des toiles disponibles : champ `price` de chaque toile dans `content/oeuvres.ts` (sans ce champ, la fiche affiche « Prix sur demande » : c'est le cas des toiles Amazoni, dont le prix prévu est gardé en commentaire). Le bloc « formats » de l'accueil se règle dans `content/textes.ts` (`commissionFormats`).
+- Même fichier, `pourquoi` : le bloc « Pourquoi mes toiles coûtent plus cher qu'un tableau déco ? » (cinq cartes de couleur, composant `components/WhyPrice.tsx`). Le titre « 10 à 15 heures » se calcule à partir du champ `hours` des formats (plus petit et plus grand chiffre) ; le détail par format n'est plus affiché depuis le 19 novembre 2026 ; la liste des charges est dans `charges`. Ne pas changer les `key` des cartes : les couleurs en dépendent.
+- Prix des toiles disponibles : champ `price` de chaque toile dans `content/oeuvres.ts` (sans ce champ, la fiche affiche « Prix sur demande » : c'est le cas de « La femme aux perroquets », dont le prix prévu est gardé en commentaire). Le bloc « formats » de l'accueil se règle dans `content/textes.ts` (`commissionFormats`).
 - `content/carte-cadeau.ts` : les textes de la page « Carte cadeau » (`/carte-cadeau`, `/en/gift-card`) et du bloc vert de la page d'accueil. Les formats et les prix de la carte viennent de `content/tarifs.ts` : un seul endroit à modifier.
 - Photos de la carte : `public/carte-cadeau/recto.jpg` et `verso.jpg`. Sur la photo du dos, le numéro de portable imprimé a été effacé (il n'est affiché nulle part sur le site).
 - Les conditions de la carte (pas de date limite, format acquis, 14 jours de rétractation à distance) sont à l'article 7 des conditions de vente (`components/pages/TermsPage.tsx`).
@@ -63,7 +63,7 @@ Quand une toile en stock est vendue, passe-la en `"sur-commande"` (ou `"vendue"`
 
 ## Animation d'ouverture
 
-`components/Intro.tsx` : le logo (rond bordeaux, lettres roses) sur fond rose, les traits peints au pinceau, puis un fondu vers le site. Jouée une fois par visite, y compris quand l'ordinateur est réglé sur « moins d'animations » (réglage fréquent sous Windows, qui la masquait avant). Pour la retirer : supprimer `<Intro />` dans `components/SiteShell.tsx`.
+`components/Intro.tsx` : le logo sur fond sombre, les traits rouges peints au pinceau, puis un fondu vers le site. Jouée une fois par visite, y compris quand l'ordinateur est réglé sur « moins d'animations » (réglage fréquent sous Windows, qui la masquait avant). Pour la retirer : supprimer `<Intro />` dans `components/SiteShell.tsx`.
 
 ## Ce qui reste à compléter avant la mise en ligne
 
@@ -71,7 +71,7 @@ Quand une toile en stock est vendue, passe-la en `"sur-commande"` (ou `"vendue"`
 - `content/oeuvres.ts` : prix des toiles disponibles (sans prix, la fiche affiche « Prix sur demande »), dimensions manquantes, titres des deux « Sans titre ».
 - `content/textes.ts` : formats et tarifs des commandes sur la page d'accueil (`commissionFormats`) ; ils doivent rester identiques à ceux de `content/tarifs.ts`.
 - Photos : celles venues d'Instagram et de WeTransfer sont en définition moyenne ; les originaux en haute définition donneront un zoom plus net.
-- Logo : redessiné d'après la photo de profil Instagram (`components/Logo.tsx`, `public/logo.svg`, icônes). À remplacer par le fichier d'origine s'il existe. Couleurs depuis le 18 novembre 2026 : rond bordeaux `#680D22`, lettres roses `#F0BFC2` (composant, `public/logo.svg`, icônes, écran d'ouverture et cartes de partage `public/og/`).
+- Logo : redessiné d'après la photo de profil Instagram (`components/Logo.tsx`, `public/logo.svg`, icônes). À remplacer par le fichier d'origine s'il existe. Couleurs : rond rose `#FEBCCA`, lettres rouges `#FE0000` (un essai bordeaux et rose a été en ligne les 18 et 19 novembre 2026, puis retiré à la demande de Laurine).
 - CV : dépose le PDF dans `public/` et ajoute `NEXT_PUBLIC_CV_FILE=/mon-cv.pdf` pour afficher le bouton sur la page « Laurine ».
 - CGV : à faire relire par un juriste, article 7 « Carte cadeau » compris ; désigner un médiateur de la consommation (`NEXT_PUBLIC_MEDIATOR`).
 - Newsletter : tant que Brevo n'est pas branché, chaque inscription arrive par e-mail. Pour Brevo : remplace l'appel `fetch` de `components/NewsletterForm.tsx` par le formulaire Brevo.

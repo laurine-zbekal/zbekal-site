@@ -6,13 +6,13 @@ import { href } from "@/lib/routes";
 /**
  * Page Tarifs : « Pourquoi mes toiles coûtent plus cher qu’un tableau déco ? »
  * Cinq cartes de couleur (palette Amazoni). Les textes sont dans content/tarifs.ts (`pourquoi`),
- * les heures de travail viennent des formats de la grille (`hours`).
+ * le mot-clé « 10 à 15 heures » vient des formats de la grille (`hours`). Le détail par format n’est plus affiché
+ * (demande de Laurine, 19 novembre 2026 : le temps passé évolue).
  */
 export function WhyPrice({ locale }: { locale: Locale }) {
   const p = tarifs.pourquoi;
   const t = ui[locale];
-  const timed = tarifs.formats.filter((f) => f.hours != null && f.tag);
-  const hours = timed.map((f) => f.hours as number);
+  const hours = tarifs.formats.filter((f) => f.hours != null).map((f) => f.hours as number);
   const timeKeyword = hours.length ? p.hoursKeyword[locale](Math.min(...hours), Math.max(...hours)) : "";
 
   return (
@@ -36,15 +36,6 @@ export function WhyPrice({ locale }: { locale: Locale }) {
             </h3>
             <div className="why-card__body">
               <p className="why-card__text">{c.text[locale]}</p>
-              {c.key === "time" && timed.length ? (
-                <ul className="why-hours">
-                  {timed.map((f) => (
-                    <li key={f.tag}>
-                      {p.hoursLabel[locale]} {f.tag} <strong>{f.hours} h</strong>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
               {c.key === "studio" ? (
                 <ul className="why-charges">
                   {p.charges[locale].map((line) => (

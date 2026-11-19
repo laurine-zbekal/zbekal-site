@@ -62,8 +62,8 @@ export type Artwork = {
 };
 
 const acrylique: L = { fr: "Acrylique sur toile", en: "Acrylic on canvas" };
-const mixte: L = { fr: "Acrylique, feuille d’or et perles sur toile", en: "Acrylic, gold leaf and beads on canvas" };
-const dorure: L = { fr: "Acrylique et feuille d’or sur toile", en: "Acrylic and gold leaf on canvas" };
+const mixte: L = { fr: "Acrylique, feuilles dorées et perles sur toile", en: "Acrylic, golden leaf and beads on canvas" };
+const dorure: L = { fr: "Acrylique et feuilles dorées sur toile", en: "Acrylic and golden leaf on canvas" };
 
 /** main.jpg + n photos de détail */
 function imgs(slug: string, details = 0): string[] {
@@ -109,15 +109,15 @@ export const artworks: Artwork[] = [
     width: 100,
     height: 100,
     status: "disponible",
-    // price: 600, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
+    price: 450,
     images: imgs("maitre-silencieux", 10),
     alt: {
       fr: "Maître silencieux : un jaguar aux yeux bleus entre des branches, des feuilles en relief et des oiseaux de paradis en perles",
       en: "Silent Master: a blue-eyed jaguar among branches, textured leaves and beaded birds of paradise",
     },
     description: {
-      fr: "Un jaguar aux yeux bleus te fixe à travers les feuillages. Les taches sont posées en relief, les fleurs sont faites de perles, la fourrure garde quelques éclats de feuille d’or.",
-      en: "A blue-eyed jaguar stares at you through the foliage. The spots are laid in relief, the flowers are made of beads, and the fur holds a few glints of gold leaf.",
+      fr: "Un jaguar aux yeux bleus te fixe à travers les feuillages. Les taches sont posées en relief, les fleurs sont faites de perles, la fourrure garde quelques éclats de feuilles dorées.",
+      en: "A blue-eyed jaguar stares at you through the foliage. The spots are laid in relief, the flowers are made of beads, and the fur holds a few glints of golden leaf.",
     },
     featured: true,
   },
@@ -131,12 +131,12 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    // price: 400, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
+    price: 500,
     images: imgs("le-regard", 7),
     frame: "7 / 10",
     alt: {
-      fr: "Le Regard : un visage de femme à moitié caché par des feuilles vertes bordées de perles, un œil vert grand ouvert, une mèche noire et des branches rehaussées de feuille d’or",
-      en: "The Gaze: a woman’s face half hidden by green leaves edged with beads, one wide-open green eye, a black strand of hair and branches highlighted with gold leaf",
+      fr: "Le Regard : un visage de femme à moitié caché par des feuilles vertes bordées de perles, un œil vert grand ouvert, une mèche noire et des branches rehaussées à la feuille dorée",
+      en: "The Gaze: a woman’s face half hidden by green leaves edged with beads, one wide-open green eye, a black strand of hair and branches highlighted with golden leaf",
     },
     description: {
       fr: "Un visage à moitié caché par les feuilles, un œil vert qui ne te lâche pas. Mon premier visage détaillé, et la deuxième toile de la collection.",
@@ -154,15 +154,15 @@ export const artworks: Artwork[] = [
     width: 80,
     height: 80,
     status: "disponible",
-    // price: 480, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
+    price: 230,
     images: imgs("duo-colore", 8),
     alt: {
       fr: "Duo coloré : deux aras, l’un rouge et rose, l’autre bleu, posés sur des branches dorées dans un feuillage vert sombre",
       en: "Colourful Duo: two macaws, one red and pink, the other blue, perched on golden branches in dark green foliage",
     },
     description: {
-      fr: "Deux aras tête contre tête sur des branches à la feuille d’or, dans un feuillage sombre travaillé en épaisseur. Le rouge et le bleu se répondent, les perles accrochent la lumière.",
-      en: "Two macaws head to head on gold-leaf branches, set in dark foliage painted thick. Red answers blue, and the beads catch the light.",
+      fr: "Deux aras tête contre tête sur des branches à la feuille dorée, dans un feuillage sombre travaillé en épaisseur. Le rouge et le bleu se répondent, les perles accrochent la lumière.",
+      en: "Two macaws head to head on gilded branches, set in dark foliage painted thick. Red answers blue, and the beads catch the light.",
     },
     featured: true,
   },
@@ -176,7 +176,7 @@ export const artworks: Artwork[] = [
     width: 80,
     height: 80,
     status: "disponible",
-    // price: 480, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
+    price: 300,
     images: imgs("toco-farouche"),
     alt: {
       fr: "Toco farouche : un toucan au grand bec jaune et orange, plumage bleu, perché sur une branche dorée dans un feuillage sombre",
@@ -200,7 +200,7 @@ export const artworks: Artwork[] = [
     size: { fr: "Triptyque · 3 toiles de 30 × 90 cm", en: "Triptych · 3 canvases, 30 × 90 cm each" },
     panels: 3,
     status: "disponible",
-    // price: 550, — prix prévu, masqué pour le moment : la fiche affiche « Prix sur demande »
+    price: 250,
     images: imgs("veilleur-perche", 1),
     frame: "1 / 1",
     alt: {
@@ -208,8 +208,8 @@ export const artworks: Artwork[] = [
       en: "Perched Watcher: a snake with golden markings coiled on a branch, green foliage and red flowers, across three canvases",
     },
     description: {
-      fr: "Un serpent aux taches dorées, enroulé sur sa branche, qui se déploie sur trois toiles. Feuille d’or, perles et fleurs rouges en relief.",
-      en: "A snake with golden markings, coiled on its branch, unfolding across three canvases. Gold leaf, beads and red flowers in relief.",
+      fr: "Un serpent aux taches dorées, enroulé sur sa branche, qui se déploie sur trois toiles. Feuilles dorées, perles et fleurs rouges en relief.",
+      en: "A snake with golden markings, coiled on its branch, unfolding across three canvases. Golden leaf, beads and red flowers in relief.",
     },
     featured: true,
   },
@@ -225,7 +225,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    price: 400,
+    price: 250,
     images: imgs("bouquet-d-ete", 5),
     alt: {
       fr: "Bouquet d’été : un bouquet rond multicolore noué d’un ruban bordeaux, tenu par une main, sur fond rose poudré",
@@ -246,7 +246,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    price: 400,
+    price: 250,
     images: imgs("douceur", 9),
     alt: {
       fr: "Douceur : un bouquet champêtre rose, jaune et orange noué d’un ruban blanc, tenu par une main, sur fond vert sauge",
@@ -267,7 +267,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    price: 400,
+    price: 250,
     images: imgs("eternel", 7),
     alt: {
       fr: "Éternel : un bouquet de roses blanches, roses et corail tenu par une main, sur fond bordeaux",
@@ -288,7 +288,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    price: 400,
+    price: 250,
     images: imgs("fleur-du-soleil", 8),
     alt: {
       fr: "Fleur du soleil : un bouquet de tournesols tenu à bout de bras sur fond bleu ciel",
@@ -308,15 +308,15 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    price: 400,
+    price: 250,
     images: imgs("hanami", 5),
     alt: {
-      fr: "Hanami : une main rehaussée de feuille d’or parmi des fleurs roses, sur fond bleu canard",
-      en: "Hanami: a hand highlighted with gold leaf among pink blossoms, on a teal background",
+      fr: "Hanami : une main rehaussée de feuilles dorées parmi des fleurs roses, sur fond bleu canard",
+      en: "Hanami: a hand highlighted with golden leaf among pink blossoms, on a teal background",
     },
     description: {
-      fr: "Une main rehaussée de feuille d’or parmi des fleurs roses, sur fond bleu canard. Hanami, c’est la fête japonaise qui célèbre les cerisiers en fleurs.",
-      en: "A hand highlighted with gold leaf among pink blossoms, on a teal background. Hanami is the Japanese celebration of cherry trees in bloom.",
+      fr: "Une main rehaussée de feuilles dorées parmi des fleurs roses, sur fond bleu canard. Hanami, c’est la fête japonaise qui célèbre les cerisiers en fleurs.",
+      en: "A hand highlighted with golden leaf among pink blossoms, on a teal background. Hanami is the Japanese celebration of cherry trees in bloom.",
     },
   },
   {
@@ -424,8 +424,8 @@ export const artworks: Artwork[] = [
       en: "The Wisdom of Flowers: three white magnolias on a golden branch, burgundy background",
     },
     description: {
-      fr: "Trois magnolias blancs sur une branche à la feuille d’or, fond bordeaux. Une toile aux airs de Sud-Ouest.",
-      en: "Three white magnolias on a gold-leaf branch against burgundy. A painting with a touch of south-west France.",
+      fr: "Trois magnolias blancs sur une branche à la feuille dorée, fond bordeaux. Une toile aux airs de Sud-Ouest.",
+      en: "Three white magnolias on a gilded branch against burgundy. A painting with a touch of south-west France.",
     },
   },
   {
@@ -460,12 +460,12 @@ export const artworks: Artwork[] = [
     status: "sur-commande",
     images: imgs("retiens-moi", 6),
     alt: {
-      fr: "Retiens-moi : une main argentée descend vers une main rehaussée de feuille d’or, fond kaki, cadre en bois foncé",
-      en: "Hold Me Back: a silver hand reaching down to a hand highlighted with gold leaf, khaki background, dark wooden frame",
+      fr: "Retiens-moi : une main argentée descend vers une main rehaussée de feuilles dorées, fond kaki, cadre en bois foncé",
+      en: "Hold Me Back: a silver hand reaching down to a hand highlighted with golden leaf, khaki background, dark wooden frame",
     },
     description: {
       fr: "Une main argentée descend vers une main dorée à la feuille, sur un vert kaki. Le cadre en bois foncé répond au mobilier de la pièce.",
-      en: "A silver hand reaches down to a gold-leafed one, on khaki green. The dark wooden frame echoes the furniture of the room.",
+      en: "A silver hand reaches down to a gilded one, on khaki green. The dark wooden frame echoes the furniture of the room.",
     },
   },
   {
@@ -570,12 +570,12 @@ export const artworks: Artwork[] = [
     status: "sur-commande",
     images: imgs("regarde-moi", 3),
     alt: {
-      fr: "Regarde-moi : un dos féminin en courbes beige et brun rehaussées de feuille d’or, sur fond bleu nuit",
-      en: "Look at Me: a woman’s back in beige and brown curves highlighted with gold leaf, on a midnight-blue background",
+      fr: "Regarde-moi : un dos féminin en courbes beige et brun rehaussées de feuilles dorées, sur fond bleu nuit",
+      en: "Look at Me: a woman’s back in beige and brown curves highlighted with golden leaf, on a midnight-blue background",
     },
     description: {
-      fr: "Des courbes féminines, douces et sensuelles. Pensée pour un intérieur industriel, elle joue avec la lumière grâce à ses touches de feuille d’or.",
-      en: "Feminine curves, soft and sensual. Designed for an industrial interior, it plays with the light through its touches of gold leaf.",
+      fr: "Des courbes féminines, douces et sensuelles. Pensée pour un intérieur industriel, elle joue avec la lumière grâce à ses touches de feuilles dorées.",
+      en: "Feminine curves, soft and sensual. Designed for an industrial interior, it plays with the light through its touches of golden leaf.",
     },
   },
   {
@@ -594,8 +594,8 @@ export const artworks: Artwork[] = [
       en: "Carmine: a red triptych, a reclining grey and gold figure under a crescent moon",
     },
     description: {
-      fr: "Une silhouette allongée sous un croissant de lune, répartie sur trois toiles rouges. Les rehauts sont à la feuille d’or.",
-      en: "A reclining figure under a crescent moon, spread across three red canvases. The highlights are in gold leaf.",
+      fr: "Une silhouette allongée sous un croissant de lune, répartie sur trois toiles rouges. Les rehauts sont à la feuille dorée.",
+      en: "A reclining figure under a crescent moon, spread across three red canvases. The highlights are in golden leaf.",
     },
   },
   {
@@ -846,7 +846,7 @@ export const artworks: Artwork[] = [
     size: cm("90 × 90"),
     status: "sur-commande",
     images: imgs("ame-sauvee"),
-    alt: { fr: "Âme sauvée : Laurine, de dos, tient une toile rouge où se dessine un corps beige rehaussé d’or", en: "Saved Soul: Laurine, seen from behind, holding a red canvas with a beige body highlighted in gold" },
+    alt: { fr: "Âme sauvée : Laurine, de dos, tient une toile rouge où se dessine un corps beige rehaussé de doré", en: "Saved Soul: Laurine, seen from behind, holding a red canvas with a beige body highlighted in gold" },
     description: { fr: "Ma première toile exposée : Paris, juin 2022.", en: "My first exhibited painting: Paris, June 2022." },
   },
   {

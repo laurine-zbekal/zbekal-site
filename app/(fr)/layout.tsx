@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: "Zbekal — Laurine Girard, artiste peintre", template: `%s · ${site.name}` },
-  description: "Laurine Girard, alias Zbekal, peint à l’acrylique des toiles en relief, à la feuille d’or et aux perles. Originaux disponibles, toiles sur commande, en Maine-et-Loire.",
+  description: "Laurine Girard, alias Zbekal, peint à l’acrylique des toiles en relief, aux feuilles dorées et aux perles. Originaux disponibles, toiles sur commande, en Maine-et-Loire.",
   applicationName: site.name,
   authors: [{ name: site.artist, url: site.url }],
   creator: site.artist,

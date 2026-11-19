@@ -12,9 +12,9 @@ export const home = {
   /** n = nombre de toiles disponibles (calculé tout seul) */
   intro: {
     fr: (n: number) =>
-      `De l’acrylique posée en épaisseur, de la feuille d’or, des perles : mes toiles se regardent de loin pour la couleur, de près pour la matière. En ce moment, ${n} sont disponibles. Les autres ont trouvé leur maison : si l’une d’elles t’inspire, je crée la tienne, dans le même esprit.`,
+      `De l’acrylique posée en épaisseur, des feuilles dorées, des perles : mes toiles se regardent de loin pour la couleur, de près pour la matière. En ce moment, ${n} sont disponibles. Les autres ont trouvé leur maison : si l’une d’elles t’inspire, je crée la tienne, dans le même esprit.`,
     en: (n: number) =>
-      `Thick acrylic, gold leaf, beads: my paintings are made to be seen from afar for the colour and up close for the texture. Right now, ${n} are available. The others have found their homes: if one of them inspires you, I’ll create yours in the same spirit.`,
+      `Thick acrylic, golden leaf, beads: my paintings are made to be seen from afar for the colour and up close for the texture. Right now, ${n} are available. The others have found their homes: if one of them inspires you, I’ll create yours in the same spirit.`,
   } as L<(n: number) => string>,
   heroAlt: {
     fr: "Laurine Girard en train de peindre Duo coloré en extérieur, palette à la main",
@@ -94,8 +94,8 @@ export const studioPhotos: Photo[] = [photos.mainPinceau, photos.auSol, photos.d
 export const about = {
   kicker: { fr: "Artiste peintre · Chalonnes-sur-Loire", en: "Painter · Chalonnes-sur-Loire, France" } as L<string>,
   intro: {
-    fr: "Je peins des toiles qui ont du relief : de l’acrylique en épaisseur, de la feuille d’or, des perles. Tout a commencé le 10 avril 2020, en plein confinement, avec une première toile. Je ne me suis plus arrêtée.",
-    en: "I paint canvases with relief: thick acrylic, gold leaf, beads. It all began on 10 April 2020, in the middle of lockdown, with a first painting. I haven’t stopped since.",
+    fr: "Je peins des toiles qui ont du relief : de l’acrylique en épaisseur, des feuilles dorées, des perles. Tout a commencé le 10 avril 2020, en plein confinement, avec une première toile. Je ne me suis plus arrêtée.",
+    en: "I paint canvases with relief: thick acrylic, golden leaf, beads. It all began on 10 April 2020, in the middle of lockdown, with a first painting. I haven’t stopped since.",
   } as L<string>,
   portrait: {
     src: "/atelier/portrait-palette.jpg",
@@ -125,7 +125,7 @@ export const about = {
     fr: [
       {
         title: "La matière d’abord",
-        text: "Sur mes toiles, la peinture a de l’épaisseur. Je la pose couche après couche, j’y glisse de la feuille d’or et des perles. Les reliefs accrochent la lumière : le tableau n’est pas le même le matin et le soir, de face et de côté.",
+        text: "Sur mes toiles, la peinture a de l’épaisseur. Je la pose couche après couche, j’y glisse des feuilles dorées et des perles. Les reliefs accrochent la lumière : le tableau n’est pas le même le matin et le soir, de face et de côté.",
       },
       {
         title: "De la couleur, franchement",
@@ -143,7 +143,7 @@ export const about = {
     en: [
       {
         title: "Texture first",
-        text: "On my canvases, the paint has thickness. I lay it down layer after layer and slip in gold leaf and beads. The relief catches the light: the painting isn’t the same in the morning and in the evening, from the front and from the side.",
+        text: "On my canvases, the paint has thickness. I lay it down layer after layer and slip in golden leaf and beads. The relief catches the light: the painting isn’t the same in the morning and in the evening, from the front and from the side.",
       },
       {
         title: "Colour, and plenty of it",
@@ -165,7 +165,7 @@ export const about = {
       src: "/oeuvres/duo-colore/detail-3.jpg",
       w: 1085,
       h: 719,
-      alt: { fr: "Gros plan sur Duo coloré : les deux aras, rouge et bleu, avec leurs perles et la feuille d’or en relief", en: "Close-up of Colourful Duo: the two macaws, red and blue, with their beads and gold leaf in relief" },
+      alt: { fr: "Gros plan sur Duo coloré : les deux aras, rouge et bleu, avec leurs perles et les feuilles dorées en relief", en: "Close-up of Colourful Duo: the two macaws, red and blue, with their beads and golden leaf in relief" },
     },
     {
       src: "/oeuvres/la-femme-aux-perroquets/detail-1.jpg",

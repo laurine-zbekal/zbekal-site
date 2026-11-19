@@ -1,8 +1,8 @@
 import type { CSSProperties } from "react";
 
 /**
- * Écran d’ouverture : sur fond rose, le rond bordeaux du logo est déjà là ; les trois traits roses du
- * monogramme sont peints au pinceau. Puis le logo s’efface, le voile rose se dissout doucement
+ * Écran d’ouverture : sur fond sombre, le rond rose du logo est déjà là ; les trois traits rouges du
+ * monogramme sont peints au pinceau. Puis le logo s’efface, le voile sombre se dissout doucement
  * et laisse voir le site.
  * - Tout est en SVG + CSS (voir « Écran d’ouverture » dans globals.css).
  * - Montré une seule fois par visite : le petit script ci-dessous le masque dès la deuxième page
@@ -18,7 +18,7 @@ const css = (delay: number, duration: number) => ({ "--d": `${delay.toFixed(3)}s
 
 /* ── Le logo, dans son repère 719 × 719 (mêmes tracés que Logo.tsx) ── */
 const C = 359.5;
-/** les trois traits roses, dans l’ordre où ils sont peints. `path(k)` = le poil décalé de k par rapport au milieu du trait */
+/** les trois traits rouges, dans l’ordre où ils sont peints. `path(k)` = le poil décalé de k par rapport au milieu du trait */
 const STROKES = [
   {
     id: "l",
@@ -44,8 +44,8 @@ const STROKES = [
 ];
 const HAIRS = [-39, -26, -13, 0, 13, 26, 39];
 const HAIR_LAG = [0, 0.05, 0.015, 0.07, 0.03, 0.005, 0.045];
-/** nuances du rose pendant le geste : on voit les poils ; la forme nette (couleur exacte) arrive à la fin */
-const HAIR_TONE = ["#f0bfc2", "#e3a9ad", "#f0bfc2", "#f6cfd1", "#dc9fa4", "#f0bfc2", "#e8b3b7"];
+/** nuances du rouge pendant le geste : on voit les poils ; la forme nette (couleur exacte) arrive à la fin */
+const HAIR_TONE = ["#fe0000", "#e20000", "#fe0000", "#f31212", "#d90000", "#fe0000", "#ea0000"];
 
 export function Intro() {
   return (
@@ -60,15 +60,15 @@ export function Intro() {
               </clipPath>
             ))}
           </defs>
-          {/* le rond bordeaux est là dès la première image, sans animation */}
-          <circle cx={C} cy={C} r={C} fill="#680D22" />
-          {/* les traits roses, peints l’un après l’autre */}
+          {/* le rond rose est là dès la première image, sans animation */}
+          <circle cx={C} cy={C} r={C} fill="#FEBCCA" />
+          {/* les traits rouges, peints l’un après l’autre */}
           {STROKES.map((s) => (
             <g key={s.id} clipPath={`url(#intro-clip-${s.id})`}>
               {HAIRS.map((k, j) => (
                 <path key={k} className="intro__hair" pathLength={100} stroke={HAIR_TONE[j]} d={s.path(k)} style={css(s.start + HAIR_LAG[j], s.duration)} />
               ))}
-              <path className="intro__solid" d={s.shape} fill="#F0BFC2" style={css(s.start + s.duration - 0.02, 0.14)} />
+              <path className="intro__solid" d={s.shape} fill="#FE0000" style={css(s.start + s.duration - 0.02, 0.14)} />
             </g>
           ))}
         </svg>

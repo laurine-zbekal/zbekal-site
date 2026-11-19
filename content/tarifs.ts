@@ -6,7 +6,8 @@
  *  Trois formats à prix fixe : S (le plus petit que Laurine peint en commande), M et L.
  *  Tout le reste (plus grand, jusqu’à 130 cm de côté, entre deux formats, diptyque…) est sur devis.
  *  Ces trois formats servent aussi à la page « Carte cadeau » (content/carte-cadeau.ts).
- *  `hours` = heures de travail par format, affichées dans le bloc « Pourquoi mes toiles coûtent plus cher… » (plus bas).
+ *  `hours` = heures de travail par format. Elles ne sont plus affichées format par format : seuls le plus petit et le plus grand
+ *  chiffre servent au titre « 10 à 15 heures » du bloc « Pourquoi mes toiles coûtent plus cher… » (plus bas).
  *  L’année affichée partout sur la page est `year`.
  */
 import type { Locale } from "./ui";
@@ -72,8 +73,8 @@ export const tarifs = {
 
   /** Deux rappels pratiques, affichés sous la grille */
   vary: {
-    fr: "Un sujet très détaillé (un portrait, un animal), beaucoup de feuille d’or ou de perles : je te fais un devis avant de commencer.",
-    en: "A very detailed subject (a portrait, an animal), a lot of gold leaf or beads: I send you a quote before I start.",
+    fr: "Un sujet très détaillé (un portrait, un animal), beaucoup de feuilles dorées ou de perles : je te fais un devis avant de commencer.",
+    en: "A very detailed subject (a portrait, an animal), a lot of golden leaf or beads: I send you a quote before I start.",
   } as L,
   notIncluded: {
     fr: "En plus : l’envoi, si la toile voyage. La remise en main propre est possible.",
@@ -101,7 +102,6 @@ export const tarifs = {
       fr: (min: number, max: number) => (min === max ? `${min} heures` : `${min} à ${max} heures`),
       en: (min: number, max: number) => (min === max ? `${min} hours` : `${min} to ${max} hours`),
     },
-    hoursLabel: { fr: "Format", en: "Size" } as L,
     cards: [
       {
         key: "unique",
@@ -128,8 +128,8 @@ export const tarifs = {
         theme: { fr: "La matière", en: "Texture" },
         keyword: { fr: "Du relief", en: "Relief" },
         text: {
-          fr: "De l’acrylique posée en épaisseur, de la feuille d’or, des perles. La lumière s’y accroche : la toile n’est pas la même le matin et le soir.",
-          en: "Thickly laid acrylic, gold leaf, beads. Light catches on it: the painting isn’t the same in the morning and in the evening.",
+          fr: "De l’acrylique posée en épaisseur, des feuilles dorées, des perles. La lumière s’y accroche : la toile n’est pas la même le matin et le soir.",
+          en: "Thickly laid acrylic, golden leaf, beads. Light catches on it: the painting isn’t the same in the morning and in the evening.",
         },
         store: { fr: "Une image à plat.", en: "A flat image." },
       },
@@ -156,8 +156,8 @@ export const tarifs = {
     ] as { key: "unique" | "time" | "relief" | "studio" | "signed"; theme: L; keyword: L; text: L; store: L }[],
     /** Carte « studio » : les charges, dans l’ordre, puis ce qui reste */
     charges: {
-      fr: ["Galerie, quand il y en a une", "Peinture, feuille d’or, perles", "Châssis", "Pinceaux et matériel", "Emballage", "Loyer de l’atelier", "Assurance", "Site web", "Cotisations sociales"],
-      en: ["Gallery, when there is one", "Paint, gold leaf, beads", "Stretched canvas", "Brushes and tools", "Packaging", "Studio rent", "Insurance", "Website", "Social contributions"],
+      fr: ["Galerie, quand il y en a une", "Peinture, feuilles dorées, perles", "Châssis", "Pinceaux et matériel", "Emballage", "Loyer de l’atelier", "Assurance", "Site web", "Cotisations sociales"],
+      en: ["Gallery, when there is one", "Paint, golden leaf, beads", "Stretched canvas", "Brushes and tools", "Packaging", "Studio rent", "Insurance", "Website", "Social contributions"],
     } as L<string[]>,
     rest: { fr: "Ce qui reste : ma paie", en: "What’s left: my pay" } as L,
     endTitle: { fr: "Une question sur un prix, un format, une commande ?", en: "A question about a price, a size, a commission?" } as L,
