@@ -87,7 +87,7 @@ export const artworks: Artwork[] = [
     width: 100,
     height: 100,
     status: "disponible",
-    price: 450,
+    price: 600,
     images: imgs("maitre-silencieux", 10),
     alt: {
       fr: "Maître silencieux : un jaguar aux yeux bleus entre des branches, des feuilles en relief et des oiseaux de paradis en perles",
@@ -132,7 +132,7 @@ export const artworks: Artwork[] = [
     width: 80,
     height: 80,
     status: "disponible",
-    price: 230,
+    price: 480,
     images: imgs("duo-colore", 8),
     alt: {
       fr: "Duo coloré : deux aras, l’un rouge et rose, l’autre bleu, posés sur des branches dorées dans un feuillage vert sombre",
@@ -154,7 +154,7 @@ export const artworks: Artwork[] = [
     width: 80,
     height: 80,
     status: "disponible",
-    price: 300,
+    price: 480,
     images: imgs("toco-farouche"),
     alt: {
       fr: "Toco farouche : un toucan au grand bec jaune et orange, plumage bleu, perché sur une branche dorée dans un feuillage sombre",
@@ -178,7 +178,7 @@ export const artworks: Artwork[] = [
     size: { fr: "Triptyque · 3 toiles de 30 × 90 cm", en: "Triptych · 3 canvases, 30 × 90 cm each" },
     panels: 3,
     status: "disponible",
-    price: 250,
+    price: 550,
     images: imgs("veilleur-perche", 1),
     frame: "1 / 1",
     alt: {
@@ -203,7 +203,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    price: 250,
+    price: 400,
     images: imgs("bouquet-d-ete", 5),
     alt: {
       fr: "Bouquet d’été : un bouquet rond multicolore noué d’un ruban bordeaux, tenu par une main, sur fond rose poudré",
@@ -224,7 +224,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    price: 250,
+    price: 400,
     images: imgs("douceur", 9),
     alt: {
       fr: "Douceur : un bouquet champêtre rose, jaune et orange noué d’un ruban blanc, tenu par une main, sur fond vert sauge",
@@ -245,7 +245,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    price: 250,
+    price: 400,
     images: imgs("eternel", 7),
     alt: {
       fr: "Éternel : un bouquet de roses blanches, roses et corail tenu par une main, sur fond bordeaux",
@@ -266,7 +266,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    price: 250,
+    price: 400,
     images: imgs("fleur-du-soleil", 8),
     alt: {
       fr: "Fleur du soleil : un bouquet de tournesols tenu à bout de bras sur fond bleu ciel",
@@ -286,7 +286,7 @@ export const artworks: Artwork[] = [
     width: 60,
     height: 70,
     status: "disponible",
-    price: 250,
+    price: 400,
     images: imgs("hanami", 5),
     alt: {
       fr: "Hanami : une main rehaussée de feuilles dorées parmi des fleurs roses, sur fond bleu canard",
