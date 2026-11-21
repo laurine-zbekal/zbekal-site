@@ -1878,6 +1878,9 @@ hr.sep {
 .card--mini .card__foot {
   font-size: 15px;
   margin-top: 0;
+  /* prix + appel : sur une ligne si la vignette est assez large, sinon l’un sous l’autre */
+  flex-wrap: wrap;
+  gap: 2px 10px;
 }
 .card--mini .badge {
   font-size: 11px;

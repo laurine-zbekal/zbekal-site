@@ -47,7 +47,7 @@ export function ArtworkCard({
   className?: string;
   /** Carte vedette : grand titre et bouton d’appel */
   lead?: boolean;
-  /** Petite carte : image, statut, titre et une ligne d’appel */
+  /** Petite carte : image, statut, titre, puis le prix (toile disponible) et une ligne d’appel */
   mini?: boolean;
 }) {
   const t = ui[locale];
@@ -74,7 +74,16 @@ export function ArtworkCard({
         </span>
         {mini ? null : <span className="card__sub">{specLine(artwork, locale)}</span>}
         {mini ? (
-          <span className="card__foot">{sold ? <span>{t.status.vendue}</span> : <span className="accent">{onOrder ? t.work.crush : t.cta.wantIt} →</span>}</span>
+          <span className="card__foot">
+            {sold ? (
+              <span>{t.status.vendue}</span>
+            ) : (
+              <>
+                {!onOrder && site.showPrices ? <span>{priceLabel(artwork, locale)}</span> : null}
+                <span className="accent">{onOrder ? t.work.crush : t.cta.wantIt} →</span>
+              </>
+            )}
+          </span>
         ) : (
           <span className="card__foot">
             {sold ? <span>{t.status.vendue}</span> : onOrder ? <span>{t.work.adopted}</span> : site.showPrices ? <span>{priceLabel(artwork, locale)}</span> : null}
