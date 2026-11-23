@@ -62,6 +62,17 @@ export const exhibitions: Exhibition[] = [
       fr: "Je suis revenue là où le public m’avait remis son prix en 2023, avec de nouvelles toiles : Toco farouche, Maître silencieux et Le Regard.",
       en: "I went back where the public gave me its award in 2023, with new paintings: Wild Toco, Silent Master and The Gaze.",
     },
+    images: [
+      {
+        src: "/expos/jallais-2026.jpg",
+        w: 1200,
+        h: 1600,
+        alt: {
+          fr: "Laurine Girard au Salon des Arts de Jallais 2026, devant Maître silencieux, Le Regard et Toco farouche accrochés côte à côte",
+          en: "Laurine Girard at the 2026 Salon des Arts in Jallais, in front of Silent Master, The Gaze and Wild Toco hung side by side",
+        },
+      },
+    ],
   },
   {
     year: 2026,
