@@ -185,8 +185,8 @@ export const about = {
     ],
   } as L<{ name: string; why: string }[]>,
   journey: {
-    fr: "Une première exposition à Paris en 2022. Un prix du public au Salon des Arts de Jallais en 2023. Et chaque Noël, une toile offerte à ma communauté sur Instagram. Du 14 au 22 novembre 2026, je retourne à Jallais avec de nouvelles toiles.",
-    en: "A first exhibition in Paris in 2022. An audience award at the Salon des Arts in Jallais in 2023. And every Christmas, a painting given away to my Instagram community. From 14 to 22 November 2026, I’m back in Jallais with new paintings.",
+    fr: "Une première exposition à Paris en 2022. Un prix du public au Salon des Arts de Jallais en 2023. Et chaque Noël, une toile offerte à ma communauté sur Instagram. En novembre 2026, j’y suis retournée avec de nouvelles toiles.",
+    en: "A first exhibition in Paris in 2022. An audience award at the Salon des Arts in Jallais in 2023. And every Christmas, a painting given away to my Instagram community. In November 2026, I went back with new paintings.",
   } as L<string>,
   /** Photos du bloc « À l’atelier » */
   studio: [photos.devantJaguar, photos.laurineRire, photos.auSol, photos.laurineDos, photos.paletteRiviere, photos.chaise, photos.portraitRose, photos.laurineTresse] as Photo[],

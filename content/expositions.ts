@@ -43,23 +43,10 @@ export const exhibitions: Exhibition[] = [
     date: { fr: "14 au 22 novembre 2026", en: "14–22 November 2026" },
     title: { fr: "Salon des Arts de Jallais", en: "Salon des Arts, Jallais" },
     place: { fr: "Jallais, Maine-et-Loire (49)", en: "Jallais, Maine-et-Loire, France" },
-    details: { fr: "Entrée libre et gratuite. À voir sur place : Toco farouche, Maître silencieux et Le Regard.", en: "Free entry, open to all. On show: Wild Toco, Silent Master and The Gaze." },
+    details: { fr: "Toco farouche, Maître silencieux et Le Regard y étaient exposés.", en: "Wild Toco, Silent Master and The Gaze were on show." },
     story: {
-      fr: "Je reviens là où le public m’a remis son prix en 2023, avec de nouvelles toiles : Toco farouche, Maître silencieux et Le Regard. Le salon est ouvert à tous, et l’entrée est gratuite.",
-      en: "I’m back where the public gave me its award in 2023, with new paintings: Wild Toco, Silent Master and The Gaze. The fair is open to all, and entry is free.",
-    },
-    upcoming: true,
-    now: true,
-    ticker: {
-      fr: "Le Salon des Arts à Jallais est ouvert, venez y découvrir Toco farouche, Maître silencieux et Le Regard · Jusqu’au 22 novembre · Entrée libre et gratuite",
-      en: "The Salon des Arts in Jallais is open: come and discover Wild Toco, Silent Master and The Gaze · Until 22 November · Free entry",
-    },
-    banner: {
-      title: { fr: "Le Salon des Arts à Jallais est ouvert.", en: "The Salon des Arts in Jallais is open." },
-      text: {
-        fr: "Venez y découvrir Toco farouche, Maître silencieux et Le Regard. Jusqu’au 22 novembre, entrée libre et gratuite.",
-        en: "Come and discover Wild Toco, Silent Master and The Gaze. Until 22 November, free entry.",
-      },
+      fr: "Je suis revenue là où le public m’avait remis son prix en 2023, avec de nouvelles toiles : Toco farouche, Maître silencieux et Le Regard.",
+      en: "I went back where the public gave me its award in 2023, with new paintings: Wild Toco, Silent Master and The Gaze.",
     },
   },
   {
