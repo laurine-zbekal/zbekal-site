@@ -5,7 +5,7 @@ import { ExhibitionsPage } from "@/components/pages/ExhibitionsPage";
           locale: "en",
           key: "exhibitions",
           title: "Shows and news",
-          description: "Zbekal’s exhibitions, art fairs and awards, in pictures: Paris, Jallais.",
+          description: "Zbekal’s exhibitions, art fairs and awards, in pictures: Paris, Jallais. Coming up: Regards exhibition in Saint-Macaire-en-Mauges, 5–13 December 2026.",
           image: "/og/default.jpg",
 });
 

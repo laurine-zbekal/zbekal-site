@@ -40,6 +40,20 @@ export type Exhibition = {
 export const exhibitions: Exhibition[] = [
   {
     year: 2026,
+    date: { fr: "5 au 13 décembre 2026", en: "5–13 December 2026" },
+    title: { fr: "Exposition Regards", en: "Regards art exhibition" },
+    place: { fr: "Centre culturel du Prieuré, Saint-Macaire-en-Mauges (Sèvremoine, 49)", en: "Centre culturel du Prieuré, Saint-Macaire-en-Mauges, Maine-et-Loire, France" },
+    details: { fr: "36e édition, près de 200 œuvres d’artistes de la région.", en: "36th edition, nearly 200 works by artists from the region." },
+    story: {
+      fr: "J’expose à la 36e édition de Regards, à Saint-Macaire-en-Mauges : près de 200 œuvres d’artistes amateurs et professionnels de la région, pendant neuf jours. Le samedi 5 décembre, ouverture de 14 h à 19 h ; ensuite tous les jours jusqu’au dimanche 13.",
+      en: "I’m showing at the 36th Regards exhibition in Saint-Macaire-en-Mauges: nearly 200 works by amateur and professional artists from the region, over nine days. Opens Saturday 5 December, 2 to 7 pm, then every day until Sunday 13.",
+    },
+    upcoming: true,
+    url: "https://www.sevremoine.fr/actualite/inscription-regards/",
+    urlLabel: { fr: "Horaires sur le site de Sèvremoine", en: "Opening hours (Sèvremoine website)" },
+  },
+  {
+    year: 2026,
     date: { fr: "14 au 22 novembre 2026", en: "14–22 November 2026" },
     title: { fr: "Salon des Arts de Jallais", en: "Salon des Arts, Jallais" },
     place: { fr: "Jallais, Maine-et-Loire (49)", en: "Jallais, Maine-et-Loire, France" },
