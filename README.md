@@ -6,7 +6,7 @@ Site vitrine et galerie, bilingue français/anglais (`/` et `/en`), construit av
 
 Le site est en ligne depuis le 12 novembre 2026 sur `https://zbekal.com`.
 
-- **Code** : dépôt GitHub privé `laurine-zbekal/zbekal-site` (compte de Laurine). Chaque envoi sur `main` redéploie le site.
+- **Code** : dépôt GitHub public `laurine-zbekal/zbekal-site` (compte de Laurine). Chaque envoi sur `main` redéploie le site.
 - **Hébergement** : Netlify, projet `zbekal` (offre gratuite, utilisable pour un site commercial). Adresse technique : `zbekal.netlify.app` (non référencée par les moteurs de recherche, en-tête `noindex` dans `next.config.ts`).
 - **Domaines** (achetés chez OVH, au nom de Laurine) : `zbekal.com` est l'adresse principale ; `www.zbekal.com`, `zbekal.fr` et `www.zbekal.fr` y renvoient (alias Netlify + règle de redirection dans `next.config.ts`).
 - **DNS chez OVH**, zones `zbekal.com` et `zbekal.fr` : `A` → `75.2.60.5` et `www` `CNAME` → `zbekal.netlify.app.` Pour revenir à la page d'attente OVH : remettre `213.186.33.5`.
@@ -24,7 +24,7 @@ La marque verbale **ZBEKAL** a été déposée à l'INPI le 26 novembre 2026 au 
 
 ## Mettre à jour le site
 
-L'offre gratuite de Netlify n'accepte qu'un seul contributeur sur un dépôt privé : une modification envoyée directement sur `main` par un autre compte est bloquée (« Unrecognized Git contributor »). Les mises à jour passent donc par une demande de modification (pull request) sur GitHub, que Laurine valide avec « Merge pull request » : c'est ce clic qui déclenche la mise en ligne.
+Le dépôt GitHub est **public** depuis le 26 novembre 2026 : tout le monde peut lire le code, mais seuls le compte `laurine-zbekal` et les comptes qu'elle autorise peuvent le modifier. Aucun secret n'est dans le code (clés Resend et Google Analytics dans les variables Netlify). Raison : l'offre gratuite de Netlify n'accepte qu'un seul contributeur sur un dépôt privé et bloquait les mises à jour (« Unrecognized Git contributor ») ; sur un dépôt public, la limite ne s'applique pas. Chaque envoi sur `main` redéploie le site.
 
 ## Ajouter une nouvelle toile
 
