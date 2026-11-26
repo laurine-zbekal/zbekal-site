@@ -2095,11 +2095,37 @@ hr.sep {
   /* le passage au site : le logo s’efface, puis le voile sombre se dissout lentement. Rien d’autre. */
   animation: intro-out 0.8s cubic-bezier(0.4, 0, 0.2, 1) 2.3s forwards;
 }
+.intro__mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 2.4vh, 22px);
+  /* le logo et le nom s’effacent en premier, en avançant à peine vers nous : ils ne restent pas en surimpression sur le site */
+  animation: intro-logo-out 0.45s cubic-bezier(0.4, 0, 0.6, 1) 2s forwards;
+}
 .intro__logo {
   width: min(clamp(150px, 22vw, 230px), 30vh);
   aspect-ratio: 1;
-  /* le logo s’efface en premier, en avançant à peine vers nous : il ne reste pas en surimpression sur le site */
-  animation: intro-logo-out 0.45s cubic-bezier(0.4, 0, 0.6, 1) 2s forwards;
+}
+/* « ZBEKAL® » sous le logo, qui apparaît une fois les trois traits peints */
+.intro__name {
+  font-family: var(--font-display);
+  font-size: min(clamp(30px, 4.4vw, 46px), 6vh);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #fff;
+  animation: intro-name-in 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) 1.45s both;
+}
+@keyframes intro-name-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 /* les traits rouges : chaque « poil » du pinceau avance avec un léger décalage */
 .intro__hair {

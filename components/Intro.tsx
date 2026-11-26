@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { site } from "@/content/site";
 
 /**
  * Écran d’ouverture : sur fond sombre, le rond rose du logo est déjà là ; les trois traits rouges du
@@ -9,6 +10,7 @@ import type { CSSProperties } from "react";
  *   (ou au rechargement), et un clic ou une touche le passe tout de suite.
  * - Joué aussi quand l’ordinateur est réglé sur « moins d’animations » (réglage fréquent sous Windows) :
  *   le geste est court, sans clignotement, et se passe d’un clic.
+ * - Le nom « ZBEKAL® » apparaît sous le logo à la fin du geste (le ® vaut pour le nom, marque déposée, pas pour le monogramme).
  * Pour le retirer : supprimer <Intro /> dans SiteShell.tsx.
  */
 const script = `(function(){try{var d=document.documentElement,s=sessionStorage;if(s.getItem("zbekal-intro")){d.setAttribute("data-intro","seen");return}s.setItem("zbekal-intro","1");var skip=function(){d.setAttribute("data-intro","seen");removeEventListener("pointerdown",skip,true);removeEventListener("keydown",skip,true)};addEventListener("pointerdown",skip,true);addEventListener("keydown",skip,true);setTimeout(skip,3600)}catch(e){}})();`;
@@ -52,26 +54,33 @@ export function Intro() {
     <>
       <script dangerouslySetInnerHTML={{ __html: script }} />
       <div className="intro" aria-hidden="true">
-        <svg className="intro__logo" viewBox="0 0 719 719" focusable="false">
-          <defs>
-            {STROKES.map((s) => (
-              <clipPath key={s.id} id={`intro-clip-${s.id}`}>
-                <path d={s.shape} />
-              </clipPath>
-            ))}
-          </defs>
-          {/* le rond rose est là dès la première image, sans animation */}
-          <circle cx={C} cy={C} r={C} fill="#FEBCCA" />
-          {/* les traits rouges, peints l’un après l’autre */}
-          {STROKES.map((s) => (
-            <g key={s.id} clipPath={`url(#intro-clip-${s.id})`}>
-              {HAIRS.map((k, j) => (
-                <path key={k} className="intro__hair" pathLength={100} stroke={HAIR_TONE[j]} d={s.path(k)} style={css(s.start + HAIR_LAG[j], s.duration)} />
+        <div className="intro__mark">
+          <svg className="intro__logo" viewBox="0 0 719 719" focusable="false">
+            <defs>
+              {STROKES.map((s) => (
+                <clipPath key={s.id} id={`intro-clip-${s.id}`}>
+                  <path d={s.shape} />
+                </clipPath>
               ))}
-              <path className="intro__solid" d={s.shape} fill="#FE0000" style={css(s.start + s.duration - 0.02, 0.14)} />
-            </g>
-          ))}
-        </svg>
+            </defs>
+            {/* le rond rose est là dès la première image, sans animation */}
+            <circle cx={C} cy={C} r={C} fill="#FEBCCA" />
+            {/* les traits rouges, peints l’un après l’autre */}
+            {STROKES.map((s) => (
+              <g key={s.id} clipPath={`url(#intro-clip-${s.id})`}>
+                {HAIRS.map((k, j) => (
+                  <path key={k} className="intro__hair" pathLength={100} stroke={HAIR_TONE[j]} d={s.path(k)} style={css(s.start + HAIR_LAG[j], s.duration)} />
+                ))}
+                <path className="intro__solid" d={s.shape} fill="#FE0000" style={css(s.start + s.duration - 0.02, 0.14)} />
+              </g>
+            ))}
+          </svg>
+          {/* le nom, marque déposée à l’INPI (n° 5325207) : il apparaît une fois les trois traits peints */}
+          <span className="intro__name">
+            {site.name}
+            <sup className="tm">®</sup>
+          </span>
+        </div>
       </div>
     </>
   );
