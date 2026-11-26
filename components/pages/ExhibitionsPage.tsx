@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ui, type Locale } from "@/content/ui";
 import { exhibitions } from "@/content/expositions";
 import { href } from "@/lib/routes";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, exhibitionJsonLd } from "@/lib/seo";
 import { ExhibitionList, ExhibitionStories } from "@/components/ExhibitionList";
 import { JsonLd } from "@/components/JsonLd";
 import { NewsletterForm } from "@/components/NewsletterForm";
@@ -20,6 +20,10 @@ export function ExhibitionsPage({ locale }: { locale: Locale }) {
           { name: t.exhibitions.title, path: href(locale, "exhibitions") },
         ])}
       />
+      {upcoming.map((e) => {
+        const data = exhibitionJsonLd(e, locale);
+        return data ? <JsonLd key={e.event?.start} data={data} /> : null;
+      })}
       <section className="container section" style={{ paddingTop: "clamp(32px, 5vw, 56px)" }}>
         <div className="section-head">
           <h1 className="display h1" style={{ fontSize: "clamp(44px, 8vw, 104px)" }}>

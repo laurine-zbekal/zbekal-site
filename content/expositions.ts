@@ -33,6 +33,11 @@ export type Exhibition = {
   url?: string;
   urlLabel?: L;
   images?: ExhibitionImage[];
+  /**
+   * Pour Google et les IA (schéma ExhibitionEvent) : dates au format AAAA-MM-JJ, lieu et commune.
+   * À renseigner pour les expositions à venir ; sans ce bloc, aucun schéma n'est publié.
+   */
+  event?: { start: string; end: string; venue: string; locality: string };
   /** false = n’apparaît pas dans les listes courtes (accueil, page Laurine) */
   highlight?: boolean;
 };
@@ -49,6 +54,7 @@ export const exhibitions: Exhibition[] = [
       en: "I’m showing at the 36th Regards exhibition in Saint-Macaire-en-Mauges: nearly 200 works by amateur and professional artists from the region, over nine days. I’m showing Wild Toco and The Gaze. Opens Saturday 5 December, 2 to 7 pm, then every day until Sunday 13.",
     },
     upcoming: true,
+    event: { start: "2026-12-05", end: "2026-12-13", venue: "Centre culturel du Prieuré", locality: "Saint-Macaire-en-Mauges" },
     url: "https://www.sevremoine.fr/actualite/inscription-regards/",
     urlLabel: { fr: "Horaires sur le site de Sèvremoine", en: "Opening hours (Sèvremoine website)" },
   },

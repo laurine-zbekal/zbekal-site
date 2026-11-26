@@ -288,7 +288,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="ig-grid reveal">
           {studioPhotos.slice(0, 4).map((p) => (
             <a key={p.src} href={site.instagram.url} rel="noopener" aria-label={`Instagram @${site.instagram.handle} — ${p.alt[locale]}`}>
-              <Image src={p.src} alt="" width={p.w} height={p.h} sizes="(min-width: 720px) 25vw, 50vw" quality={60} />
+              <Image src={p.src} alt={p.alt[locale]} width={p.w} height={p.h} sizes="(min-width: 720px) 25vw, 50vw" quality={60} />
             </a>
           ))}
         </div>

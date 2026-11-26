@@ -4,6 +4,7 @@ import type { Artwork } from "@/content/oeuvres";
 import type { Locale } from "@/content/ui";
 import { alternates, href, type RouteKey } from "./routes";
 import { getCollection } from "@/content/collections";
+import type { Exhibition } from "@/content/expositions";
 import { dimensionsLabel, hasDimensions, titleOf } from "./content";
 
 const ogLocale: Record<Locale, string> = { fr: "fr_FR", en: "en_GB" };
@@ -146,5 +147,28 @@ export function websiteJsonLd(locale: Locale) {
     url: absolute(href(locale, "home")),
     inLanguage: locale,
     publisher: { "@id": `${site.url}/#person` },
+  };
+}
+
+/** Schema.org ExhibitionEvent : une exposition à venir où Laurine montre ses toiles (seulement si `event` est renseigné). */
+export function exhibitionJsonLd(e: Exhibition, locale: Locale) {
+  if (!e.event) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "ExhibitionEvent",
+    name: e.title[locale],
+    description: (e.story ?? e.details)?.[locale],
+    startDate: e.event.start,
+    endDate: e.event.end,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    inLanguage: locale,
+    location: {
+      "@type": "Place",
+      name: e.event.venue,
+      address: { "@type": "PostalAddress", addressLocality: e.event.locality, addressRegion: site.region, addressCountry: "FR" },
+    },
+    performer: { "@id": `${site.url}/#person` },
+    url: absolute(href(locale, "exhibitions")),
   };
 }
