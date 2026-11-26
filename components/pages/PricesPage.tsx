@@ -7,7 +7,6 @@ import { href } from "@/lib/routes";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { WhyPrice } from "@/components/WhyPrice";
-import { ChevronIcon } from "@/components/Icons";
 import { questions } from "@/content/questions";
 
 const price = (n: number, locale: Locale) => new Intl.NumberFormat(locale === "fr" ? "fr-FR" : "en-GB", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
@@ -124,24 +123,32 @@ export function PricesPage({ locale }: { locale: Locale }) {
           })),
         }}
       />
-      <section className="container section" aria-labelledby="faq-title" id={locale === "fr" ? "questions" : "faq"}>
-        <div className="section-head">
+      <section className="container section faq" aria-labelledby="faq-title" id={locale === "fr" ? "questions" : "faq"}>
+        <div className="faq__head">
+          <span className="faq__kicker">{locale === "fr" ? "Avant de commander" : "Before you order"}</span>
           <h2 id="faq-title" className="display h2">
             {questions.title[locale]}
           </h2>
-          <p className="lead" style={{ maxWidth: "42ch" }}>
-            {questions.lead[locale]}
-          </p>
+          <p className="lead">{questions.lead[locale]}</p>
+          <div className="faq__ask">
+            <p>{locale === "fr" ? "Ta question n’est pas dans la liste ?" : "Your question isn’t listed?"}</p>
+            <Link href={href(locale, "contact")} className="btn btn--pink">
+              {t.cta.ask}
+            </Link>
+          </div>
         </div>
-        <div className="folds" style={{ maxWidth: 820 }}>
-          {questions.items.map((x) => (
-            <details key={x.q.fr} className="fold">
+        <div className="faq__list">
+          {questions.items.map((x, i) => (
+            <details key={x.q.fr} className="faq-item reveal">
               <summary>
-                <span>{x.q[locale]}</span>
-                <ChevronIcon />
+                <span className="faq-item__num" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="faq-item__q">{x.q[locale].replace(/ ([?!:;])/g, "\u00a0$1")}</span>
+                <span className="faq-item__icon" aria-hidden="true" />
               </summary>
-              <div className="fold__body prose">
-                <p>{x.a[locale]}</p>
+              <div className="faq-item__a">
+                <p>{x.a[locale].replace(/ ([?!:;])/g, "\u00a0$1")}</p>
               </div>
             </details>
           ))}
