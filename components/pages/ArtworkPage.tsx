@@ -218,7 +218,7 @@ export async function ArtworkPage({ locale, artwork }: { locale: Locale; artwork
                 return (
                   <li key={a.slug}>
                     <Link href={href(locale, "artwork", a.slug)} className="more-row">
-                      <span className="more-row__img">{main ? <Image src={main} alt="" fill sizes="84px" quality={60} style={{ objectFit: "cover" }} /> : <ArtworkPlaceholder artwork={a} locale={locale} />}</span>
+                      <span className="more-row__img">{main ? <Image src={main} alt={a.alt[locale]} fill sizes="84px" quality={60} style={{ objectFit: "cover" }} /> : <ArtworkPlaceholder artwork={a} locale={locale} />}</span>
                       <span className="more-row__body">
                         <span className="more-row__title">{titleOf(a, locale).title}</span>
                         <span className="more-row__sub">{specLine(a, locale)}</span>

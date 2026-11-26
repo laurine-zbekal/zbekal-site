@@ -5,3 +5,30 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# zbekal.fr (avec ou sans www) renvoie définitivement (301) vers zbekal.com, page pour page.
+# La règle de next.config.ts fait la même chose, mais l'hébergeur répondait par une redirection temporaire (302) :
+# ici, la redirection est faite par Netlify avant même d'atteindre le site, et Google comprend que zbekal.com est l'adresse officielle.
+[[redirects]]
+  from = "https://zbekal.fr/*"
+  to = "https://zbekal.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.zbekal.fr/*"
+  to = "https://zbekal.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://zbekal.fr/*"
+  to = "https://zbekal.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.zbekal.fr/*"
+  to = "https://zbekal.com/:splat"
+  status = 301
+  force = true

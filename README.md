@@ -119,3 +119,12 @@ public/oeuvres/      photos des toiles  ·  public/atelier/  photos d'atelier  �
 ```
 
 Polices : Anton et DM Sans (licence SIL Open Font License), servies depuis le site, sans requête vers Google.
+
+## Référencement par les IA (ChatGPT, Claude, Perplexity…)
+
+Ajouté le 26 novembre 2026 :
+
+- `/llms.txt` (`app/llms.txt/route.ts`) : résumé du site en texte brut pour les assistants IA (toiles disponibles, prix, tarifs, expositions, pages). Il se régénère tout seul à partir des fichiers de contenu.
+- Expositions à venir : renseigner le bloc `event` (dates AAAA-MM-JJ, lieu, commune) dans `content/expositions.ts` pour publier le schéma `ExhibitionEvent` (Google, IA). Sans ce bloc, rien n'est publié.
+- `zbekal.fr` → `zbekal.com` : redirection définitive (301) faite par Netlify (`netlify.toml`), en plus de la règle de `next.config.ts`.
+- Profils externes (Artmajeur, Google, etc.) : les ajouter dans `sameAs` de `personJsonLd` (`lib/seo.ts`) dès qu'ils existent.
