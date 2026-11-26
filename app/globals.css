@@ -1743,6 +1743,16 @@ body[data-menu-open="true"] {
   text-transform: uppercase;
   line-height: 1;
 }
+/* Petit ® de la marque déposée, à côté du nom dans l’en-tête et le pied de page */
+.tm {
+  font-family: var(--font-body, inherit);
+  font-size: 0.38em;
+  font-weight: 400;
+  letter-spacing: 0;
+  vertical-align: super;
+  margin-left: 0.15em;
+  line-height: 0;
+}
 .footer__col {
   display: flex;
   flex-direction: column;

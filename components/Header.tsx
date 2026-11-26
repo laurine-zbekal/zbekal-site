@@ -54,7 +54,10 @@ export function Header({ locale }: { locale: Locale }) {
           <Link href={href(locale, "home")} className="brand" aria-label={`${site.name} — ${t.nav.home}`}>
             <Logo size={42} />
             <span>
-              <span className="brand__name">{site.name}</span>
+              <span className="brand__name">
+                {site.name}
+                <sup className="tm" aria-hidden="true">®</sup>
+              </span>
               <span className="brand__sub">{site.artist} · {site.job[locale]}</span>
             </span>
           </Link>
@@ -101,7 +104,10 @@ export function Header({ locale }: { locale: Locale }) {
           <Link href={href(locale, "home")} className="brand" aria-label={`${site.name} — ${t.nav.home}`}>
             <Logo size={42} />
             <span>
-              <span className="brand__name">{site.name}</span>
+              <span className="brand__name">
+                {site.name}
+                <sup className="tm" aria-hidden="true">®</sup>
+              </span>
             </span>
           </Link>
           <button type="button" className="menu__close" onClick={() => setOpen(false)}>

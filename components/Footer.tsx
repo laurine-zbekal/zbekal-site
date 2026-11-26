@@ -14,7 +14,10 @@ export function Footer({ locale }: { locale: Locale }) {
       <div className="container">
         <div className="footer__inner">
           <div className="footer__col">
-            <span className="footer__brand">{site.name}</span>
+            <span className="footer__brand">
+              {site.name}
+              <sup className="tm" aria-hidden="true">®</sup>
+            </span>
             <span className="footer__muted">
               {site.artist} · {site.job[locale]} · {locationLabel(locale)}
             </span>
@@ -49,7 +52,7 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
         <div className="footer__bottom">
           <span>
-            © {site.name} {copyrightYears} · {t.footer.rights}
+            © {site.name} {copyrightYears} · {t.footer.rights} · {site.trademark.notice[locale]}
           </span>
           <span>{t.footer.madeBy}</span>
         </div>

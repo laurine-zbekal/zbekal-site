@@ -18,6 +18,18 @@ export const site = {
 
   instagram: { handle: "zbekal", url: "https://www.instagram.com/zbekal" },
 
+  /**
+   * Marque verbale ZBEKAL déposée à l’INPI le 26 novembre 2026 au nom de Laurine GIRARD
+   * (demande n° 5325207, classes 16 et 41). Le petit ® s’affiche à côté du nom dans l’en-tête et le pied de page.
+   */
+  trademark: {
+    number: "5325207",
+    notice: {
+      fr: "Zbekal® est une marque déposée de Laurine GIRARD.",
+      en: "Zbekal® is a trademark filed by Laurine GIRARD with the INPI (French Intellectual Property Office).",
+    },
+  },
+
   /** Localisation affichée. Renseigne `city` pour l’afficher (SEO local). */
   region: "Maine-et-Loire",
   department: "49",

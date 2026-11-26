@@ -40,6 +40,10 @@ export function LegalPage({ locale }: { locale: Locale }) {
         <p>
           All paintings, photographs, texts and graphic elements on this site are the work of {site.artist} and are protected by French and international copyright law (Code de la propriété intellectuelle). Any reproduction, representation, adaptation or distribution, in whole or in part, without prior written permission is prohibited. Buying an original painting does not transfer any reproduction rights.
         </p>
+        <h2 className="display h4">Trademark</h2>
+        <p>
+          {site.trademark.notice.en} Application no. {site.trademark.number}, filed on 26 November 2026. Any use of the name {site.name} without permission is prohibited.
+        </p>
         <h2 className="display h4">Personal data and cookies</h2>
         <p>
           This site uses no advertising or tracking cookies. Audience measurement is done without cookies or personal identifiers. The data you send through the forms is used only to answer you. Full details in the{" "}
@@ -79,6 +83,10 @@ export function LegalPage({ locale }: { locale: Locale }) {
       <h2 className="display h4">Propriété intellectuelle</h2>
       <p>
         L’ensemble des toiles, photographies, textes et éléments graphiques de ce site sont l’œuvre de {site.artist} et sont protégés par le Code de la propriété intellectuelle. Toute reproduction, représentation, adaptation ou diffusion, totale ou partielle, sans autorisation écrite préalable est interdite. L’achat d’une toile originale n’emporte aucune cession de droits de reproduction (article L111-3 du Code de la propriété intellectuelle).
+      </p>
+      <h2 className="display h4">Marque</h2>
+      <p>
+        {site.trademark.notice.fr} Dépôt INPI n° {site.trademark.number} du 26 novembre 2026. Toute utilisation du nom {site.name} sans autorisation est interdite.
       </p>
       <h2 className="display h4">Données personnelles et cookies</h2>
       <p>
