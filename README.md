@@ -18,6 +18,14 @@ Le site est en ligne depuis le 12 novembre 2026 sur `https://zbekal.com`.
 - Une variable d'environnement modifiée chez Netlify ne prend effet qu'au déploiement suivant (« Trigger deploy »).
 - Chaque déploiement de production consomme des crédits de l'offre gratuite de Netlify : grouper les mises à jour.
 
+## Marque déposée
+
+La marque verbale **ZBEKAL** a été déposée à l'INPI le 26 novembre 2026 au nom de Laurine GIRARD (demande n° 5325207, classes 16 et 41). Le petit ® s'affiche à côté du nom dans l'en-tête et le pied de page ; la mention « Zbekal® est une marque déposée de Laurine GIRARD » est en bas de chaque page et dans les mentions légales. Tout se règle dans `content/site.ts` (`trademark`). Enregistrement attendu après la fin du délai d'opposition (18 février 2027). Si la demande était refusée, retirer le ® (`components/Header.tsx`, `components/Footer.tsx`).
+
+## Mettre à jour le site
+
+L'offre gratuite de Netlify n'accepte qu'un seul contributeur sur un dépôt privé : une modification envoyée directement sur `main` par un autre compte est bloquée (« Unrecognized Git contributor »). Les mises à jour passent donc par une demande de modification (pull request) sur GitHub, que Laurine valide avec « Merge pull request » : c'est ce clic qui déclenche la mise en ligne.
+
 ## Ajouter une nouvelle toile
 
 1. Photos : une photo de face, à plat, lumière du jour, sans perspective → `public/oeuvres/<slug>/main.jpg` ; les gros plans de matière → `detail-1.jpg`, `detail-2.jpg`… (JPEG, 2 000 px de large environ, moins de 1 Mo chacune).
