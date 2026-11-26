@@ -24,7 +24,7 @@ La marque verbale **ZBEKAL** a été déposée à l'INPI le 26 novembre 2026 au 
 
 ## Mettre à jour le site
 
-L'offre gratuite de Netlify n'accepte qu'un seul contributeur sur un dépôt privé : une modification envoyée directement sur `main` par un autre compte est bloquée (« Unrecognized Git contributor »). Les mises à jour passent donc par une demande de modification (pull request) sur GitHub, que Laurine valide avec « Merge pull request » : c'est ce clic qui déclenche la mise en ligne.
+L'offre gratuite de Netlify n'accepte qu'un seul contributeur sur un dépôt privé : une modification envoyée directement sur `main` par un autre compte est bloquée (« Unrecognized Git contributor »). Les mises à jour passent donc par une demande de modification (pull request) sur GitHub, que Laurine valide avec « Merge pull request » **depuis son compte GitHub `laurine-zbekal`** : c'est ce clic qui déclenche la mise en ligne. Une validation faite depuis un autre compte (par exemple `groupe-grd`) est bloquée de la même façon.
 
 ## Ajouter une nouvelle toile
 
