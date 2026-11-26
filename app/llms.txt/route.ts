@@ -63,7 +63,7 @@ export function GET() {
     ...collectionsWithWorks().map((c) => `- [Collection ${c.title.fr}](${abs(href("fr", "collection", c.slug))}) : ${c.lead.fr}`),
     `- [La démarche de Laurine](${abs(href("fr", "about"))})`,
     `- [Expositions](${abs(href("fr", "exhibitions"))})`,
-    `- [Tarifs ${tarifs.year}](${abs(href("fr", "prices"))})`,
+    `- [Tarifs ${tarifs.year} et questions fréquentes](${abs(href("fr", "prices"))}#questions)`,
     `- [Carte cadeau](${abs(href("fr", "gift"))})`,
     `- [Contact](${abs(href("fr", "contact"))})`,
     `- [Conditions de vente](${abs(href("fr", "terms"))})`,

@@ -7,6 +7,8 @@ import { href } from "@/lib/routes";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { WhyPrice } from "@/components/WhyPrice";
+import { ChevronIcon } from "@/components/Icons";
+import { questions } from "@/content/questions";
 
 const price = (n: number, locale: Locale) => new Intl.NumberFormat(locale === "fr" ? "fr-FR" : "en-GB", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 
@@ -107,6 +109,43 @@ export function PricesPage({ locale }: { locale: Locale }) {
             </li>
           ))}
         </ol>
+      </section>
+
+      {/* Questions fréquentes (publiées aussi en FAQPage pour Google et les IA) */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          inLanguage: locale,
+          mainEntity: questions.items.map((x) => ({
+            "@type": "Question",
+            name: x.q[locale],
+            acceptedAnswer: { "@type": "Answer", text: x.a[locale] },
+          })),
+        }}
+      />
+      <section className="container section" aria-labelledby="faq-title" id={locale === "fr" ? "questions" : "faq"}>
+        <div className="section-head">
+          <h2 id="faq-title" className="display h2">
+            {questions.title[locale]}
+          </h2>
+          <p className="lead" style={{ maxWidth: "42ch" }}>
+            {questions.lead[locale]}
+          </p>
+        </div>
+        <div className="folds" style={{ maxWidth: 820 }}>
+          {questions.items.map((x) => (
+            <details key={x.q.fr} className="fold">
+              <summary>
+                <span>{x.q[locale]}</span>
+                <ChevronIcon />
+              </summary>
+              <div className="fold__body prose">
+                <p>{x.a[locale]}</p>
+              </div>
+            </details>
+          ))}
+        </div>
       </section>
 
       {/* Appel */}
