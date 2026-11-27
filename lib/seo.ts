@@ -67,7 +67,7 @@ export function personJsonLd(locale: Locale) {
     url: absolute(href(locale, "home")),
     image: absolute("/og/demarche.jpg"),
     email: `mailto:${site.email}`,
-    sameAs: [site.instagram.url],
+    sameAs: [site.instagram.url, ...site.profiles.map((p) => p.url)],
     address: {
       "@type": "PostalAddress",
       addressLocality: site.city || undefined,

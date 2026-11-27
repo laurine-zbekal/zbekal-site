@@ -19,6 +19,18 @@ export const site = {
   instagram: { handle: "zbekal", url: "https://www.instagram.com/zbekal" },
 
   /**
+   * Profils officiels de Laurine ailleurs sur le web. Ils ne sont pas affichés sur le site :
+   * ils servent à Google et aux assistants IA pour relier ces pages à Laurine
+   * (données structurées « sameAs » et fichier /llms.txt). Vérifiés le 27 novembre 2026.
+   */
+  profiles: [
+    { name: "Facebook", url: "https://www.facebook.com/p/Zbekal-61594048840925/" },
+    { name: "TikTok", url: "https://www.tiktok.com/@zbekal" },
+    { name: "Artmajeur", url: "https://www.artmajeur.com/laurine-girard" },
+    { name: "Singulart", url: "https://www.singulart.com/fr/artiste/laurine-girard-86446" },
+  ],
+
+  /**
    * Marque verbale ZBEKAL déposée à l’INPI le 26 novembre 2026 au nom de Laurine GIRARD
    * (demande n° 5325207, classes 16 et 41). Le petit ® s’affiche à côté du nom dans l’en-tête et le pied de page.
    */
