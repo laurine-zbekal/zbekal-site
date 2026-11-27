@@ -19,15 +19,17 @@ export const site = {
   instagram: { handle: "zbekal", url: "https://www.instagram.com/zbekal" },
 
   /**
-   * Profils officiels de Laurine ailleurs sur le web. Ils ne sont pas affichés sur le site :
-   * ils servent à Google et aux assistants IA pour relier ces pages à Laurine
-   * (données structurées « sameAs » et fichier /llms.txt). Vérifiés le 27 novembre 2026.
+   * Profils officiels de Laurine ailleurs sur le web. Vérifiés le 27 novembre 2026.
+   * Tous servent à Google et aux assistants IA pour relier ces pages à Laurine
+   * (données structurées « sameAs » et fichier /llms.txt).
+   * `shown: true` : le lien est aussi affiché sur le site (pied de page et page Contact), à côté d’Instagram.
+   * Les plateformes de vente (Artmajeur, Singulart) ne sont pas affichées : elles prennent une commission.
    */
   profiles: [
-    { name: "Facebook", url: "https://www.facebook.com/p/Zbekal-61594048840925/" },
-    { name: "TikTok", url: "https://www.tiktok.com/@zbekal" },
-    { name: "Artmajeur", url: "https://www.artmajeur.com/laurine-girard" },
-    { name: "Singulart", url: "https://www.singulart.com/fr/artiste/laurine-girard-86446" },
+    { name: "Facebook", label: "Zbekal", url: "https://www.facebook.com/p/Zbekal-61594048840925/", shown: true },
+    { name: "TikTok", label: "@zbekal", url: "https://www.tiktok.com/@zbekal", shown: true },
+    { name: "Artmajeur", label: "Laurine Girard", url: "https://www.artmajeur.com/laurine-girard", shown: false },
+    { name: "Singulart", label: "Laurine Girard", url: "https://www.singulart.com/fr/artiste/laurine-girard-86446", shown: false },
   ],
 
   /**

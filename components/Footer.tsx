@@ -40,6 +40,13 @@ export function Footer({ locale }: { locale: Locale }) {
             <a href={site.instagram.url} rel="noopener">
               Instagram @{site.instagram.handle}
             </a>
+            {site.profiles
+              .filter((p) => p.shown)
+              .map((p) => (
+                <a key={p.name} href={p.url} rel="noopener">
+                  {p.name} {p.label}
+                </a>
+              ))}
             <Link href={href(locale, "exhibitions")}>{t.nav.exhibitions}</Link>
           </div>
           <div className="footer__col">

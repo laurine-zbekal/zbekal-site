@@ -10,6 +10,23 @@ export function InstagramIcon({ size = 22, className }: IconProps) {
   );
 }
 
+export function FacebookIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="2.5 2 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+      <path d="M17 3h-2.5A4.5 4.5 0 0 0 10 7.5V10H7v4h3v7h4v-7h3l1-4h-4V7.5a.5.5 0 0 1 .5-.5H17z" />
+    </svg>
+  );
+}
+
+export function TikTokIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="2.5 0.75 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+      <path d="M14 3v11.5a4 4 0 1 1-4-4" />
+      <path d="M14 3c.3 2.9 2.2 4.8 5 5" />
+    </svg>
+  );
+}
+
 export function CheckIcon({ size = 18, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>

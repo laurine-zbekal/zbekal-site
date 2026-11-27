@@ -5,7 +5,7 @@ import { allArtworks, titleOf } from "@/lib/content";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
-import { InstagramIcon, MailIcon } from "@/components/Icons";
+import { FacebookIcon, InstagramIcon, MailIcon, TikTokIcon } from "@/components/Icons";
 
 export function ContactPage({ locale }: { locale: Locale }) {
   const t = ui[locale];
@@ -39,8 +39,15 @@ export function ContactPage({ locale }: { locale: Locale }) {
                 <MailIcon /> {site.email}
               </a>
               <a href={site.instagram.url} className="cluster" rel="noopener" style={{ gap: 10, textDecoration: "none", fontWeight: 700 }}>
-                <InstagramIcon size={18} /> @{site.instagram.handle}
+                <InstagramIcon size={18} /> Instagram @{site.instagram.handle}
               </a>
+              {site.profiles
+                .filter((p) => p.shown)
+                .map((p) => (
+                  <a key={p.name} href={p.url} className="cluster" rel="noopener" style={{ gap: 10, textDecoration: "none", fontWeight: 700 }}>
+                    {p.name === "Facebook" ? <FacebookIcon size={18} /> : p.name === "TikTok" ? <TikTokIcon size={18} /> : null} {p.name} {p.label}
+                  </a>
+                ))}
             </div>
           </div>
           <div className="panel panel--line" style={{ padding: "clamp(20px, 3.5vw, 40px)" }}>
