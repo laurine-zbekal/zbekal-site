@@ -51,8 +51,8 @@ export const questions = {
     {
       q: { fr: "Tu livres ?", en: "Do you deliver?" },
       a: {
-        fr: "Je remets la toile en main propre en Maine-et-Loire. Ailleurs, je l’envoie soigneusement emballée. Les frais d’envoi dépendent de la destination et du format, et ils sont toujours indiqués avant le paiement.",
-        en: "I hand the painting over in person in Maine-et-Loire. Elsewhere, I ship it carefully packed. Shipping costs depend on the destination and the size, and they are always shown before payment.",
+        fr: "Oui. Je remets la toile en main propre à Angers, à Cholet, à Nantes et partout en Maine-et-Loire. Ailleurs, je l’envoie soigneusement emballée. Les frais d’envoi dépendent de la destination et du format, et ils sont toujours indiqués avant le paiement.",
+        en: "Yes. I hand the painting over in person in Angers, Cholet, Nantes and anywhere in Maine-et-Loire. Elsewhere, I ship it carefully packed. Shipping costs depend on the destination and the size, and they are always shown before payment.",
       },
     },
     {
@@ -93,8 +93,8 @@ export const questions = {
     {
       q: { fr: "Où voir tes toiles en vrai ?", en: "Where can I see your paintings in person?" },
       a: {
-        fr: "Dans les salons et expositions de la région, comme le Salon des Arts de Jallais, où le public m’a remis son prix en 2023. Les prochaines dates sont sur la page Expos et sur Instagram, @zbekal.",
-        en: "At art fairs and exhibitions in the region, like the Salon des Arts in Jallais, where the public gave me its award in 2023. Upcoming dates are on the Shows page and on Instagram, @zbekal.",
+        fr: "Dans les salons et expositions de la région, autour d’Angers et de Cholet, comme le Salon des Arts de Jallais, où le public m’a remis son prix en 2023. Les prochaines dates sont sur la page Expos et sur Instagram, @zbekal.",
+        en: "At art fairs and exhibitions in the region, around Angers and Cholet, like the Salon des Arts in Jallais, where the public gave me its award in 2023. Upcoming dates are on the Shows page and on Instagram, @zbekal.",
       },
     },
   ] as Question[],

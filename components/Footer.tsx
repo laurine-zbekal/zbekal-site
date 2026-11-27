@@ -21,6 +21,7 @@ export function Footer({ locale }: { locale: Locale }) {
             <span className="footer__muted">
               {site.artist} · {site.job[locale]} · {locationLabel(locale)}
             </span>
+            <span className="footer__muted">{site.handDelivery[locale]}</span>
           </div>
           <div className="footer__col">
             <h2>{t.nav.gallery}</h2>

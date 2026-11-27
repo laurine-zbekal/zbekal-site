@@ -170,13 +170,13 @@ export const tarifs = {
       { title: "Tu m’écris", text: "Ton idée, ton format, tes couleurs, la pièce où elle sera accrochée." },
       { title: "Je te fais un devis", text: "Un acompte de 30 % lance la commande." },
       { title: "Je peins", text: "Tu reçois une photo de la toile en cours, pour valider avant la fin." },
-      { title: "Elle arrive chez toi", text: "Remise en main propre ou envoi soigné, avec son certificat." },
+      { title: "Elle arrive chez toi", text: "Remise en main propre à Angers, Cholet ou Nantes, ou envoi soigné, avec son certificat." },
     ],
     en: [
       { title: "You write to me", text: "Your idea, your size, your colours, the room where it will hang." },
       { title: "I send you a quote", text: "A 30% deposit starts the commission." },
       { title: "I paint", text: "You receive a photo of the work in progress, to approve before the end." },
-      { title: "It arrives at your home", text: "Hand delivery or careful shipping, with its certificate." },
+      { title: "It arrives at your home", text: "Hand delivery in Angers, Cholet or Nantes, or careful shipping, with its certificate." },
     ],
   } as L<{ title: string; text: string }[]>,
 

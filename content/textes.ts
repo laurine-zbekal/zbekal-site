@@ -24,10 +24,12 @@ export const home = {
     fr: [
       "J’ai peint ma première toile le 10 avril 2020, en plein confinement. Je n’ai plus lâché les pinceaux.",
       "Depuis, il y a eu des corps, des mains, des bouquets, et maintenant une jungle entière. Toujours à l’acrylique, toujours en épaisseur : j’aime quand la peinture sort de la toile et accroche la lumière.",
+      "Mon atelier est à Chalonnes-sur-Loire, à une demi-heure d’Angers. Je remets moi-même mes toiles à Angers, à Cholet et à Nantes.",
     ],
     en: [
       "I painted my first canvas on 10 April 2020, in the middle of lockdown. I haven’t put the brushes down since.",
       "Since then there have been bodies, hands, bouquets, and now a whole jungle. Always in acrylic, always laid on thick: I love it when the paint rises off the canvas and catches the light.",
+      "My studio is in Chalonnes-sur-Loire, half an hour from Angers. I hand my paintings over myself in Angers, Cholet and Nantes.",
     ],
   } as L<string[]>,
   portraitAlt: {
@@ -92,10 +94,10 @@ const photos = {
 export const studioPhotos: Photo[] = [photos.mainPinceau, photos.auSol, photos.devantJaguar, photos.matiere];
 
 export const about = {
-  kicker: { fr: "Artiste peintre · Chalonnes-sur-Loire", en: "Painter · Chalonnes-sur-Loire, France" } as L<string>,
+  kicker: { fr: "Artiste peintre · Chalonnes-sur-Loire, près d’Angers", en: "Painter · Chalonnes-sur-Loire, near Angers, France" } as L<string>,
   intro: {
-    fr: "Je peins des toiles qui ont du relief : de l’acrylique en épaisseur, des feuilles dorées, des perles. Tout a commencé le 10 avril 2020, en plein confinement, avec une première toile. Je ne me suis plus arrêtée.",
-    en: "I paint canvases with relief: thick acrylic, golden leaf, beads. It all began on 10 April 2020, in the middle of lockdown, with a first painting. I haven’t stopped since.",
+    fr: "Je peins des toiles qui ont du relief : de l’acrylique en épaisseur, des feuilles dorées, des perles. Tout a commencé le 10 avril 2020, en plein confinement, avec une première toile. Je ne me suis plus arrêtée. Mon atelier est à Chalonnes-sur-Loire, au bord de la Loire, entre Angers, Cholet et Nantes.",
+    en: "I paint canvases with relief: thick acrylic, golden leaf, beads. It all began on 10 April 2020, in the middle of lockdown, with a first painting. I haven’t stopped since. My studio is in Chalonnes-sur-Loire, on the banks of the Loire, between Angers, Cholet and Nantes.",
   } as L<string>,
   portrait: {
     src: "/atelier/portrait-palette.jpg",

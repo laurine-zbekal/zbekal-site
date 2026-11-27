@@ -49,6 +49,11 @@ export const site = {
   department: "49",
   city: "Chalonnes-sur-Loire",
   country: { fr: "France", en: "France" },
+  /** Villes où Laurine remet ses toiles en main propre : affiché dans le pied de page (aide aussi le référencement local). */
+  handDelivery: {
+    fr: "Toiles remises en main propre à Angers, Cholet et Nantes",
+    en: "Paintings handed over in person in Angers, Cholet and Nantes",
+  },
 
   /** Mentions légales — à compléter avant la mise en ligne. */
   legal: {

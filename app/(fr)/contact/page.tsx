@@ -5,7 +5,7 @@ import { ContactPage } from "@/components/pages/ContactPage";
           locale: "fr",
           key: "contact",
           title: "Contact et commande sur mesure",
-          description: "Acquérir une toile de Zbekal ou commander une création sur mesure, unique : écris à Laurine, réponse sous 48 h.",
+          description: "Acquérir une toile de Zbekal ou commander un tableau sur mesure, unique : écris à Laurine, réponse sous 48 h. Atelier près d’Angers, remise en main propre à Angers, Cholet et Nantes.",
           image: "/og/default.jpg",
 });
 
